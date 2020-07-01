@@ -1,0 +1,1 @@
+	Projeto POO-JAVA, minhaCasaTech. App funcional de venda de equipamentos de informatica, é uma atividade avaliativa do semestre 2020.3 de Cc
