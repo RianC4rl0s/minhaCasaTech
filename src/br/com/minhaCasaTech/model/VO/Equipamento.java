@@ -7,7 +7,7 @@ public class Equipamento {
 	private int quantidade;
 	private int numeroDeSerie;
 	private Responsavel responsavel = new Responsavel();
-	private String local;
+	private Local local = new Local();
 	
 	
 	//Set
@@ -57,13 +57,11 @@ public class Equipamento {
 		}
 	}
 	
-	public void setLocal(String local) {
+	public void setLocal(Local local) {
 		if(local != null) {
-			if(local.equals("")) {
-				System.out.println("Vazio");
-			}else {
+			
 				this.local = local;
-			}
+			
 		}else {
 			System.out.println("O valor esta nulo");
 		}
@@ -94,7 +92,7 @@ public class Equipamento {
 	public int getNumeroDeSerie() {
 		 return numeroDeSerie;
 		}
-	public String getLocal() {
+	public Local getLocal() {
 		return local;
 	}
 	public Responsavel getResponsavel() {
@@ -102,8 +100,55 @@ public class Equipamento {
 	}
 	
 	//Methods
-	public boolean cadastrar(String nome, double peso, double preco, int quantidade, int numeroDeSerie,Responsavel responsavel, String local) {
+	
+	//cadastrar BETA
+	public boolean cadastrar(String nome, double peso, double preco, int quantidade, int numeroDeSerie,Responsavel responsavel, Local local) {
 		
+		if(nome != null) {
+			if(nome.equals("")) {
+				System.out.println("Vazio");
+			}else {
+				this.nome = nome;
+			}
+		}else {
+			System.out.println("O valor esta nulo");
+		}
+		
+		if (peso <=0 ) {
+			System.out.println("Valor invalido");
+		}else {
+			this.peso = peso;
+		}
+		
+		if (peso <=0 ) {
+			System.out.println("Valor invalido");
+		}else {
+			this.preco = preco;
+		}
+		
+		if (quantidade <= 0) {
+			System.out.println("Valor invalido");
+		}else {
+			this.quantidade = quantidade;
+		}
+		
+		if (quantidade <= 0) {
+			System.out.println("Valor invalido");
+		}else {
+			this.numeroDeSerie = numeroDeSerie;
+		}
+		
+		if(local != null) {
+			this.local = local;
+		}else {
+			System.out.println("O valor esta nulo");
+		}
+		
+		if(responsavel == null) {
+			System.out.println("Valor Nulo");
+		}else {
+			this.responsavel = responsavel;
+		}
 		boolean r = true;
 		return r;
 	}
