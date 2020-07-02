@@ -6,9 +6,11 @@ public class Equipamento {
 	private double preco;
 	private int quantidade;
 	private int numeroDeSerie;
-	//private Responsavel responsavel = new Responsavel();
+	private Responsavel responsavel = new Responsavel();
 	private String local;
 	
+	
+	//Set
 	public void setNome(String nome) {
 		if(nome != null) {
 			if(nome.equals("")) {
@@ -20,9 +22,7 @@ public class Equipamento {
 			System.out.println("O valor esta nulo");
 		}
 	}
-	public String getNome() {
-		return nome;
-	}
+	
 	public void setPeso(double peso) {
 		if (peso <=0 ) {
 			System.out.println("Valor invalido");
@@ -31,9 +31,7 @@ public class Equipamento {
 		}
 	
 	}
-	public double getPeso() {
-		return peso;
-	}
+	
 	public void setPreco(double preco) {
 		if (peso <=0 ) {
 			System.out.println("Valor invalido");
@@ -42,10 +40,7 @@ public class Equipamento {
 		}
 	
 	}
-	public double getPreco() {
-		
-		return preco;
-	}
+	
 	public void setQuantidade(int quantidade) {
 		if (quantidade <= 0) {
 			System.out.println("Valor invalido");
@@ -53,9 +48,7 @@ public class Equipamento {
 			this.quantidade = quantidade;
 		}
 	}
-	public int getQuantidade() {
-	 return quantidade;
-	}
+	
 	public void setNumeroSDeSerie(int numeroDeSerie) {
 		if (quantidade <= 0) {
 			System.out.println("Valor invalido");
@@ -63,9 +56,7 @@ public class Equipamento {
 			this.numeroDeSerie = numeroDeSerie;
 		}
 	}
-	public int getNumeroDeSerie() {
-	 return numeroDeSerie;
-	}
+	
 	public void setLocal(String local) {
 		if(local != null) {
 			if(local.equals("")) {
@@ -77,7 +68,43 @@ public class Equipamento {
 			System.out.println("O valor esta nulo");
 		}
 	}
+	public void setResponsavel(Responsavel responsavel) {
+		if(responsavel == null) {
+			System.out.println("Valor Nulo");
+		}else {
+			this.responsavel = responsavel;
+		}
+	}
+	
+	
+	//Get
+	public String getNome() {
+		return nome;
+	}
+	public double getPeso() {
+		return peso;
+	}
+	public int getQuantidade() {
+		 return quantidade;
+		}
+	public double getPreco() {
+		
+		return preco;
+	}
+	public int getNumeroDeSerie() {
+		 return numeroDeSerie;
+		}
 	public String getLocal() {
 		return local;
+	}
+	public Responsavel getResponsavel() {
+		return responsavel;
+	}
+	
+	//Methods
+	public boolean cadastrar(String nome, double peso, double preco, int quantidade, int numeroDeSerie,Responsavel responsavel, String local) {
+		
+		boolean r = true;
+		return r;
 	}
 }
