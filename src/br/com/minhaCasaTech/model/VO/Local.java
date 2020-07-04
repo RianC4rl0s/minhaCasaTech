@@ -41,14 +41,16 @@ public class Local {
 	}
 	
 	//Cadastrar??
-	public boolean cadastrar(String casa, String compartimento) {
+	
+	//public boolean cadastrar(String casa, String compartimento) {
 		
-		Local l = new Local();
-		l.setCasa(casa);
-		l.setCompartimento(compartimento);
+		//Local l = new Local();
+		//l.setCasa(casa);
+		//l.setCompartimento(compartimento);
 		
-		return true;
-	}
+		//return true;
+//}
+	
 
 
 }

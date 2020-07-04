@@ -1,5 +1,5 @@
 package br.com.minhaCasaTech.model.VO;
-
+import java.util.Scanner;
 public class Usuario {
 	private String login;
 	private String senha;
@@ -17,6 +17,7 @@ public class Usuario {
 			if(login.equals("")) {
 				System.out.println("Nada escrito");
 			}else {
+				System.out.println(this.login);
 			this.login = login;
 			}
 		
@@ -29,9 +30,10 @@ public class Usuario {
 			if(senha.equals("")) {
 				System.out.println("Nada foi escrito");
 			}else {
-				if(senha.matches("[a-zA-Z][0-9]") == true) {
+				if(senha.matches("[a-zA-Z][0-9]") == false) {
 					this.senha =  senha;
-				}else if(senha.matches("[a-zA-Z][0-9]")== false) {
+					System.out.println(this.senha);
+				}else if(senha.matches("[a-zA-Z][0-9]")== true) {
 					System.out.println("A senha deve conter caracteres Maiusculos, minusculos e numeros");
 				}
 			}
@@ -52,5 +54,20 @@ public class Usuario {
 	}
 	public int getNivel() {
 		return nivel;
+	}
+	
+	//TESTE
+	public static void main(String args[]) {
+		Usuario u = new Usuario();
+		Scanner t = new Scanner(System.in);
+		String a,b;
+		
+		a = t.next();
+		b = t.next();
+
+		u.setLogin(a);
+		u.setSenha(b);
+		u.setNivel(0);
+		
 	}
 }
