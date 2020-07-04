@@ -39,4 +39,16 @@ public class Local {
 	public String getCompartimento() {
 		return compartimento;
 	}
+	
+	//Cadastrar??
+	public boolean cadastrar(String casa, String compartimento) {
+		
+		Local l = new Local();
+		l.setCasa(casa);
+		l.setCompartimento(compartimento);
+		
+		return true;
+	}
+
+
 }
