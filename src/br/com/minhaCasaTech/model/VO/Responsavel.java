@@ -11,7 +11,11 @@ public class Responsavel {
 			System.out.println("valor nulo");
 			
 		}else {
+			if(nome.equals("")) {
+				System.out.println("Nada escrito");
+			}else {
 			this.nome = nome;
+			}
 		}
 	}
 	public void setEndereco(String endereco) {
@@ -19,7 +23,12 @@ public class Responsavel {
 			System.out.println("valor nulo");
 			
 		}else {
-			this.endereco= endereco;
+			if(endereco.equals("")) {
+				System.out.println("Nada escrito");
+				this.endereco = "NADA";
+			}else {
+			this.endereco = endereco;
+			}
 		}
 	}
 	public void setTelefone(String telefone) {
@@ -27,7 +36,12 @@ public class Responsavel {
 			System.out.println("valor nulo");
 			
 		}else {
-			this.telefone= telefone;
+			if(telefone.equals("")) {
+				System.out.println("Nada escrito");
+				this.telefone= "NADA";
+			}else {
+			this.telefone = telefone;
+			}		
 		}
 	}
 	

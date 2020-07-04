@@ -9,7 +9,13 @@ public class Local {
 			System.out.println("ValorNulo");
 			
 		}else {
+			if(casa.equals("")) {
+				System.out.println("Nada escrito");
+				this.casa = "NADA";
+			}else {
 			this.casa = casa;
+			}
+		
 		}
 	}
 	public void setCompartimento(String compartimento) {
@@ -17,7 +23,13 @@ public class Local {
 			System.out.println("ValorNulo");
 			
 		}else {
-			this.compartimento= compartimento;
+			if(compartimento.equals("")) {
+				System.out.println("Nada escrito");
+				this.compartimento = "NADA";
+			}else {
+			this.compartimento = compartimento;
+			}
+		
 		}
 	}
 	//Get
