@@ -1,5 +1,5 @@
 package br.com.minhaCasaTech.model.VO;
-import java.util.Scanner;
+
 public class Usuario {
 	private String login;
 	private String senha;
@@ -57,16 +57,5 @@ public class Usuario {
 	}
 	
 	
-	public static void main(String args[]) {
-		Usuario u = new Usuario();
-		Scanner t = new Scanner(System.in);
-		String a,b;
-		
-		a = t.next();
-		u.setLogin(a);
-		b = t.next();
-		u.setSenha(b);
-		u.setNivel(0);
-		
-	}
+	
 }

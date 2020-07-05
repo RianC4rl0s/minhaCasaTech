@@ -111,5 +111,18 @@ public class EquipamentoVO {
 		setResponsavel(responsavel);
 		setLocal(local);
 	}
-	
+	public String toString() {
+		String retorno;
+		String nomeS = getNome();
+		String pesoS =Double.toString(getPeso());
+		String precoS = Double.toString(getPreco());
+		String quantidadeS =Integer.toString(getQuantidade());
+		Responsavel r = new Responsavel();
+		String responsavelS = r.getNome();
+		Local l = new Local();
+		String localS = l.getCasa() + " " +  l.getCompartimento(); 
+		
+		retorno = nomeS + " " + pesoS +"kg %n $"+ precoS + "%n" + quantidadeS +"Unidades %n"+responsavelS + "%n"+ localS;
+		return retorno;
+	}
 }

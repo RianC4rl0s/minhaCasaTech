@@ -1,7 +1,7 @@
 package br.com.minhaCasaTech.model.BO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
-import br.com.minhaCasaTech.model.VO.Local;
-import br.com.minhaCasaTech.model.VO.Responsavel;
+//import br.com.minhaCasaTech.model.VO.Local;
+//import br.com.minhaCasaTech.model.VO.Responsavel;
 public class EquipamentoBO {
 	
 	public EquipamentoVO  editar(EquipamentoVO eqpOrigem,EquipamentoVO eqpEdt) {
@@ -15,11 +15,22 @@ public class EquipamentoBO {
 			//eDao.removerEquipamento(equipamento);
 		
 	}
-	public void cadastrar(String nome, double peso, double preco, int quantidade, int numeroDeSerie,Responsavel responsavel, Local local) {
-		EquipamentoVO equipamento = new EquipamentoVO(nome,peso,preco,quantidade,numeroDeSerie,responsavel,local);
+	public void cadastrar(EquipamentoVO equipamento) {
+		
+		System.out.println(equipamento.toString());
+	}
+	
+	
+	
+	//public void cadastrar(String nome, double peso, double preco, int quantidade, int numeroDeSerie,Responsavel responsavel, Local local) {
+		//EquipamentoVO equipamento = new EquipamentoVO(nome,peso,preco,quantidade,numeroDeSerie,responsavel,local);
 		//EquipamentoDAO eDao = new EquipamentoDAO();
 		//eDao.cadastrarEquipamento(equipamento);
 		
 		
-	}
+	//}
+	//public EquipamentoVO buscar(String busca) {
+		
+		
+	//}
 }
