@@ -30,10 +30,10 @@ public class Usuario {
 			if(senha.equals("")) {
 				System.out.println("Nada foi escrito");
 			}else {
-				if(senha.matches("[a-zA-Z][0-9]") == false) {
+				if(senha.matches("[a-zA-Z][0-9]")  == true) {
 					this.senha =  senha;
 					System.out.println(this.senha);
-				}else if(senha.matches("[a-zA-Z][0-9]")== true) {
+				}else if(senha.matches("[a-zA-Z][0-9]")== false) {
 					System.out.println("A senha deve conter caracteres Maiusculos, minusculos e numeros");
 				}
 			}
@@ -56,16 +56,15 @@ public class Usuario {
 		return nivel;
 	}
 	
-	//TESTE
+	
 	public static void main(String args[]) {
 		Usuario u = new Usuario();
 		Scanner t = new Scanner(System.in);
 		String a,b;
 		
 		a = t.next();
-		b = t.next();
-
 		u.setLogin(a);
+		b = t.next();
 		u.setSenha(b);
 		u.setNivel(0);
 		
