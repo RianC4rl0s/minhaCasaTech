@@ -99,8 +99,7 @@ public class EquipamentoVO {
 		return responsavel;
 	}
 	
-	public EquipamentoVO() {
-		
+	public EquipamentoVO() {	
 	}
 	public EquipamentoVO( String nome,double peso,double preco,int quantidade,int numeroDeSerie,Responsavel responsavel,Local local) {
 		setNome(nome);
@@ -120,9 +119,9 @@ public class EquipamentoVO {
 		Responsavel r = new Responsavel();
 		String responsavelS = r.getNome();
 		Local l = new Local();
-		String localS = l.getCasa() + " " +  l.getCompartimento(); 
+		String localS = " Casa: "+ l.getCasa() + "\n Compartimento: " +  l.getCompartimento(); 
 		
-		retorno = nomeS + " " + pesoS +"kg %n $"+ precoS + "%n" + quantidadeS +"Unidades %n"+responsavelS + "%n"+ localS;
+		retorno = " Nome: "+  nomeS + "\n Peso: " + pesoS +"kg \n Preço: $"+ precoS + "\n Quantidade" + quantidadeS +"\n Unidades %n Nome do responsavel: "+responsavelS + "\n"+ localS;
 		return retorno;
 	}
 }

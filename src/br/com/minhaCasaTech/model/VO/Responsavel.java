@@ -62,6 +62,10 @@ public class Responsavel {
 		setEndereco(endereco);
 		setTelefone(telefone);
 	}
+	public String toString() {
+		String retorno = getNome()+" "+getEndereco() +" "+getTelefone();
+		return retorno;
+	}
 }
 
 

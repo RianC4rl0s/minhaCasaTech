@@ -51,10 +51,14 @@ public class Local {
 		//return true;
 //}
 	public Local() {}
+	
 	public Local(String casa, String compartimento) {
 		setCasa(casa);
 		setCompartimento(compartimento);
 	}
-
+	public String toString() {
+		String retorno = getCasa() +" "+getCompartimento();
+		return retorno;
+	}
 
 }
