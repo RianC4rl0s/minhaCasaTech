@@ -56,4 +56,17 @@ public class Responsavel {
 	public String getTelefone() {
 		return telefone;
 	}
+	public Responsavel() {}
+	public Responsavel(String nome, String endereco, String telefone) {
+		setNome(nome);
+		setEndereco(endereco);
+		setTelefone(telefone);
+	}
+	public String toString() {
+		String retorno = getNome()+" "+getEndereco() +" "+getTelefone();
+		return retorno;
+	}
 }
+
+
+
