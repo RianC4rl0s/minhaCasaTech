@@ -117,8 +117,10 @@ public class EquipamentoVO {
 		String precoS = Double.toString(getPreco());
 		String quantidadeS =Integer.toString(getQuantidade());
 		Responsavel r = new Responsavel();
+		r  = getResponsavel();
 		String responsavelS = r.getNome();
 		Local l = new Local();
+		l = getLocal();
 		String localS = " Casa: "+ l.getCasa() + "\n Compartimento: " +  l.getCompartimento(); 
 		
 		retorno = " Nome: "+  nomeS + "\n Peso: " + pesoS +"kg \n Preço: $"+ precoS + "\n Quantidade" + quantidadeS +"\n Unidades %n Nome do responsavel: "+responsavelS + "\n"+ localS;
