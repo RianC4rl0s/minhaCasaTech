@@ -1,7 +1,8 @@
-package br.com.minhaCasaTech.model.BO;
-import br.com.minhaCasaTech.model.VO.LocalVO;
-public class LocalBO {
+package br.com.minhaCasaTech.model.DAO;
 
+import br.com.minhaCasaTech.model.VO.LocalVO;
+public class LocalDAO{
+//APENAS PARA ATIVIDADE
 	
 	public void cadastrar(LocalVO local) {
 		System.out.println(local.toString());
@@ -28,7 +29,6 @@ public class LocalBO {
 		return l;
 	}
 	public void deletar(LocalVO local) {
-		
 		local.setCasa("DELETADO");
 		local.setCompartimento("DELETADO");
 		

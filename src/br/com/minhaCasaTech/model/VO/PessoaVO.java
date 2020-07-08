@@ -38,6 +38,12 @@ public class PessoaVO {
 	return endereco;
 	}
 
+	public String toString() {
+		String retorno;
+		retorno = "Nome: " + getNome() +"\nEndereço: "+getEndereco();
+		
+		return retorno;
+	}
 	public PessoaVO() {	}
 	public PessoaVO(String nome, String endereco) {
 		setNome(nome);
