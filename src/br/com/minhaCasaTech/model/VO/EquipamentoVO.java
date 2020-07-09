@@ -1,14 +1,24 @@
 package br.com.minhaCasaTech.model.VO;
 
 public class EquipamentoVO {
+	
+
 	private String nome;
 	private double peso;
 	private double preco;
 	private int quantidade;
 	private int numeroDeSerie;
-	private Responsavel responsavel = new Responsavel();
-	private LocalVO local = new LocalVO();
+	private ResponsavelVO responsavel;
+	private LocalVO local;
 	
+	public EquipamentoVO(String nome, double peso, double preco, int qtd, int nSerie)
+	{
+		this.setNome(nome);
+		this.setPeso(peso);
+		this.setPreco(preco);
+		this.setQuantidade(qtd);
+		this.setNumeroDeSerie(nSerie);
+	}
 	
 	//Set
 	public void setNome(String nome) {
@@ -24,7 +34,7 @@ public class EquipamentoVO {
 	}
 	
 	public void setPeso(double peso) {
-		if (peso <=0 ) {
+		if (peso <=0) {
 			System.out.println("Valor invalido");
 		}else {
 			this.peso = peso;
@@ -49,7 +59,7 @@ public class EquipamentoVO {
 		}
 	}
 	
-	public void setNumeroSDeSerie(int numeroDeSerie) {
+	public void setNumeroDeSerie(int numeroDeSerie) {
 		if (quantidade <= 0) {
 			System.out.println("Valor invalido");
 		}else {
@@ -59,14 +69,13 @@ public class EquipamentoVO {
 	
 	public void setLocal(LocalVO local) {
 		if(local != null) {
-			
-				this.local = local;
-			
+			this.local = local;
 		}else {
 			System.out.println("O valor esta nulo");
 		}
 	}
-	public void setResponsavel(Responsavel responsavel) {
+	
+	public void setResponsavel(ResponsavelVO responsavel) {
 		if(responsavel == null) {
 			System.out.println("Valor Nulo");
 		}else {
@@ -79,51 +88,40 @@ public class EquipamentoVO {
 	public String getNome() {
 		return nome;
 	}
+	
 	public double getPeso() {
 		return peso;
 	}
+	
 	public int getQuantidade() {
 		 return quantidade;
 		}
+	
 	public double getPreco() {
 		
 		return preco;
 	}
+	
 	public int getNumeroDeSerie() {
 		 return numeroDeSerie;
 		}
+	
 	public LocalVO getLocal() {
 		return local;
 	}
-	public Responsavel getResponsavel() {
+	
+	public ResponsavelVO getResponsavel() {
 		return responsavel;
 	}
 	
-	public EquipamentoVO() {	
-	}
-	public EquipamentoVO( String nome,double peso,double preco,int quantidade,int numeroDeSerie,Responsavel responsavel,LocalVO local) {
-		setNome(nome);
-		setPeso(peso);
-		setPreco(preco);
-		setQuantidade(quantidade);
-		setNumeroSDeSerie(numeroDeSerie);
-		setResponsavel(responsavel);
-		setLocal(local);
-	}
 	public String toString() {
-		String retorno;
-		String nomeS = getNome();
-		String pesoS =Double.toString(getPeso());
-		String precoS = Double.toString(getPreco());
-		String quantidadeS =Integer.toString(getQuantidade());
-		Responsavel r = new Responsavel();
-		r  = getResponsavel();
-		String responsavelS = r.getNome();
-		LocalVO l = new LocalVO();
-		l = getLocal();
-		String localS = " Casa: "+ l.getCasa() + "\n Compartimento: " +  l.getCompartimento(); 
-		
-		retorno = " Nome: "+  nomeS + "\n Peso: " + pesoS +"kg \n Pre�o: $"+ precoS + "\n Quantidade" + quantidadeS +" unidades \n Nome do responsavel: "+responsavelS + "\n"+ localS;
-		return retorno;
+		return
+		"Nome: "+nome+"\n"+
+		"Peso: "+peso+"\n"+
+		"Quantidade: "+quantidade+"\n"+
+		"Preço: "+preco+"\n"+
+		"N° de Série: "+numeroDeSerie+"\n"+
+		"Local: "+local.getCasa()+"\n"+
+		"Responsável: "+responsavel.getNome()+"\n";
 	}
 }

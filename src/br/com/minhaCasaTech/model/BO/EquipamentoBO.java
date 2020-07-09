@@ -6,31 +6,35 @@ import br.com.minhaCasaTech.model.VO.Responsavel;
 
 public class EquipamentoBO {
 	
+	public static void cadastrar(EquipamentoVO equipamento) {
+		if (equipamento != null)
+		{
+			System.out.println("Equipamento adicionado:\n==================\n"+equipamento);
+		}else
+			System.out.println("Equipamento nulo!");		
+	}
+	
 	public EquipamentoVO  editar(EquipamentoVO eqpOrigem) {
-				eqpOrigem.setNome("NOVO NOME");
-				eqpOrigem.setQuantidade(1);
+		eqpOrigem.setNome("NOVO NOME");
+		eqpOrigem.setQuantidade(1);
 				
-				return eqpOrigem;
+		return eqpOrigem;
 	}
-	public boolean deletar(EquipamentoVO equipamento) {
-			
-		return true;
+	
+	public void deletar(EquipamentoVO equipamento) {
+		System.out.println("Deletado");
 	}
-	public void cadastrar(EquipamentoVO equipamento) {
-		
-		System.out.println(equipamento.toString());
-	}
+	
 	public EquipamentoVO buscar(EquipamentoVO e) {
-		
 		return e;
 	}
+	
 	public EquipamentoVO[] listar() {
-		Responsavel resp = new Responsavel("Joao","Rua 12","3420");
+		ResponsavelVO resp = new Responsavel("Joao","Rua 12","3420");
 		LocalVO l = new LocalVO("Centro","Prateleira A-23");
 		EquipamentoVO a = new EquipamentoVO("Mouse", 0.5, 200, 255, 464565, resp, l);
 		EquipamentoVO b = new EquipamentoVO("teclado", 1, 500, 2030, 56456465, resp, l);
 		EquipamentoVO c = new EquipamentoVO("Monitor", 2.5, 2000, 2000, 45456465, resp, l);
-		
 		
 		EquipamentoVO eqp[] = new EquipamentoVO[3];
 		eqp[0] = a;
@@ -38,18 +42,4 @@ public class EquipamentoBO {
 		eqp[2] = c;
 		return eqp;
 	}
-	
-	
-	
-	//public void cadastrar(String nome, double peso, double preco, int quantidade, int numeroDeSerie,Responsavel responsavel, Local local) {
-		//EquipamentoVO equipamento = new EquipamentoVO(nome,peso,preco,quantidade,numeroDeSerie,responsavel,local);
-		//EquipamentoDAO eDao = new EquipamentoDAO();
-		//eDao.cadastrarEquipamento(equipamento);
-		
-		
-	//}
-	//public EquipamentoVO buscar(String ) {
-		
-		
-	//}
 }
