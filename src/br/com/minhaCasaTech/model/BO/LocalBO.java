@@ -2,20 +2,25 @@ package br.com.minhaCasaTech.model.BO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 public class LocalBO {
 
-	
 	public void cadastrar(LocalVO local) {
-		System.out.println(local.toString());
+		if (local != null)
+		{
+			System.out.println("Local adicionado:\n=================="+local.toString());
+		}else
+			System.out.println("Local nulo!");
 	}
+	
 	public LocalVO editar(LocalVO local) {
 		local.setCasa("Casa2");
 		local.setCompartimento("Prateleira 34");
 		
 		return local;
 	}
+	
 	public LocalVO buscar(LocalVO local) {
-		
 		return local;
 	}
+	
 	public LocalVO[] buscar() {
 		LocalVO a = new LocalVO("Casa a","Prat 2");
 		LocalVO b = new LocalVO("Casa b","Prat 5");
@@ -27,12 +32,11 @@ public class LocalBO {
 		l[2] = c;
 		return l;
 	}
+	
 	public void deletar(LocalVO local) {
-		
 		local.setCasa("DELETADO");
 		local.setCompartimento("DELETADO");
 		
 		System.out.println(local.toString());
-		
 	}
 }
