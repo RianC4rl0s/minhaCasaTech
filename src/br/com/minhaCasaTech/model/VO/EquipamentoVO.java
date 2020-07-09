@@ -7,7 +7,7 @@ public class EquipamentoVO {
 	private int quantidade;
 	private int numeroDeSerie;
 	private Responsavel responsavel = new Responsavel();
-	private Local local = new Local();
+	private LocalVO local = new LocalVO();
 	
 	
 	//Set
@@ -57,7 +57,7 @@ public class EquipamentoVO {
 		}
 	}
 	
-	public void setLocal(Local local) {
+	public void setLocal(LocalVO local) {
 		if(local != null) {
 			
 				this.local = local;
@@ -92,7 +92,7 @@ public class EquipamentoVO {
 	public int getNumeroDeSerie() {
 		 return numeroDeSerie;
 		}
-	public Local getLocal() {
+	public LocalVO getLocal() {
 		return local;
 	}
 	public Responsavel getResponsavel() {
@@ -101,7 +101,7 @@ public class EquipamentoVO {
 	
 	public EquipamentoVO() {	
 	}
-	public EquipamentoVO( String nome,double peso,double preco,int quantidade,int numeroDeSerie,Responsavel responsavel,Local local) {
+	public EquipamentoVO( String nome,double peso,double preco,int quantidade,int numeroDeSerie,Responsavel responsavel,LocalVO local) {
 		setNome(nome);
 		setPeso(peso);
 		setPreco(preco);
@@ -119,11 +119,11 @@ public class EquipamentoVO {
 		Responsavel r = new Responsavel();
 		r  = getResponsavel();
 		String responsavelS = r.getNome();
-		Local l = new Local();
+		LocalVO l = new LocalVO();
 		l = getLocal();
 		String localS = " Casa: "+ l.getCasa() + "\n Compartimento: " +  l.getCompartimento(); 
 		
-		retorno = " Nome: "+  nomeS + "\n Peso: " + pesoS +"kg \n Preço: $"+ precoS + "\n Quantidade" + quantidadeS +"\n Unidades %n Nome do responsavel: "+responsavelS + "\n"+ localS;
+		retorno = " Nome: "+  nomeS + "\n Peso: " + pesoS +"kg \n Preço: $"+ precoS + "\n Quantidade" + quantidadeS +" unidades \n Nome do responsavel: "+responsavelS + "\n"+ localS;
 		return retorno;
 	}
 }
