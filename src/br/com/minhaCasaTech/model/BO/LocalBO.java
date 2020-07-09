@@ -34,9 +34,6 @@ public class LocalBO {
 	}
 	
 	public void deletar(LocalVO local) {
-		local.setCasa("DELETADO");
-		local.setCompartimento("DELETADO");
-		
-		System.out.println(local.toString());
+		System.out.println("Deletado");
 	}
 }
