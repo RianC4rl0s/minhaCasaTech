@@ -1,5 +1,27 @@
 package br.com.minhaCasaTech.model.DAO;
 
-public class LocalDAO{
+import br.com.minhaCasaTech.model.VO.LocalVO;
 
+public class LocalDAO{
+	
+	public void cadastrar(LocalVO local) {
+	
+	}
+	
+	public LocalVO editar(LocalVO local) {		
+		return local;
+	}
+	
+	public LocalVO buscar(LocalVO local) {
+		return local;
+	}
+	
+	public LocalVO[] listar() {
+		LocalVO[] l = null;
+		return l;
+	}
+	
+	public void deletar(LocalVO local) {
+		
+	}
 }

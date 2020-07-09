@@ -11,13 +11,15 @@ public class EquipamentoVO {
 	private ResponsavelVO responsavel;
 	private LocalVO local;
 	
-	public EquipamentoVO(String nome, double peso, double preco, int qtd, int nSerie)
+	public EquipamentoVO(String nome, double peso, double preco, int qtd, int nSerie, ResponsavelVO responsavel, LocalVO local)
 	{
 		this.setNome(nome);
 		this.setPeso(peso);
 		this.setPreco(preco);
 		this.setQuantidade(qtd);
 		this.setNumeroDeSerie(nSerie);
+		this.setResponsavel(responsavel);
+		this.setLocal(local);
 	}
 	
 	//Set
