@@ -1,6 +1,6 @@
 package br.com.minhaCasaTech.model.VO;
 
-public class PessoaVO {
+public abstract class PessoaVO {
 	
 	private String nome;
 	private String endereco;
