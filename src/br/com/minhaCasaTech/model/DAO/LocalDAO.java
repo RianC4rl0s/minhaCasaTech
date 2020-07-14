@@ -2,7 +2,7 @@ package br.com.minhaCasaTech.model.DAO;
 
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
-public class LocalDAO{
+public class LocalDAO implements LocalInterDAO{
 	
 	public void cadastrar(LocalVO local) {
 	

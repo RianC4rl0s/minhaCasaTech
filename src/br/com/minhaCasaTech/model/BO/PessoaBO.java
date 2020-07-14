@@ -2,7 +2,7 @@ package br.com.minhaCasaTech.model.BO;
 
 import br.com.minhaCasaTech.model.VO.PessoaVO;
 
-public class PessoaBO {
+public class PessoaBO implements PessoaInterBO{
 	
 	public void cadastrar(PessoaVO pessoa) {
 		if (pessoa != null)
@@ -18,18 +18,15 @@ public class PessoaBO {
 		return pessoa;
 	}
 	
-	public PessoaVO[] buscar() {
-		PessoaVO a = new PessoaVO("Joao","Casa 3");
-		PessoaVO b = new PessoaVO("Maria","Casa 1");
-		PessoaVO c = new PessoaVO("Claudio","Casa 2");
+	public PessoaVO[] listar() {
+		//PessoaVO a = new("Joao","Casa 3");
+		//PessoaVO b = new PessoaVO("Maria","Casa 1");
+		//PessoaVO c = new PessoaVO("Claudio","Casa 2");
 		
-		PessoaVO pessoa[] = new PessoaVO[3];
+		PessoaVO pessoa[] = null;
 		
-		pessoa[0] = a;
-		pessoa[1] = b;
-		pessoa[2]= c;
-		
-		return pessoa;
+	
+	return pessoa;
 	}
 	
 	public PessoaVO buscar (PessoaVO pessoa) {

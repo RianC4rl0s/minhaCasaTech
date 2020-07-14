@@ -5,9 +5,9 @@ import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
 
-public class EquipamentoBO {
+public class EquipamentoBO implements EquipamentoInterBO{
 	
-	public static void cadastrar(EquipamentoVO equipamento) {
+	public void cadastrar(EquipamentoVO equipamento) {
 		if (equipamento != null)
 		{
 			System.out.println("Equipamento adicionado:\n==================\n"+equipamento);
@@ -42,5 +42,36 @@ public class EquipamentoBO {
 		eqp[1] = b;
 		eqp[2] = c;
 		return eqp;
+	}
+	
+	public EquipamentoVO buscarPorNome(String nome) {
+		
+		EquipamentoVO eqp = null;
+		
+		return eqp;
+	}
+	
+	public EquipamentoVO buscarPorNS(int ns) {
+		
+		EquipamentoVO eqp =  null;
+		
+		return eqp;
+	}
+	
+	public EquipamentoVO buscarPorLocal(LocalVO local) {
+	
+		EquipamentoVO eqp = null;
+		
+		return eqp;
+	}
+	
+	public ResponsavelVO adicionnarResponsavel(ResponsavelVO responsael) {
+		ResponsavelVO rep =null;
+		return rep;
+	}
+	
+	public LocalVO adicionarLocal(LocalVO local) {
+		LocalVO lo = null;
+		return lo;
 	}
 }

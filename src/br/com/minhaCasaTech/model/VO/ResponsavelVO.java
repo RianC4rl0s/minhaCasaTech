@@ -16,7 +16,7 @@ public class ResponsavelVO extends PessoaVO{
 	//Set
 	
 	public void setLogin(String login) {
-		//PRECISA FAZER UM METODO PARA CHAMAR O DAO, E VERIFICAR SE O USUARIO JÁ EXISTE;
+		//PRECISA FAZER UM METODO PARA CHAMAR O DAO, E VERIFICAR SE O USUARIO JÃ� EXISTE;
 		if(login ==null)
 			System.out.println("ValorNulo");
 		else
@@ -47,9 +47,10 @@ public class ResponsavelVO extends PessoaVO{
 				System.out.println("Nada foi escrito");
 			else
 				if (telefone.length() != 11)
-					System.out.println("Telefone Inválido");
+					System.out.println("Telefone InvÃ¡lido");
 				else
 					this.telefone = telefone;
+	
 	}
 	
 	//Get

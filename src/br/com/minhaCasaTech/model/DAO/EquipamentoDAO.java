@@ -1,10 +1,12 @@
 package br.com.minhaCasaTech.model.DAO;
 
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
+import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
-public class EquipamentoDAO {
+public class EquipamentoDAO implements EquipamentoInterDAO {
 	
-	public static void cadastrar(EquipamentoVO equipamento) {
+	public  void cadastrar(EquipamentoVO equipamento) {
 		
 	}
 	
@@ -23,5 +25,35 @@ public class EquipamentoDAO {
 	public EquipamentoVO[] listar() {
 		EquipamentoVO[] eqp = null;
 		return eqp;
+	}
+	public EquipamentoVO buscarPorNome(String nome) {
+		
+		EquipamentoVO eqp = null;
+		
+		return eqp;
+	}
+	
+	public EquipamentoVO buscarPorNS(int ns) {
+		
+		EquipamentoVO eqp =  null;
+		
+		return eqp;
+	}
+	
+	public EquipamentoVO buscarPorLocal(LocalVO local) {
+	
+		EquipamentoVO eqp = null;
+		
+		return eqp;
+	}
+	
+	public ResponsavelVO adicionnarResponsavel(ResponsavelVO responsael) {
+		ResponsavelVO rep =null;
+		return rep;
+	}
+	
+	public LocalVO adicionarLocal(LocalVO local) {
+		LocalVO lo = null;
+		return lo;
 	}
 }

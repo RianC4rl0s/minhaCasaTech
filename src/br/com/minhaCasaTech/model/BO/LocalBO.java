@@ -1,6 +1,6 @@
 package br.com.minhaCasaTech.model.BO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
-public class LocalBO {
+public class LocalBO implements localInterBO{
 
 	public void cadastrar(LocalVO local) {
 		if (local != null)
