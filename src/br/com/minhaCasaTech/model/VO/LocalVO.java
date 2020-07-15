@@ -2,15 +2,26 @@ package br.com.minhaCasaTech.model.VO;
 
 public class LocalVO {
 	
+	private long id;
+	
+	
+
 	private String casa;
 	private String compartimento;
 	
+	
+	public LocalVO() {
+		
+	}
 	public LocalVO(String casa, String compartimento){
 		this.setCasa(casa);
 		this.setCompartimento(compartimento);
 	}
 	
 	//Set
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public void setCasa(String casa) {
 		if(casa ==null)
@@ -33,6 +44,9 @@ public class LocalVO {
 	}
 	
 	//Get
+	public long getId() {
+		return id;
+	}
 	
 	public String getCasa() {
 		return casa;
