@@ -8,28 +8,52 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
-public class LocalDAO extends BaseDAO<LocalVO> implements LocalInterDAO{
+public class LocalDAO extends BaseDAO implements LocalInterDAO<VO>{
 	
-	public void cadastrar(LocalVO local) {
+	public void cadastrar(VO local) {
 		
 		String sql = "insert into local (casa,compartimento) values (?,?)";
 		
 		try {
-			PreparedStatement pst = getCon().prepareStatement(sql);
+			PreparedStatement pst = getCon().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, local.getCasa());
 			pst.setString(2, local.getCompartimento());
-			pst.execute();
+			
+			int affectectRows = pst.executeUpdate();
+			
+			if(affectectRows ==0) {
+				throw new SQLException("Cadastro falhou");
+			}
+			ResultSet key = pst.getGeneratedKeys();
+			if(key.next()) {
+				local.setId(key.getLong("id"));
+			}
+		//	pst.execute();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public LocalVO editar(LocalVO local) {		
+	public LocalVO editar(VO local) {		
+
+		String sql = "update local set casa = ?,compartimento = ? where id = ?";
+		
+		try {
+			PreparedStatement pst = getCon().prepareStatement(sql);
+			pst.setString(1, local.getCasa());
+			pst.setString(2, local.getCompartimento());
+			pst.setLong(3, local.getId());
+			pst.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 		return local;
 	}
 	
-	public LocalVO buscar(LocalVO local) {
+	public LocalVO buscar(VO local) {
 		
 	
 		PreparedStatement pst;
@@ -48,7 +72,7 @@ public class LocalDAO extends BaseDAO<LocalVO> implements LocalInterDAO{
 		}
 		return l;
 	}
-	public LocalVO buscarId(Long id) {
+	public LocalVO buscarPorId(Long id) {
 		
 		
 		PreparedStatement pst;
@@ -97,7 +121,7 @@ public class LocalDAO extends BaseDAO<LocalVO> implements LocalInterDAO{
 		return locais;
 		
 	}
-	public void deletar(LocalVO local) {
+	public void deletar(VO local) {
 		
 		String sql = "delete from local where id = ?";
 		

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class BaseDAO<VO> {
+public abstract class BaseDAO {
 		 Connection con = null;
 		 final String url = "jdbc:mariadb://localhost:3306/minha_casa_tech";
 		 final String usuario ="poo_20203";

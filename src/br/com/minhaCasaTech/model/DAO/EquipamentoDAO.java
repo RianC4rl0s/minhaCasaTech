@@ -9,17 +9,16 @@ import java.util.List;
 
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
-import br.com.minhaCasaTech.model.VO.PessoaVO;
-import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
-public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements EquipamentoInterDAO {
+
+public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 	
-	public  void cadastrar(EquipamentoVO equipamento) {
+	public  void cadastrar(VO equipamento) {
 		
 		String sql = "insert into equipamento (nome,peso,preco,quantidade,numero_de_serie,id_local,id_responsavel) values (?,?,?,?,?,?,?)";
 		
 		try {
-			PreparedStatement pst = getCon().prepareStatement(sql);
+			PreparedStatement pst = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1,equipamento.getNome());
 			pst.setDouble(2, equipamento.getPeso());
 			pst.setDouble(3, equipamento.getPreco());
@@ -27,20 +26,38 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 			pst.setInt(5, equipamento.getNumeroDeSerie());
 			pst.setLong(6, equipamento.getLocal().getId());
 			//pst.setLong(6, equipamento.getResponsavel().getId());
-			pst.execute();
-			
+			int affectedRows = pst.executeUpdate();
+			if(affectedRows ==0) {
+				throw new SQLException("Cadastro falhou");
+			}
+			ResultSet key = pst.getGeneratedKeys();
+			if(key.next()) {
+				equipamento.setId(key.getLong("id"));
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public EquipamentoVO  editar(EquipamentoVO eqpOrigem) {
-		
+	public EquipamentoVO  editar(VO eqpOrigem) {
+		String sql ="update equipamento nome = ?, peso = ?, preco = ? , quantidade = ?, numero_de_serie";
+		try {
+			PreparedStatement pst = getCon().prepareStatement(sql);
+			pst.setString(1,eqpOrigem.getNome());
+			pst.setDouble(2, eqpOrigem.getPeso());
+			pst.setDouble(3, eqpOrigem.getPreco());
+			pst.setInt(4, eqpOrigem.getQuantidade());
+			pst.setInt(5, eqpOrigem.getNumeroDeSerie());
+			
+			pst.execute();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		
 		return eqpOrigem;
 	}
 	
-	public void deletar(EquipamentoVO equipamento) {
+	public void deletar(VO equipamento) {
 		
 		String sql = "delete from equipamento where id = ?";
 		
@@ -53,7 +70,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 		}
 	}
 	
-	public EquipamentoVO buscar(EquipamentoVO e) {
+	public EquipamentoVO buscar(VO e) {
 		return e;
 	}
 	
@@ -80,7 +97,21 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 			eqp.setPreco(rs.getDouble("preco"));
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
+			//aloca memoria
+			LocalVO l = new LocalVO();
+			//conecta com a local
+			LocalDAO ldao = new LocalDAO();
+			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
+			l = ldao.buscarPorId(rs.getLong("id_local"));
+			eqp.setLocal(l);
 			
+			//mesma coisa só q com responsavel
+			/*
+			ResponsavelVO r = new ResponsavelVO();
+			ResponsavelDAO rdao = new ResponsavelDAO();
+			r = rdao.buscarId(rs.getLong("id_responsavel"));	
+			eqp.setResponsavel(r);
+			*/
 			equipamentoList.add(eqp);
 			}
 		}catch(SQLException e) {
@@ -91,8 +122,6 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 	public EquipamentoVO buscarPorNome(String nome) {
 		
 		String sql = "select * from equipamento where nome = ?";
-		String sql2 = "select * from local where id = ?";
-		String sql3 = "select * from responsavel where id = ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
 		EquipamentoVO eqp = new EquipamentoVO();
@@ -112,7 +141,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 			//conecta com a local
 			LocalDAO ldao = new LocalDAO();
 			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			l = ldao.buscarId(rs.getLong("id_local"));
+			l = ldao.buscarPorId(rs.getLong("id_local"));
 			eqp.setLocal(l);
 			
 			//mesma coisa só q com responsavel
@@ -132,7 +161,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 	public EquipamentoVO buscarPorNS(int ns) {
 		
 		
-		String sql = "select * from equipamento where nome = ?";
+		String sql = "select * from equipamento where numero_de_serie = ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
 		EquipamentoVO eqp = new EquipamentoVO();
@@ -147,6 +176,60 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
+			//aloca memoria
+			LocalVO l = new LocalVO();
+			//conecta com a local
+			LocalDAO ldao = new LocalDAO();
+			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
+			l = ldao.buscarPorId(rs.getLong("id_local"));
+			eqp.setLocal(l);
+			
+			//mesma coisa só q com responsavel
+			/*
+			ResponsavelVO r = new ResponsavelVO();
+			ResponsavelDAO rdao = new ResponsavelDAO();
+			r = rdao.buscarId(rs.getLong("id_responsavel"));	
+			eqp.setResponsavel(r);
+			*/
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return eqp;
+	}
+	public EquipamentoVO buscarPorId(Long id) {
+		
+		
+		String sql = "select * from equipamento where id = ?";
+		PreparedStatement pst;
+		ResultSet rs = null;
+		EquipamentoVO eqp = new EquipamentoVO();
+		try {
+			pst = getCon().prepareStatement(sql);
+			pst.setLong(1, id);
+			rs = pst.executeQuery();
+			eqp.setId(rs.getLong("id"));
+			eqp.setNome(rs.getString("nome"));
+			eqp.setPeso(rs.getDouble("peso"));
+			eqp.setPreco(rs.getDouble("preco"));
+			eqp.setQuantidade(rs.getInt("quantidade"));
+			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
+			
+			//aloca memoria
+			LocalVO l = new LocalVO();
+			//conecta com a local
+			LocalDAO ldao = new LocalDAO();
+			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
+			l = ldao.buscarPorId(rs.getLong("id_local"));
+			eqp.setLocal(l);
+			
+			//mesma coisa só q com responsavel
+			/*
+			ResponsavelVO r = new ResponsavelVO();
+			ResponsavelDAO rdao = new ResponsavelDAO();
+			r = rdao.buscarId(rs.getLong("id_responsavel"));	
+			eqp.setResponsavel(r);
+			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -172,6 +255,21 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
+			//aloca memoria
+			LocalVO l = new LocalVO();
+			//conecta com a local
+			LocalDAO ldao = new LocalDAO();
+			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
+			l = ldao.buscarPorId(rs.getLong("id_local"));
+			eqp.setLocal(l);
+			
+			//mesma coisa só q com responsavel
+			/*
+			ResponsavelVO r = new ResponsavelVO();
+			ResponsavelDAO rdao = new ResponsavelDAO();
+			r = rdao.buscarId(rs.getLong("id_responsavel"));	
+			eqp.setResponsavel(r);
+			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -179,13 +277,5 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> implements Equipament
 		return eqp;
 	}
 	
-	public ResponsavelVO adicionnarResponsavel(ResponsavelVO responsael) {
-		ResponsavelVO rep =null;
-		return rep;
-	}
-	
-	public LocalVO adicionarLocal(LocalVO local) {
-		LocalVO lo = null;
-		return lo;
-	}
+
 }
