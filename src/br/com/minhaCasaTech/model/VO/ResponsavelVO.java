@@ -6,6 +6,9 @@ public class ResponsavelVO extends PessoaVO{
 	private String senha;
 	private String telefone;
 	
+	public ResponsavelVO() {
+		super();
+	}
 	public ResponsavelVO(String nome,String endereco,String telefone,String login,String senha) {
 		super(nome, endereco);
 		setLogin(login);

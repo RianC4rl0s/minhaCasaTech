@@ -5,6 +5,9 @@ public abstract class PessoaVO {
 	private String nome;
 	private String endereco;
 	
+	public PessoaVO() {
+	
+	}
 	public PessoaVO(String nome, String endereco) {
 		setNome(nome);
 		setEndereco(endereco);

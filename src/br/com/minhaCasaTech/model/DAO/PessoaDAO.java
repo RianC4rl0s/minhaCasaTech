@@ -2,7 +2,7 @@ package br.com.minhaCasaTech.model.DAO;
 
 import br.com.minhaCasaTech.model.VO.PessoaVO;
 
-public class PessoaDAO implements PessoaInterDAO {
+public class PessoaDAO extends BaseDAO<VO> implements PessoaInterDAO {
 	
 	public void cadastrar(PessoaVO pessoa) {
 		

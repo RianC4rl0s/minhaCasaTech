@@ -13,6 +13,8 @@ public interface LocalInterDAO {
 	
 	//public LocalVO[] listar();
 	
+	public LocalVO buscarId(Long id);
+	
 	public List<LocalVO> listar();
 	
 	public void deletar(LocalVO local);
