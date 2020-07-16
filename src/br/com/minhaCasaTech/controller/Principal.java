@@ -9,7 +9,7 @@ import br.com.minhaCasaTech.model.VO.LocalVO;
 public class Principal {
 	public static void main(String args[]) {
 		
-	       System.out.println("================");
+	    System.out.println("================");
 
 		LocalDAO dao2 = new LocalDAO();
 		

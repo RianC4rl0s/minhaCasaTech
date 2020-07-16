@@ -1,14 +1,16 @@
 package br.com.minhaCasaTech.model.DAO;
 
-import br.com.minhaCasaTech.model.VO.PessoaVO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PessoaDAO<VO extends PessoaVO> extends BaseDAO implements PessoaInterDAO<VO> {
-	
-	public void cadastrar(VO pessoa) {
+import br.com.minhaCasaTech.model.VO.PessoaVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+
+public class ResponsavelDAO extends PessoaDAO {
+	public void cadastrar(ResponsavelVO pessoa) {
+		super.cadastrar(pessoa);
 		String sql = "insert into Pessoa (nome, endereco) values (?,?)";
 		PreparedStatement ptst;
 		try {
@@ -32,7 +34,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO implements PessoaInt
 		}
 	}
 	
-	public void editar(VO pessoa) {
+	public void editar(PessoaVO pessoa) {
 		String sql = "update Pessoa set nome = ?, endereco = ? where id = ?";
 		PreparedStatement ptst;
 		
@@ -76,7 +78,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO implements PessoaInt
 		return rs;
 	}
 	
-	public void deletar(VO pessoa) {
+	public void deletar(PessoaVO pessoa) {
 		String sql = "delete from Pessoa where id=?";
 		PreparedStatement ptst;
 		

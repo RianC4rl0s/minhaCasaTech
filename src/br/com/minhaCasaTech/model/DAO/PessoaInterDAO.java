@@ -1,15 +1,15 @@
 package br.com.minhaCasaTech.model.DAO;
 
-import br.com.minhaCasaTech.model.VO.PessoaVO;
+import java.sql.ResultSet;
 
-public interface PessoaInterDAO {
-	public void cadastrar(PessoaVO pessoa);
+public interface PessoaInterDAO<VO> {
+	public void cadastrar(VO pessoa);
 	
-	public PessoaVO editar(PessoaVO pessoa);
+	public void editar(VO pessoa);
 	
-	public PessoaVO buscar (PessoaVO pessoa);
+	public ResultSet buscarPorId(Long id);
 	
-	public PessoaVO[] buscar() ;
+	public ResultSet buscar() ;
 	
-	public void deletar(PessoaVO pessoa) ;
+	public void deletar(VO pessoa) ;
 }
