@@ -6,7 +6,6 @@ import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
 public class LocalDAO extends BaseDAO implements LocalInterDAO{
@@ -32,20 +31,22 @@ public class LocalDAO extends BaseDAO implements LocalInterDAO{
 	
 	public LocalVO buscar(LocalVO local) {
 		con = getCon();
-		String sql = "select * from local where id = ?";
+	
+		PreparedStatement pst;
 		ResultSet rs;
+		String sql = "select * from local where id = ?";
+		LocalVO l = new LocalVO();
 		try {
-			PreparedStatement pst = con.prepareStatement(sql);
+			pst = con.prepareStatement(sql);
 			pst.setLong(1, local.getId());
-			pst.execute();
-			rs = pst.getResultSet();
-			local.setId(rs.getLong("id"));
-			local.setCasa(rs.getString("casa"));
-			local.setCompartimento(rs.getString("compartimento"));
+			rs = pst.executeQuery();
+			l.setCasa(rs.getString("casa"));
+			l.setCompartimento(rs.getString("compartimento"));
+			l.setId(rs.getLong("id"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return local;
+		return l;
 	}
 	
 	/*public LocalVO[] listar() {

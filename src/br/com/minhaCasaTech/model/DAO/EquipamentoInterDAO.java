@@ -1,5 +1,7 @@
 package br.com.minhaCasaTech.model.DAO;
 
+import java.util.List;
+
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
@@ -13,7 +15,9 @@ public interface EquipamentoInterDAO {
 	
 	public EquipamentoVO buscar(EquipamentoVO e); 
 	
-	public EquipamentoVO[] listar();
+	//public EquipamentoVO[] listar();
+	
+	public List<EquipamentoVO> listar();
 	
 	public EquipamentoVO buscarPorNome(String nome);
 	

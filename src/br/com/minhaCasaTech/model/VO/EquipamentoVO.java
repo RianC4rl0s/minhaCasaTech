@@ -21,8 +21,14 @@ public class EquipamentoVO {
 		this.setResponsavel(responsavel);
 		this.setLocal(local);
 	}
+	public EquipamentoVO() {
+		
+	}
 	
 	//Set
+	public void setId(long id) {
+		this.id = id;
+	}
 	public void setNome(String nome) {
 		if(nome != null) {
 			if(nome.equals("")) {
@@ -115,6 +121,11 @@ public class EquipamentoVO {
 	public ResponsavelVO getResponsavel() {
 		return responsavel;
 	}
+	private long id;
+	public long getId() {
+		return id;
+	}
+
 	
 	public String toString() {
 		return
