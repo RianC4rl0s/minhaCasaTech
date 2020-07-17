@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import br.com.minhaCasaTech.model.VO.PessoaVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
 public class ResponsavelDAO<VO extends ResponsavelVO> extends PessoaDAO<VO> {

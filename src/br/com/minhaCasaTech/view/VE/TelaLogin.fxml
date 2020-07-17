@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #95BBBF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.modelo.minhacasatech.controller.FrontController.java">
+   <children>
+      <Pane layoutX="365.0" layoutY="185.0" prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: #BAD9D6; -fx-border-radius: ;">
+         <children>
+            <ImageView fitHeight="109.0" fitWidth="129.0" layoutX="222.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@motherboard.png" />
+               </image>
+            </ImageView>
+            <PasswordField layoutX="174.0" layoutY="230.0" prefHeight="25.0" prefWidth="203.0" promptText="Senha" />
+            <TextField layoutX="174.0" layoutY="184.0" prefHeight="25.0" prefWidth="203.0" promptText="Login" />
+            <Button layoutX="235.0" layoutY="274.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: #466673; -fx-border-radius: 25px;" text="Entrar" textFill="WHITE" />
+            <Label layoutX="222.0" layoutY="143.0" text="MINHA CASA" />
+            <Label layoutX="297.0" layoutY="138.0" text="TECH" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

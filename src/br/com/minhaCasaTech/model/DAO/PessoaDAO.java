@@ -46,7 +46,20 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 			e.printStackTrace();
 		}
 	}
-	
+	public ResultSet buscarPorId(long id) {
+		String sql = "select * from pessoa where id=?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setLong(1, id);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 	public ResultSet buscarPorId(PessoaVO pessoa) {
 		String sql = "select * from pessoa where id=?";
 		PreparedStatement ptst;
@@ -62,7 +75,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from pessoa";
 		PreparedStatement ptst;
 		ResultSet rs = null;

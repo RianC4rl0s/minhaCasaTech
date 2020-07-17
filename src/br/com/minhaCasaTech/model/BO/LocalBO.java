@@ -1,4 +1,10 @@
 package br.com.minhaCasaTech.model.BO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.minhaCasaTech.model.DAO.LocalDAO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 public class LocalBO implements localInterBO{
 
@@ -16,21 +22,52 @@ public class LocalBO implements localInterBO{
 		
 		return local;
 	}
-	
-	public LocalVO buscar(LocalVO local) {
+	public LocalVO buscarPorId(ResultSet rs) {
+		
+		LocalVO local = new LocalVO();
+		try {
+		local.setCasa(rs.getString("casa"));
+		local.setCompartimento(rs.getString("compartimento"));
+		local.setId(rs.getLong("id"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return local;
+	}
+	public LocalVO buscarPorId(LocalVO local) {
+		LocalDAO dao = new LocalDAO();
+		ResultSet rs = dao.buscarPorId(local);
+		try {
+		local.setCasa(rs.getString("casa"));
+		local.setCompartimento(rs.getString("compartimento"));
+		local.setId(rs.getLong("id"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return local;
 	}
 	
-	public LocalVO[] buscar() {
-		LocalVO a = new LocalVO("Casa a","Prat 2");
-		LocalVO b = new LocalVO("Casa b","Prat 5");
-		LocalVO c = new LocalVO("Casa c","Prat 5");
+	public List<LocalVO> listar() {
+		LocalDAO dao = new LocalDAO();
+		ResultSet rs = dao.listar();
+		List<LocalVO> locais = new ArrayList<LocalVO>();
 		
-		LocalVO l[] = new LocalVO[3];
-		l[0] =a;
-		l[1] =b;
-		l[2] = c;
-		return l;
+		try {
+			while(rs.next()) {
+				LocalVO local = new LocalVO();
+				local.setId(rs.getLong("id"));
+				local.setCasa(rs.getString("casa"));
+				local.setCompartimento((rs.getString("compartimento")));
+				locais.add(local);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return locais;
 	}
 	
 	public void deletar(LocalVO local) {

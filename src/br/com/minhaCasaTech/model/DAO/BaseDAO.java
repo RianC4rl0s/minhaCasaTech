@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
 	
 	Connection con = null;
@@ -41,7 +42,9 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
 	
 	public abstract ResultSet buscarPorId(VO entity) throws SQLException;
 	
-	public abstract ResultSet buscar() throws SQLException;
+	public abstract ResultSet buscarPorId(long id) throws SQLException;
+	
+	public abstract ResultSet listar() throws SQLException;
 	
 	public abstract void deletar(VO entity) throws SQLException;
 }

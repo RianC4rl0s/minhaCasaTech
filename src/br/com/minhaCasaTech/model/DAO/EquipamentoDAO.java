@@ -4,9 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
+
+import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
@@ -68,46 +68,18 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		}
 	}
 	
-	/*public EquipamentoVO[] listar() {
-		EquipamentoVO[] eqp = null;
-		return eqp;
-	}*/
 	
-	public ResultSet buscar(){
+	
+	public ResultSet listar(){
 		
 		String sql = "select * from equipamento";
 		Statement st;
 		ResultSet rs = null;
-		List<EquipamentoVO> equipamentoList = new ArrayList<EquipamentoVO>();
 		
 		try {
 			st = getCon().createStatement();
 			rs = st.executeQuery(sql);
-			while(rs.next()) {
-			EquipamentoVO eqp = new EquipamentoVO();	
-			eqp.setId(rs.getLong("id"));
-			eqp.setNome(rs.getString("nome"));
-			eqp.setPeso(rs.getDouble("peso"));
-			eqp.setPreco(rs.getDouble("preco"));
-			eqp.setQuantidade(rs.getInt("quantidade"));
-			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
-			//aloca memoria
-			LocalVO l = new LocalVO();
-			//conecta com a local
-			//LocalDAO ldao = new LocalDAO();
-			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			//l = ldao.buscarPorId(rs.getLong("id_local"));
-			eqp.setLocal(l);
 			
-			//mesma coisa s� q com responsavel
-			/*
-			ResponsavelVO r = new ResponsavelVO();
-			ResponsavelDAO rdao = new ResponsavelDAO();
-			r = rdao.buscarId(rs.getLong("id_responsavel"));	
-			eqp.setResponsavel(r);
-			*/
-			equipamentoList.add(eqp);
-			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -131,13 +103,13 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			//aloca memoria
 			LocalVO l = new LocalVO();
-			//conecta com a local
+			LocalBO lbo = new LocalBO();
 			LocalDAO ldao = new LocalDAO();
-			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			//l = ldao.buscarPorId(rs.getLong("id_local"));
+			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
 			eqp.setLocal(l);
+			
 			
 			//mesma coisa s� q com responsavel
 			/*
@@ -171,13 +143,13 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			//aloca memoria
 			LocalVO l = new LocalVO();
-			//conecta com a local
+			LocalBO lbo = new LocalBO();
 			LocalDAO ldao = new LocalDAO();
-			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			//l = ldao.buscarPorId(rs.getLong("id_local"));
+			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
 			eqp.setLocal(l);
+			
 			
 			//mesma coisa s� q com responsavel
 			/*
@@ -192,7 +164,45 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		
 		return eqp;
 	}
-	
+public ResultSet buscarPorId(long id) {
+		
+		
+		String sql = "select * from equipamento where id = ?";
+		PreparedStatement pst;
+		ResultSet rs = null;
+	//	EquipamentoVO eqp = new EquipamentoVO();
+		try {
+			pst = getCon().prepareStatement(sql);
+			pst.setLong(1, id);
+			rs = pst.executeQuery();
+			/*eqp.setId(rs.getLong("id"));
+			eqp.setNome(rs.getString("nome"));
+			eqp.setPeso(rs.getDouble("peso"));
+			eqp.setPreco(rs.getDouble("preco"));
+			eqp.setQuantidade(rs.getInt("quantidade"));
+			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
+			
+			
+			LocalVO l = new LocalVO();
+			LocalBO lbo = new LocalBO();
+			LocalDAO ldao = new LocalDAO();
+			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
+			eqp.setLocal(l);
+			*/
+			//mesma coisa s� q com responsavel
+			/*
+			ResponsavelVO r = new ResponsavelVO();
+			ResponsavelDAO rdao = new ResponsavelDAO();
+			r = rdao.buscarId(rs.getLong("id_responsavel"));	
+			eqp.setResponsavel(r);
+			*/
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
 	public ResultSet buscarPorId(EquipamentoVO equipamento) {
 		
 		
@@ -211,13 +221,13 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			//aloca memoria
 			LocalVO l = new LocalVO();
-			//conecta com a local
+			LocalBO lbo = new LocalBO();
 			LocalDAO ldao = new LocalDAO();
-			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			//l = ldao.buscarPorId(rs.getLong("id_local"));
+			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
 			eqp.setLocal(l);
+			
 			
 			//mesma coisa s� q com responsavel
 			/*
@@ -251,13 +261,13 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			//aloca memoria
 			LocalVO l = new LocalVO();
-			//conecta com a local
+			LocalBO lbo = new LocalBO();
 			LocalDAO ldao = new LocalDAO();
-			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			//l = ldao.buscarPorId(rs.getLong("id_local"));
+			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
 			eqp.setLocal(l);
+			
 			
 			//mesma coisa s� q com responsavel
 			/*

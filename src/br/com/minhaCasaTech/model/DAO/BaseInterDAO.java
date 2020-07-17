@@ -11,7 +11,11 @@ public interface BaseInterDAO<VO> {
 	
 	public ResultSet buscarPorId(VO entity) throws SQLException;
 	
-	public ResultSet buscar() throws SQLException;
+	public ResultSet buscarPorId(long id) throws SQLException;
+	
+	//public ResultSet buscar() throws SQLException;
+	
+	public ResultSet listar() throws SQLException;
 	
 	public void deletar(VO entity) throws SQLException;
 }

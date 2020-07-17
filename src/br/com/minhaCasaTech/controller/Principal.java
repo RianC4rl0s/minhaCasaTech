@@ -1,8 +1,6 @@
 package br.com.minhaCasaTech.controller;
 
 
-import java.sql.ResultSet;
-import java.util.List;
 
 import br.com.minhaCasaTech.model.DAO.*;
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
