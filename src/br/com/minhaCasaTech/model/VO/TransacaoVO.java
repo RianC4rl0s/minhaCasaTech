@@ -1,21 +1,26 @@
 package br.com.minhaCasaTech.model.VO;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 public class TransacaoVO {
 
-	private Long id;
+	private Long id_transacao;
+	private int tipo;
 	private double valorTotal;
 	private double pesoTotal;
 	private int totalEquip;
 	private Calendar data;
-	private EquipamentoVO equipamentos[];
+	List<EquipamentoVO> equipamentos = new ArrayList<EquipamentoVO>();
 	
-	public TransacaoVO(double valorTotal, double pesoTotal, int totalEquip) {
+	public TransacaoVO(double valorTotal, double pesoTotal, int totalEquip, int tipo) {
 		this.setValorTotal(valorTotal);
 		this.setPesoTotal(pesoTotal);
 		this.setTotalEquip(totalEquip);
+		this.setTipo(tipo);
+		this.setData();
 	}
 	
 	// Sets
@@ -41,23 +46,21 @@ public class TransacaoVO {
 			System.out.println("Valor Inválido");
 	}
 	
-	public void setData(Calendar data) {
+	public void setData() {
 		TimeZone zone = TimeZone.getTimeZone("GMT-3:00");
 		this.data = Calendar.getInstance(zone);
 	}
 	
 	public void addEquipamento(EquipamentoVO eqp) {
 		if (eqp != null)
-			// ADICIONAR
-			;
+			equipamentos.add(eqp);
 		else
 			System.out.println("Equipamento Inválido");
 	}
 	
 	public void removeEquipamento(EquipamentoVO eqp) {
 		if (eqp != null)
-			// REMOVER
-			;
+			equipamentos.remove(eqp);
 		else
 			System.out.println("Equipamento Inválido");
 	}
@@ -87,18 +90,34 @@ public class TransacaoVO {
 		"Data: "+data.toString()+"\n"+
 		"Equipamentos: \n";
 		
-		for (int i=0; i<equipamentos.length;i++) {
-			str += equipamentos[i].toString();
+		for (EquipamentoVO eqp : equipamentos) {
+			str += eqp.toString();
 		}
 		
 		return str;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getId_transacao() {
+		return id_transacao;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId_transacao(Long id) {
+		this.id_transacao = id;
+	}
+
+	public ArrayList<EquipamentoVO> getEquipamentos() {
+		return (ArrayList<EquipamentoVO>) equipamentos;
+	}
+
+	public void setEquipamentos(ArrayList<EquipamentoVO> equipamentos) {
+		this.equipamentos = equipamentos;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
 }

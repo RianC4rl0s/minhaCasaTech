@@ -32,7 +32,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			}
 			ResultSet key = pst.getGeneratedKeys();
 			if(key.next()) {
-				equipamento.setId(key.getLong("id"));
+				equipamento.setId_equipamento(key.getLong("id"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		
 		try {
 			PreparedStatement pst = getCon().prepareStatement(sql);
-			pst.setLong(1, equipamento.getId());
+			pst.setLong(1, equipamento.getId_equipamento());
 			pst.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -85,7 +85,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 			EquipamentoVO eqp = new EquipamentoVO();	
-			eqp.setId(rs.getLong("id"));
+			eqp.setId_equipamento(rs.getLong("id"));
 			eqp.setNome(rs.getString("nome"));
 			eqp.setPeso(rs.getDouble("peso"));
 			eqp.setPreco(rs.getDouble("preco"));
@@ -124,7 +124,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			pst = getCon().prepareStatement(sql);
 			pst.setString(1, nome);
 			rs = pst.executeQuery();
-			eqp.setId(rs.getLong("id"));
+			eqp.setId_equipamento(rs.getLong("id"));
 			eqp.setNome(rs.getString("nome"));
 			eqp.setPeso(rs.getDouble("peso"));
 			eqp.setPreco(rs.getDouble("preco"));
@@ -164,7 +164,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			pst = getCon().prepareStatement(sql);
 			pst.setInt(1, ns);
 			rs = pst.executeQuery();
-			eqp.setId(rs.getLong("id"));
+			eqp.setId_equipamento(rs.getLong("id"));
 			eqp.setNome(rs.getString("nome"));
 			eqp.setPeso(rs.getDouble("peso"));
 			eqp.setPreco(rs.getDouble("preco"));
@@ -202,9 +202,9 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		EquipamentoVO eqp = new EquipamentoVO();
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setLong(1, equipamento.getId());
+			pst.setLong(1, equipamento.getId_equipamento());
 			rs = pst.executeQuery();
-			eqp.setId(rs.getLong("id"));
+			eqp.setId_equipamento(rs.getLong("id"));
 			eqp.setNome(rs.getString("nome"));
 			eqp.setPeso(rs.getDouble("peso"));
 			eqp.setPreco(rs.getDouble("preco"));
@@ -244,7 +244,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			pst = getCon().prepareStatement(sql);
 			pst.setLong(1,local.getId());
 			rs = pst.executeQuery();
-			eqp.setId(rs.getLong("id"));
+			eqp.setId_equipamento(rs.getLong("id"));
 			eqp.setNome(rs.getString("nome"));
 			eqp.setPeso(rs.getDouble("peso"));
 			eqp.setPreco(rs.getDouble("preco"));

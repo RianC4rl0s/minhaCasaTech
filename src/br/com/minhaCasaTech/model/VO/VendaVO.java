@@ -2,12 +2,12 @@ package br.com.minhaCasaTech.model.VO;
 
 public class VendaVO extends TransacaoVO{
 
-	private Long id;
+	private Long id_venda;
 	private Long id_transacao;
 	private ClienteVO cliente;
 	
 	public VendaVO(double valorTotal, double pesoTotal, int totalEquip) {
-		super(valorTotal, pesoTotal, totalEquip);
+		super(valorTotal, pesoTotal, totalEquip, 0);
 		
 		this.setCliente(cliente);
 	}
@@ -23,12 +23,12 @@ public class VendaVO extends TransacaoVO{
 			System.out.println("Cliente Invalido");
 	}
 	
-	public Long getId() {
-		return id;
+	public Long getId_venda() {
+		return id_venda;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId_venda(Long id) {
+		this.id_venda = id;
 	}
 
 	public Long getId_transacao() {

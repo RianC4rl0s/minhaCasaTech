@@ -2,7 +2,7 @@ package br.com.minhaCasaTech.model.VO;
 
 public class EquipamentoVO {
 	
-	private Long id;
+	private Long id_equipamento;
 	private String nome;
 	private double peso;
 	private double preco;
@@ -129,10 +129,11 @@ public class EquipamentoVO {
 		"Local: "+local.getCasa()+"\n"+
 		"Responsável: "+responsavel.getNome()+"\n";
 	}
-	public Long getId() {
-		return id;
+	
+	public Long getId_equipamento() {
+		return id_equipamento;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setId_equipamento(Long id) {
+		this.id_equipamento = id;
 	}
 }
