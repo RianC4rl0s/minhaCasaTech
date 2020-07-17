@@ -4,23 +4,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import br.com.minhaCasaTech.model.DAO.LocalDAO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 public class LocalBO implements localInterBO{
 
 	public void cadastrar(LocalVO local) {
-		if (local != null)
-		{
-			System.out.println("Local adicionado:\n=================="+local.toString());
-		}else
-			System.out.println("Local nulo!");
+		LocalDAO dao = new LocalDAO();
+		try{
+			dao.cadastrar(local);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public LocalVO editar(LocalVO local) {
-		local.setCasa("Casa2");
-		local.setCompartimento("Prateleira 34");
+	public void editar(LocalVO local) {
+		LocalDAO dao = new LocalDAO();
+		try{
+			 dao.editar(local);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		return local;
+		//return local;
 	}
 	public LocalVO buscarPorId(ResultSet rs) {
 		
@@ -71,6 +78,12 @@ public class LocalBO implements localInterBO{
 	}
 	
 	public void deletar(LocalVO local) {
+		LocalDAO dao = new LocalDAO();
+		try{
+		dao.deletar(local);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("Deletado");
 	}
 }

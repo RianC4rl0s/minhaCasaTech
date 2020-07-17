@@ -9,7 +9,7 @@ import br.com.minhaCasaTech.model.VO.LocalVO;
 public interface localInterBO {
 	public void cadastrar(LocalVO local);
 	
-	public LocalVO editar(LocalVO local);
+	public void editar(LocalVO local);
 	
 	public LocalVO buscarPorId(ResultSet rs);
 	
