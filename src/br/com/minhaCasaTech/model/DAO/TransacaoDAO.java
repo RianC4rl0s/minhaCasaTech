@@ -146,4 +146,16 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 	public void deletar(VO entity) throws SQLException {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public ResultSet buscarPorId(long id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet listar() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

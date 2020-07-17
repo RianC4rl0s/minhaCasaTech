@@ -1,8 +1,6 @@
 package br.com.minhaCasaTech.model.DAO;
 
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +47,7 @@ public class LocalDAO extends BaseDAO<LocalVO>{
 			e.printStackTrace();
 		}
 	}
-	
+	/*
 	public LocalVO buscar(LocalVO local) {
 		PreparedStatement pst;
 		ResultSet rs;
@@ -66,9 +64,9 @@ public class LocalDAO extends BaseDAO<LocalVO>{
 			e.printStackTrace();
 		}
 		return l;
-	}
+	}*/
 	
-	public ResultSet buscarPorId(LocalVO local) {
+public ResultSet buscarPorId(long id) {
 		
 		
 		PreparedStatement pst;
@@ -77,7 +75,7 @@ public class LocalDAO extends BaseDAO<LocalVO>{
 		LocalVO l = new LocalVO();
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setLong(1, local.getId());
+			pst.setLong(1,id);
 			rs = pst.executeQuery();
 			l.setCasa(rs.getString("casa"));
 			l.setCompartimento(rs.getString("compartimento"));
@@ -87,13 +85,52 @@ public class LocalDAO extends BaseDAO<LocalVO>{
 		}
 		return rs;
 	}
+	public ResultSet buscarPorId(LocalVO local) {
+		
+		
+		PreparedStatement pst;
+		ResultSet rs = null;
+		String sql = "select * from local where id = ?";
+		LocalVO l = new LocalVO();
+		try {
+			pst = getCon().prepareStatement(sql);
+			pst.setLong(1,local.getId());
+			rs = pst.executeQuery();
+			l.setCasa(rs.getString("casa"));
+			l.setCompartimento(rs.getString("compartimento"));
+			l.setId(rs.getLong("id"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public ResultSet listar(){
+		
+		String sql = "select * from local";
+		Statement  st; 
+		ResultSet rs  = null;
+		//List<LocalVO> locais = new ArrayList<LocalVO>();
+		
+		try{
+			st = getCon().createStatement();
+			rs = st.executeQuery(sql);
+			/*while(rs.next()) {
+				LocalVO l = new LocalVO();
+				l.setCasa(rs.getString("casa"));
+				l.setCompartimento(rs.getString("compartimento"));
+				l.setId(rs.getLong("id"));
+				
+				locais.add(l);
+			}*/
+		}catch(SQLException e) {
+			e.printStackTrace();
+		
+		}
+		return rs;
+		
+	}
 	
-	/*public LocalVO[] listar() {
-		LocalVO[] l = null;
-		return l;
-	}*/
-	
-	public ResultSet buscar(){
+	/*public ResultSet buscar(){
 		
 		String sql = "select * from local";
 		Statement  st; 
@@ -118,7 +155,7 @@ public class LocalDAO extends BaseDAO<LocalVO>{
 		return rs;
 		
 	}
-	
+	*/
 	public void deletar(LocalVO local) {
 		
 		String sql = "delete from local where id = ?";
