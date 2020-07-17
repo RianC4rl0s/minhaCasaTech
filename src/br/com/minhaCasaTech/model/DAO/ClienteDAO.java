@@ -66,7 +66,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from pessoa, cliente";
 		PreparedStatement ptst;
 		ResultSet rs = null;

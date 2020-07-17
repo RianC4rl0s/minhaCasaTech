@@ -85,7 +85,7 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from transacao, transacao_equipamentos";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -149,12 +149,6 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 
 	@Override
 	public ResultSet buscarPorId(long id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultSet listar() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

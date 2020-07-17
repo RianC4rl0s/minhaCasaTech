@@ -51,7 +51,7 @@ public class CompraDAO extends TransacaoDAO<CompraVO> {
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from compra, transacao where (tipo = 1)";
 		PreparedStatement ptst;
 		ResultSet rs = null;

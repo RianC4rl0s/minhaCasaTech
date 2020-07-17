@@ -55,7 +55,7 @@ public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from pessoa, responsavel, funcionario";
 		PreparedStatement ptst;
 		ResultSet rs = null;

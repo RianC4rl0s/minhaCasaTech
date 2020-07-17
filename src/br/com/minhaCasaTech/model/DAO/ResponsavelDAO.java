@@ -72,7 +72,7 @@ public class ResponsavelDAO<VO extends ResponsavelVO> extends PessoaDAO<VO> {
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from pessoa, responsavel";
 		PreparedStatement ptst;
 		ResultSet rs = null;

@@ -53,7 +53,7 @@ public class VendaDAO extends TransacaoDAO<VendaVO> {
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from venda, transacao where (tipo = 0)";
 		PreparedStatement ptst;
 		ResultSet rs = null;

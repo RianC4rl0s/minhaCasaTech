@@ -54,7 +54,7 @@ public class ProprietarioDAO extends ResponsavelDAO<ProprietarioVO> {
 		return rs;
 	}
 	
-	public ResultSet buscar() {
+	public ResultSet listar() {
 		String sql = "select * from pessoa, responsavel, proprietario";
 		PreparedStatement ptst;
 		ResultSet rs = null;
