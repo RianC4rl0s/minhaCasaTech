@@ -1,9 +1,11 @@
 package br.com.minhaCasaTech.controller;
 
 
+import java.sql.ResultSet;
 import java.util.List;
 
-import br.com.minhaCasaTech.model.DAO.LocalDAO;
+import br.com.minhaCasaTech.model.DAO.*;
+import br.com.minhaCasaTech.model.VO.FuncionarioVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
 public class Principal {
@@ -11,18 +13,19 @@ public class Principal {
 		
 	    System.out.println("================");
 
-		LocalDAO dao2 = new LocalDAO();
+		LocalDAO d1 = new LocalDAO();
+		EquipamentoDAO d2 = new EquipamentoDAO();
+		ClienteDAO d3 = new ClienteDAO();
+		FuncionarioDAO d4 = new FuncionarioDAO();
+		ProprietarioDAO d5 = new ProprietarioDAO();
 		
 		LocalVO local2  = new LocalVO("joaozin", "b-3 prateleira:4");
+		FuncionarioVO f1 = new FuncionarioVO("Junior", "Angicos", "84999488501", "junior", "seNha123");
 		
-		dao2.cadastrar(local2);
+		d1.cadastrar(local2);
+		d4.cadastrar(f1);
 		
-		List<LocalVO> locais = dao2.listar();
-		
-		for (LocalVO l: locais) {
-			System.out.println(l.toString());
-		}
-	       System.out.println("================");
+		//ResultSet locais = dao2.buscar();
 
 	}
 }

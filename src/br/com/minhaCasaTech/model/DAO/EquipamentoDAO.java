@@ -11,9 +11,9 @@ import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
 
-public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
+public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 	
-	public  void cadastrar(VO equipamento) {
+	public  void cadastrar(EquipamentoVO equipamento) {
 		
 		String sql = "insert into equipamento (nome,peso,preco,quantidade,numero_de_serie,id_local,id_responsavel) values (?,?,?,?,?,?,?)";
 		
@@ -39,7 +39,7 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 		}
 	}
 	
-	public EquipamentoVO  editar(VO eqpOrigem) {
+	public void editar(EquipamentoVO eqpOrigem) {
 		String sql ="update equipamento nome = ?, peso = ?, preco = ? , quantidade = ?, numero_de_serie";
 		try {
 			PreparedStatement pst = getCon().prepareStatement(sql);
@@ -53,11 +53,9 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
-		return eqpOrigem;
 	}
 	
-	public void deletar(VO equipamento) {
+	public void deletar(EquipamentoVO equipamento) {
 		
 		String sql = "delete from equipamento where id = ?";
 		
@@ -70,20 +68,16 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 		}
 	}
 	
-	public EquipamentoVO buscar(VO e) {
-		return e;
-	}
-	
 	/*public EquipamentoVO[] listar() {
 		EquipamentoVO[] eqp = null;
 		return eqp;
 	}*/
 	
-	public List<EquipamentoVO> listar(){
+	public ResultSet buscar(){
 		
 		String sql = "select * from equipamento";
 		Statement st;
-		ResultSet rs;
+		ResultSet rs = null;
 		List<EquipamentoVO> equipamentoList = new ArrayList<EquipamentoVO>();
 		
 		try {
@@ -100,12 +94,12 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 			//aloca memoria
 			LocalVO l = new LocalVO();
 			//conecta com a local
-			LocalDAO ldao = new LocalDAO();
+			//LocalDAO ldao = new LocalDAO();
 			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			l = ldao.buscarPorId(rs.getLong("id_local"));
+			//l = ldao.buscarPorId(rs.getLong("id_local"));
 			eqp.setLocal(l);
 			
-			//mesma coisa só q com responsavel
+			//mesma coisa sï¿½ q com responsavel
 			/*
 			ResponsavelVO r = new ResponsavelVO();
 			ResponsavelDAO rdao = new ResponsavelDAO();
@@ -117,8 +111,9 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return equipamentoList;
+		return rs;
 	}
+	
 	public EquipamentoVO buscarPorNome(String nome) {
 		
 		String sql = "select * from equipamento where nome = ?";
@@ -141,10 +136,10 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 			//conecta com a local
 			LocalDAO ldao = new LocalDAO();
 			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			l = ldao.buscarPorId(rs.getLong("id_local"));
+			//l = ldao.buscarPorId(rs.getLong("id_local"));
 			eqp.setLocal(l);
 			
-			//mesma coisa só q com responsavel
+			//mesma coisa sï¿½ q com responsavel
 			/*
 			ResponsavelVO r = new ResponsavelVO();
 			ResponsavelDAO rdao = new ResponsavelDAO();
@@ -181,10 +176,10 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 			//conecta com a local
 			LocalDAO ldao = new LocalDAO();
 			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			l = ldao.buscarPorId(rs.getLong("id_local"));
+			//l = ldao.buscarPorId(rs.getLong("id_local"));
 			eqp.setLocal(l);
 			
-			//mesma coisa só q com responsavel
+			//mesma coisa sï¿½ q com responsavel
 			/*
 			ResponsavelVO r = new ResponsavelVO();
 			ResponsavelDAO rdao = new ResponsavelDAO();
@@ -197,7 +192,8 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 		
 		return eqp;
 	}
-	public EquipamentoVO buscarPorId(Long id) {
+	
+	public ResultSet buscarPorId(EquipamentoVO equipamento) {
 		
 		
 		String sql = "select * from equipamento where id = ?";
@@ -206,7 +202,7 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 		EquipamentoVO eqp = new EquipamentoVO();
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setLong(1, id);
+			pst.setLong(1, equipamento.getId());
 			rs = pst.executeQuery();
 			eqp.setId(rs.getLong("id"));
 			eqp.setNome(rs.getString("nome"));
@@ -220,10 +216,10 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 			//conecta com a local
 			LocalDAO ldao = new LocalDAO();
 			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			l = ldao.buscarPorId(rs.getLong("id_local"));
+			//l = ldao.buscarPorId(rs.getLong("id_local"));
 			eqp.setLocal(l);
 			
-			//mesma coisa só q com responsavel
+			//mesma coisa sï¿½ q com responsavel
 			/*
 			ResponsavelVO r = new ResponsavelVO();
 			ResponsavelDAO rdao = new ResponsavelDAO();
@@ -234,7 +230,7 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 			e.printStackTrace();
 		}
 		
-		return eqp;
+		return rs;
 	}
 	
 	public EquipamentoVO buscarPorLocal(LocalVO local) {
@@ -260,10 +256,10 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 			//conecta com a local
 			LocalDAO ldao = new LocalDAO();
 			//l recebe um local do medotodo  buscarId(),esse procura no banco o local reerido, ja q  no banco, a tabela equipamento recebe apenas o id do local
-			l = ldao.buscarPorId(rs.getLong("id_local"));
+			//l = ldao.buscarPorId(rs.getLong("id_local"));
 			eqp.setLocal(l);
 			
-			//mesma coisa só q com responsavel
+			//mesma coisa sï¿½ q com responsavel
 			/*
 			ResponsavelVO r = new ResponsavelVO();
 			ResponsavelDAO rdao = new ResponsavelDAO();
@@ -277,5 +273,4 @@ public class EquipamentoDAO extends BaseDAO implements EquipamentoInterDAO<VO> {
 		return eqp;
 	}
 	
-
 }

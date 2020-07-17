@@ -3,9 +3,6 @@ package br.com.minhaCasaTech.model.VO;
 public class LocalVO {
 	
 	private long id;
-	
-	
-
 	private String casa;
 	private String compartimento;
 	

@@ -5,6 +5,7 @@ import java.util.TimeZone;
 
 public class TransacaoVO {
 
+	private Long id;
 	private double valorTotal;
 	private double pesoTotal;
 	private int totalEquip;
@@ -91,5 +92,13 @@ public class TransacaoVO {
 		}
 		
 		return str;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

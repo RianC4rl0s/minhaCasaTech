@@ -2,8 +2,26 @@ package br.com.minhaCasaTech.model.VO;
 
 public class ClienteVO extends PessoaVO {
 	
+	private Long id_cliente;
+	private Long id_pessoa;
 	private String cpf;
 	
+	public Long getId_cliente() {
+		return id_cliente;
+	}
+
+	public void setId_cliente(Long id) {
+		this.id_cliente = id;
+	}
+
+	public Long getId_pessoa() {
+		return id_pessoa;
+	}
+
+	public void setId_pessoa(Long id_pessoa) {
+		this.id_pessoa = id_pessoa;
+	}
+
 	public ClienteVO(String nome,String endereco, String cpf) {
 		super(nome, endereco);
 		setCpf(cpf);

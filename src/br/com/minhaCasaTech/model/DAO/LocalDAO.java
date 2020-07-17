@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
-public class LocalDAO extends BaseDAO implements LocalInterDAO<VO>{
+public class LocalDAO extends BaseDAO<LocalVO>{
 	
-	public void cadastrar(VO local) {
+	public void cadastrar(LocalVO local) {
 		
 		String sql = "insert into local (casa,compartimento) values (?,?)";
 		
@@ -35,7 +35,7 @@ public class LocalDAO extends BaseDAO implements LocalInterDAO<VO>{
 		
 	}
 	
-	public LocalVO editar(VO local) {		
+	public void editar(LocalVO local) {		
 
 		String sql = "update local set casa = ?,compartimento = ? where id = ?";
 		
@@ -48,14 +48,9 @@ public class LocalDAO extends BaseDAO implements LocalInterDAO<VO>{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		return local;
 	}
 	
-	public LocalVO buscar(VO local) {
-		
-	
+	public LocalVO buscar(LocalVO local) {
 		PreparedStatement pst;
 		ResultSet rs;
 		String sql = "select * from local where id = ?";
@@ -72,16 +67,17 @@ public class LocalDAO extends BaseDAO implements LocalInterDAO<VO>{
 		}
 		return l;
 	}
-	public LocalVO buscarPorId(Long id) {
+	
+	public ResultSet buscarPorId(LocalVO local) {
 		
 		
 		PreparedStatement pst;
-		ResultSet rs;
+		ResultSet rs = null;
 		String sql = "select * from local where id = ?";
 		LocalVO l = new LocalVO();
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setLong(1, id);
+			pst.setLong(1, local.getId());
 			rs = pst.executeQuery();
 			l.setCasa(rs.getString("casa"));
 			l.setCompartimento(rs.getString("compartimento"));
@@ -89,18 +85,19 @@ public class LocalDAO extends BaseDAO implements LocalInterDAO<VO>{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return l;
+		return rs;
 	}
 	
 	/*public LocalVO[] listar() {
 		LocalVO[] l = null;
 		return l;
 	}*/
-	public List<LocalVO> listar(){
+	
+	public ResultSet buscar(){
 		
 		String sql = "select * from local";
 		Statement  st; 
-		ResultSet rs;
+		ResultSet rs  = null;
 		List<LocalVO> locais = new ArrayList<LocalVO>();
 		
 		try{
@@ -118,10 +115,11 @@ public class LocalDAO extends BaseDAO implements LocalInterDAO<VO>{
 			e.printStackTrace();
 		
 		}
-		return locais;
+		return rs;
 		
 	}
-	public void deletar(VO local) {
+	
+	public void deletar(LocalVO local) {
 		
 		String sql = "delete from local where id = ?";
 		

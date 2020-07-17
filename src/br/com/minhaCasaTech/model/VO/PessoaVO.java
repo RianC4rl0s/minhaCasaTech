@@ -2,7 +2,7 @@ package br.com.minhaCasaTech.model.VO;
 
 public abstract class PessoaVO {
 	
-	private Long id;
+	private Long id_pessoa;
 	private String nome;
 	private String endereco;
 	
@@ -47,11 +47,11 @@ public abstract class PessoaVO {
 		"Nome: "+nome+"\n"+
 		"Endereço: "+endereco+"\n";
 	}
-	public Long getId() {
-		return id;
+	public Long getId_pessoa() {
+		return id_pessoa;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setId_pessoa(Long id) {
+		this.id_pessoa = id;
 	}
 }
 

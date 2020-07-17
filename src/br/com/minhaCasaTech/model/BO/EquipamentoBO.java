@@ -1,6 +1,7 @@
 package br.com.minhaCasaTech.model.BO;
 
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
+import br.com.minhaCasaTech.model.VO.FuncionarioVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
@@ -31,7 +32,7 @@ public class EquipamentoBO implements EquipamentoInterBO{
 	}
 	
 	public EquipamentoVO[] listar() {
-		ResponsavelVO resp = new ResponsavelVO("Joao","Rua 12","3420","user","senha");
+		ResponsavelVO resp = new FuncionarioVO("Joao","Rua 12","3420","user","senha");
 		LocalVO l = new LocalVO("Centro","Prateleira A-23");
 		EquipamentoVO a = new EquipamentoVO("Mouse", 0.5, 200, 255, 464565, resp, l);
 		EquipamentoVO b = new EquipamentoVO("teclado", 1, 500, 2030, 56456465, resp, l);

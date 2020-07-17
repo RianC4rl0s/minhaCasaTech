@@ -1,20 +1,21 @@
 package br.com.minhaCasaTech.model.DAO;
 
-import br.com.minhaCasaTech.model.VO.PessoaVO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
-	
-	public void cadastrar(VO pessoa) {
-		String sql = "insert into pessoa (nome, endereco) values (?,?)";
+import br.com.minhaCasaTech.model.VO.ProprietarioVO;
+
+public class ProprietarioDAO extends ResponsavelDAO<ProprietarioVO> {
+	public void cadastrar(ProprietarioVO pessoa) {
+		super.cadastrar(pessoa);
+		
+		String sql = "insert into proprietario (id_responsavel) values (?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setString(1, pessoa.getNome());
-			ptst.setString(2, pessoa.getEndereco());
+			ptst.setLong(1, pessoa.getId_responsavel());
 			
 			int affectedRows = ptst.executeUpdate();
 			
@@ -24,7 +25,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 			ResultSet generatedKeys = ptst.getGeneratedKeys();
 			
 			if(generatedKeys.next())
-				pessoa.setId_pessoa(generatedKeys.getLong(1));
+				pessoa.setId_proprietario(generatedKeys.getLong(1));
 			else
 				throw new SQLException("O cadastro falhou");
 		} catch (SQLException e){
@@ -32,29 +33,20 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 		}
 	}
 	
-	public void editar(VO pessoa) {
-		String sql = "update pessoa set nome = ?, endereco = ? where id = ?";
-		PreparedStatement ptst;
-		
-		try {
-			ptst = getCon().prepareStatement(sql);
-			ptst.setString(1, pessoa.getNome());
-			ptst.setString(2, pessoa.getEndereco());
-			ptst.setLong(3, pessoa.getId_pessoa());
-			ptst.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void editar(ProprietarioVO pessoa) {
+		super.editar(pessoa);
 	}
 	
-	public ResultSet buscarPorId(PessoaVO pessoa) {
-		String sql = "select * from pessoa where id=?";
+	public ResultSet buscarPorId(ProprietarioVO pessoa) {
+		String sql = "select * from pessoa, responsavel, proprietario where pessoa.id = ?, responsavel.id = ?, proprietario.id = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
 		try {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_pessoa());
+			ptst.setLong(2, pessoa.getId_responsavel());
+			ptst.setLong(3, pessoa.getId_proprietario());
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,7 +55,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 	}
 	
 	public ResultSet buscar() {
-		String sql = "select * from pessoa";
+		String sql = "select * from pessoa, responsavel, proprietario";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
@@ -76,13 +68,15 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 		return rs;
 	}
 	
-	public void deletar(VO pessoa) {
-		String sql = "delete from pessoa where id=?";
+	public void deletar(ProprietarioVO pessoa) {
+		super.deletar(pessoa);
+		
+		String sql = "delete from proprietario where id=?";
 		PreparedStatement ptst;
 		
 		try {
 			ptst = getCon().prepareStatement(sql);
-			ptst.setLong(1, pessoa.getId_pessoa());
+			ptst.setLong(1, pessoa.getId_proprietario());
 			ptst.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

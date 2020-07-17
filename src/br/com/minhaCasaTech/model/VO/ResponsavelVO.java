@@ -1,7 +1,9 @@
 package br.com.minhaCasaTech.model.VO;
 
-public class ResponsavelVO extends PessoaVO{
+public abstract class ResponsavelVO extends PessoaVO{
 	
+	private Long id_responsavel;
+	private Long id_pessoa;
 	private String login;
 	private String senha;
 	private String telefone;
@@ -43,7 +45,7 @@ public class ResponsavelVO extends PessoaVO{
 	}
 	
 	public void setTelefone(String telefone) {
-		if (telefone != null)
+		if (telefone == null)
 			System.out.println("Valor nulo");
 		else
 			if (telefone.equals(""))
@@ -69,5 +71,18 @@ public class ResponsavelVO extends PessoaVO{
 
 	public String getTelefone() {
 		return telefone;
+	}
+	
+	public Long getId_responsavel() {
+		return id_responsavel;
+	}
+	public void setId_responsavel(Long id) {
+		this.id_responsavel = id;
+	}
+	public Long getId_pessoa() {
+		return id_pessoa;
+	}
+	public void setId_pessoa(Long id_pessoa) {
+		this.id_pessoa = id_pessoa;
 	}
 }
