@@ -13,7 +13,7 @@ import br.com.minhaCasaTech.model.VO.FuncionarioVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 
 public class Principal {
-	public static void main(String args[]) throws SQLException {
+	/*public static void main(String args[]) throws SQLException {
 		
 	    System.out.println("================");
 
@@ -53,5 +53,5 @@ public class Principal {
 		
 		//ResultSet locais = dao2.buscar();
 
-	}
+	}*/
 }

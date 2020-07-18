@@ -7,8 +7,11 @@ import java.sql.Statement;
 
 
 import br.com.minhaCasaTech.model.BO.LocalBO;
+import br.com.minhaCasaTech.model.BO.PessoaBO;
+import br.com.minhaCasaTech.model.BO.ResponsavelBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
 
 public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
@@ -25,7 +28,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			pst.setInt(4, equipamento.getQuantidade());
 			pst.setInt(5, equipamento.getNumeroDeSerie());
 			pst.setLong(6, equipamento.getLocal().getId());
-			//pst.setLong(6, equipamento.getResponsavel().getId());
+			pst.setLong(6, equipamento.getResponsavel().getId_responsavel());
 			int affectedRows = pst.executeUpdate();
 			if(affectedRows ==0) {
 				throw new SQLException("Cadastro falhou");
@@ -114,7 +117,10 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
 			eqp.setLocal(l);
 			
-			
+			/*ResponsavelVO r = new ResponsavelVO();
+			PessoaBO<ResponsavelVO> rbo = new PessoaBO<ResponsavelBO>();
+			ResponsavelDAO<ResponsavelVO> rdao = new ResponsavelDAO<ResponsavelVO>();
+			*/
 			//mesma coisa s� q com responsavel
 			/*
 			ResponsavelVO r = new ResponsavelVO();

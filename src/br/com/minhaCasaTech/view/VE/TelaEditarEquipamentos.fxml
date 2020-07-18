@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="30.0" layoutY="59.0" text="Nome:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="142.0" text="Peso:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="293.0" text="Preço:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="468.0" layoutY="62.0" text="Quantidade:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="220.0" text="Numero de serie">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="468.0" layoutY="145.0" text="Local:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="465.0" layoutY="223.0" text="Responsavel:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="30.0" layoutY="93.0" prefHeight="25.0" prefWidth="429.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="30.0" layoutY="173.0" prefHeight="30.0" prefWidth="85.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="30.0" layoutY="255.0" prefHeight="30.0" prefWidth="214.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="30.0" layoutY="323.0" prefHeight="30.0" prefWidth="132.0" promptText="R$">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="468.0" layoutY="93.0" prefHeight="30.0" prefWidth="85.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="115.0" layoutY="180.0" text="Kg." />
+      <ComboBox layoutX="465.0" layoutY="176.0" prefHeight="25.0" prefWidth="270.0" promptText="Selecionar local" />
+      <ComboBox layoutX="465.0" layoutY="258.0" prefHeight="25.0" prefWidth="333.0" promptText="Selecionar responsável" />
+      <Button layoutX="21.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #1C3940;" text="Limpar campos" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="639.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #1C3940;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="761.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #1C3940;" text="Confirmar Edição" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

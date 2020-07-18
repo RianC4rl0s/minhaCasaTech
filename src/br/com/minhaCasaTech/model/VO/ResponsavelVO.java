@@ -1,6 +1,6 @@
 package br.com.minhaCasaTech.model.VO;
 
-public abstract class ResponsavelVO extends PessoaVO{
+public class ResponsavelVO extends PessoaVO{
 	
 	private Long id_responsavel;
 	private Long id_pessoa;
