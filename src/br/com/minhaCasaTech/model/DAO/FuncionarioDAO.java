@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
+import br.com.minhaCasaTech.model.VO.PessoaVO;
 
 public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
 	public void cadastrar(FuncionarioVO pessoa) {
@@ -48,6 +49,21 @@ public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
 			ptst.setLong(1, pessoa.getId_pessoa());
 			ptst.setLong(2, pessoa.getId_responsavel());
 			ptst.setLong(3, pessoa.getId_funcionario());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorId(Long id) {
+		String sql = "select * from funcionario where id=?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setLong(1, id);
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -6,6 +6,10 @@ public class VendaVO extends TransacaoVO{
 	private Long id_transacao;
 	private ClienteVO cliente;
 	
+	public VendaVO() {
+		
+	}
+	
 	public VendaVO(double valorTotal, double pesoTotal, int totalEquip) {
 		super(valorTotal, pesoTotal, totalEquip, 0);
 		

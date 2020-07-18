@@ -13,7 +13,7 @@ import br.com.minhaCasaTech.model.VO.TransacaoVO;
 public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 	
 	public void cadastrar(VO transacao) {
-		String sql = "insert into transacao (valorTotal, pesoTotal, totalEquip, data, tipo) values (?,?,?,?,?)";
+		String sql = "insert into transacao (valor_total, peso_total, total_equip, data, tipo) values (?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -149,7 +149,17 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 
 	@Override
 	public ResultSet buscarPorId(long id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from transacao where id=?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setLong(1, id);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 }
