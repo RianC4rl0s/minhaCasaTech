@@ -27,17 +27,18 @@ public class TransacaoBO {
 	}
 
 	public TransacaoVO[] listar(TransacaoVO transacao) {
-		TransacaoVO a = new TransacaoVO(1200,300,3);
-		TransacaoVO b = new TransacaoVO(5200,340,4);
-		TransacaoVO c = new TransacaoVO(4444,450,6);
+		//TransacaoVO a = new TransacaoVO(1200,300,3);
+		//TransacaoVO b = new TransacaoVO(5200,340,4);
+		//TransacaoVO c = new TransacaoVO(4444,450,6);
 		
-		TransacaoVO transacoes[] = new TransacaoVO[3];
+		/*TransacaoVO transacoes[] = new TransacaoVO[3];
 		
 		transacoes[0] = a;
 		transacoes[1] = b;
 		transacoes[2]= c;
 		
-		return transacoes;
+		return transacoes;*/
+		return null;
 	}
 
 	public TransacaoVO[] gerarRelatorio(Calendar dataInicio, Calendar dataFim, int tipo) {
