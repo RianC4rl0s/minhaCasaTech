@@ -16,9 +16,9 @@
                   <Image url="@motherboard.png" />
                </image>
             </ImageView>
-            <PasswordField fx:id="senha_pf" layoutX="174.0" layoutY="230.0" prefHeight="25.0" prefWidth="203.0" promptText="Senha" />
             <TextField fx:id="login_txf" layoutX="174.0" layoutY="184.0" prefHeight="25.0" prefWidth="203.0" promptText="Login" />
-            <Button fx:id="entrar_btm" layoutX="235.0" layoutY="274.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: #466673; -fx-border-radius: 25px;" text="Entrar" textFill="WHITE" />
+            <PasswordField fx:id="senha_pf" layoutX="174.0" layoutY="230.0" prefHeight="25.0" prefWidth="203.0" promptText="Senha" />
+            <Button fx:id="entrar_btm" layoutX="235.0" layoutY="274.0" mnemonicParsing="false" onAction="#autenticar" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: #466673; -fx-border-radius: 25px;" text="Entrar" textFill="WHITE" />
             <Label layoutX="222.0" layoutY="143.0" text="MINHA CASA" />
             <Label layoutX="297.0" layoutY="138.0" text="TECH" textFill="WHITE">
                <font>

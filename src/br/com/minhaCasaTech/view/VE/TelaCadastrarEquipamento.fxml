@@ -5,8 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.FrontController">
    <children>
       <Label layoutX="30.0" layoutY="59.0" text="Nome:">
          <font>
@@ -76,7 +75,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="681.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #1C3940;" text="Cancelar" textFill="WHITE">
+      <Button fx:id="cancelar_btm" layoutX="681.0" layoutY="424.0" mnemonicParsing="false" onAction="#cancelarOperacao" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #1C3940;" text="Cancelar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
