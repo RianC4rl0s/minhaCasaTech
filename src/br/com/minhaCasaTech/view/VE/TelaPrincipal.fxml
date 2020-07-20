@@ -33,33 +33,36 @@
          <children>
             <Pane layoutX="22.0" layoutY="175.0" prefHeight="516.0" prefWidth="256.0" style="-fx-background-color: #95BBBF;">
                <children>
-                  <Button fx:id="cadastrar_equipamento_menu_btm" layoutX="12.0" layoutY="41.0" mnemonicParsing="false" onAction="#cadastrarEquipamento" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Cadastrar " textFill="WHITE" />
-                  <Button fx:id="gerar_relatorio_btm" layoutX="25.0" layoutY="463.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" style="-fx-background-color: #5B93C6;" text="Relatorio" textFill="WHITE" />
-                  <Button fx:id="gerenciar_responosavel_menu_btm" layoutX="11.0" layoutY="185.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Gereniar " textFill="WHITE" />
-                  <Button fx:id="gerenciar_local_menu_btm" layoutX="16.0" layoutY="258.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Gerenciar " textFill="WHITE" />
-                  <Button fx:id="gerenciar_equipamento_menu_btm" layoutX="12.0" layoutY="72.0" mnemonicParsing="false" onAction="#gerenciarEquipamento" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Gerenciar " textFill="WHITE" />
-                  <Button fx:id="cadastrar_responsavel_menu_btm" layoutX="11.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Cadastrar " textFill="WHITE" />
-                  <TextField fx:id="caixa_txf" alignment="BOTTOM_RIGHT" layoutX="25.0" layoutY="317.0" prefHeight="65.0" prefWidth="204.0" promptText="0,00">
+                  <Button fx:id="cadastrar_equipamento_menu_btm" layoutX="12.0" layoutY="41.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarEquipamento" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Cadastrar " textFill="WHITE" />
+                  <Button fx:id="gerar_relatorio_btm" layoutX="24.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" style="-fx-background-color: #5B93C6;" text="Relatorio" textFill="WHITE" />
+                  <Button fx:id="gerenciar_responosavel_menu_btm" layoutX="13.0" layoutY="171.0" mnemonicParsing="false" onAction="#chamarTelaGerenciarResponsavel" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Gereniar " textFill="WHITE" />
+                  <Button fx:id="gerenciar_local_menu_btm" layoutX="14.0" layoutY="291.0" mnemonicParsing="false" onAction="#chamarTelaGerenciarLocal" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Gerenciar " textFill="WHITE" />
+                  <Button fx:id="gerenciar_equipamento_menu_btm" layoutX="12.0" layoutY="72.0" mnemonicParsing="false" onAction="#chamarTelaGerenciarEquipamento" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Gerenciar " textFill="WHITE" />
+                  <Button fx:id="cadastrar_responsavel_menu_btm" layoutX="13.0" layoutY="139.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarResponsavel" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Cadastrar " textFill="WHITE" />
+                  <TextField fx:id="caixa_txf" alignment="BOTTOM_RIGHT" layoutX="23.0" layoutY="342.0" prefHeight="65.0" prefWidth="204.0" promptText="0,00">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="nova_crompra_btm" layoutX="25.0" layoutY="395.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="100.0" style="-fx-background-color: #FF8282;" text="Compar" textFill="WHITE">
+                  <Button fx:id="nova_crompra_btm" layoutX="23.0" layoutY="420.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="100.0" style="-fx-background-color: #FF8282;" text="Compar" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="nova_venda_btm" layoutX="128.0" layoutY="395.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="100.0" style="-fx-background-color: #ADBF95;" text="Vender" textFill="WHITE" />
-                  <Separator layoutX="32.0" layoutY="141.0" prefHeight="3.0" prefWidth="200.0" />
+                  <Button fx:id="nova_venda_btm" layoutX="126.0" layoutY="420.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="100.0" style="-fx-background-color: #ADBF95;" text="Vender" textFill="WHITE" />
+                  <Separator layoutX="30.0" layoutY="127.0" prefHeight="3.0" prefWidth="200.0" />
                   <Separator layoutX="32.0" layoutY="108.0" prefWidth="200.0" />
                   <Separator layoutX="31.0" layoutY="31.0" prefWidth="200.0" />
-                  <Separator layoutX="31.0" layoutY="218.0" prefWidth="200.0" />
-                  <Separator layoutX="31.0" layoutY="249.0" prefWidth="200.0" />
-                  <Separator layoutX="27.0" layoutY="308.0" prefWidth="200.0" />
+                  <Separator layoutX="29.0" layoutY="204.0" prefWidth="200.0" />
+                  <Separator layoutX="29.0" layoutY="282.0" prefWidth="200.0" />
+                  <Separator layoutX="25.0" layoutY="333.0" prefWidth="200.0" />
                   <Label layoutX="31.0" layoutY="14.0" text="Equipamento" textFill="WHITE" />
-                  <Label layoutX="31.0" layoutY="125.0" text="Responsavel" textFill="WHITE" />
-                  <Label layoutX="31.0" layoutY="232.0" text="Local" textFill="WHITE" />
-                  <Label layoutX="197.0" layoutY="291.0" text="Caixa" textFill="WHITE" />
+                  <Label layoutX="29.0" layoutY="111.0" text="Responsavel" textFill="WHITE" />
+                  <Label layoutX="29.0" layoutY="265.0" text="Local" textFill="WHITE" />
+                  <Label layoutX="195.0" layoutY="316.0" text="Caixa" textFill="WHITE" />
+                  <Label layoutX="26.0" layoutY="207.0" text="Cliente" textFill="WHITE" />
+                  <Separator layoutX="26.0" layoutY="224.0" prefWidth="200.0" />
+                  <Button fx:id="gerenciar_cliente_menu_btm" layoutX="13.0" layoutY="233.0" mnemonicParsing="false" onAction="#chamarTelaGerenciarClientes" prefHeight="25.0" prefWidth="229.0" style="-fx-background-color: #1C3940;" text="Gerenciar " textFill="WHITE" />
                </children></Pane>
             <Pane layoutX="96.0" layoutY="14.0" prefHeight="100.0" prefWidth="108.0" style="-fx-background-color: #95BBBF; -fx-border-radius: 20px;">
                <children>
@@ -86,7 +89,7 @@
       </Pane>
       <Pane layoutX="299.0" layoutY="-2.0" prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #1C3940;">
          <children>
-            <Button fx:id="sair_btt" layoutX="907.0" layoutY="9.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+            <Button fx:id="sair_btm" layoutX="907.0" layoutY="9.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
          </children>
       </Pane>
    </children>

@@ -1,5 +1,6 @@
 package br.com.minhaCasaTech.view;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -59,7 +60,7 @@ private static Stage primaryStage;
 		
 	}
 	public static void telaGerenciarEquipamento() throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarEquipament.fxml"));
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarEquipamento.fxml"));
 		
 		Scene cena = new Scene(root);
 		
@@ -81,5 +82,25 @@ private static Stage primaryStage;
 		Scene cena  = new Scene(root);
 		
 		primaryStage.setScene(cena);
+	}
+	public static void telaGerenciarCliente() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarCliente.fxml"));
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+	}
+	public static void telaGerenciarLocal() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarLocal.fxml"));
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+	}
+	public static void telaCadastrarLocal() throws Exception{
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/CadastrarLocal.fxml"));
+		Scene cena = new Scene(root);
+		Stage secondaryStage = new Stage();
+		secondaryStage.setTitle("MinaCasaTECH");
+		secondaryStage.setScene(cena);
+		secondaryStage.show();
+	
 	}
 }
