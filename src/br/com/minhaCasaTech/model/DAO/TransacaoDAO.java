@@ -59,9 +59,7 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 				
 				ResultSet generatedKeys = ptst.getGeneratedKeys();
 				
-				if(generatedKeys.next()) {
-					transacao.setId_transacao(generatedKeys.getLong(1));
-				}else
+				if(!generatedKeys.next())
 					throw new SQLException("O registro de produtos falhou");
 			} catch (SQLException e){
 				e.printStackTrace();
@@ -118,9 +116,9 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 		String sql;
 		
 		if (tipo == 0)
-			sql = "select * from transacao where not (data < ? or data > ? and tipo = ?)";
+			sql = "select * from transacao where not (data < ? or data > ?) and tipo = 0";
 		else
-			sql = "select * from transacao where not (data < ? or data > ? and tipo = ?)";
+			sql = "select * from transacao where not (data < ? or data > ?) and tipo = 1";
 		
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -129,7 +127,6 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 			ptst = getCon().prepareStatement(sql);
 			ptst.setDate(1, new Date(dataInicio.getTimeInMillis()));
 			ptst.setDate(2, new Date(dataFim.getTimeInMillis()));
-			ptst.setInt(3, tipo);
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -148,7 +145,7 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet buscarPorId(long id) throws SQLException {
+	public ResultSet buscarPorId(Long id) throws SQLException {
 		String sql = "select * from transacao where id=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;

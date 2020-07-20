@@ -11,10 +11,16 @@ public class ResponsavelVO extends PessoaVO{
 	public ResponsavelVO() {
 		super();
 	}
+	
 	public ResponsavelVO(String nome,String endereco,String telefone,String login,String senha) {
 		super(nome, endereco);
 		setLogin(login);
 		setSenha(senha);
+		setTelefone(telefone);
+	}
+	
+	public ResponsavelVO(String nome,String endereco,String telefone) {
+		super(nome, endereco);
 		setTelefone(telefone);
 	}
 

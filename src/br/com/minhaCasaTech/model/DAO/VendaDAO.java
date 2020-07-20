@@ -35,13 +35,13 @@ public class VendaDAO<VO extends VendaVO> extends TransacaoDAO<VendaVO> implemen
 	}
 	
 	public ResultSet buscarPorId(VO transacao) {
-		String sql = "select * from venda, transacao, transacao_equipamentos where venda.id=? and transacao.id=? and transacao_equipamentos.id_transacao=?";
+		String sql = "select * from venda, transacao, transacao_equipamentos where venda.id_transacao=? and transacao.id=? and transacao_equipamentos.id_transacao=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
 		try {
 			ptst = getCon().prepareStatement(sql);
-			ptst.setLong(1, transacao.getId_venda());
+			ptst.setLong(1, transacao.getId_transacao());
 			ptst.setLong(2, transacao.getId_transacao());
 			ptst.setLong(3, transacao.getId_transacao());
 			rs = ptst.executeQuery();
@@ -67,7 +67,7 @@ public class VendaDAO<VO extends VendaVO> extends TransacaoDAO<VendaVO> implemen
 	}
 	
 	public ResultSet listar() {
-		String sql = "select * from venda, transacao where (tipo = 0)";
+		String sql = "select * from transacao, compra where transacao.tipo = 0";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		

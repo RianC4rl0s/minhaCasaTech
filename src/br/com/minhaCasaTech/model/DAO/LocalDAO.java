@@ -66,20 +66,16 @@ public class LocalDAO extends BaseDAO<LocalVO>{
 		return l;
 	}*/
 	
-public ResultSet buscarPorId(long id) {
+public ResultSet buscarPorId(Long id) {
 		
 		
 		PreparedStatement pst;
 		ResultSet rs = null;
 		String sql = "select * from local where id = ?";
-		LocalVO l = new LocalVO();
 		try {
 			pst = getCon().prepareStatement(sql);
 			pst.setLong(1,id);
 			rs = pst.executeQuery();
-			l.setCasa(rs.getString("casa"));
-			l.setCompartimento(rs.getString("compartimento"));
-			l.setId(rs.getLong("id"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

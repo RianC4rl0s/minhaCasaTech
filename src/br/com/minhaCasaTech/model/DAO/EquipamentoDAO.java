@@ -25,7 +25,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			pst.setInt(4, equipamento.getQuantidade());
 			pst.setInt(5, equipamento.getNumeroDeSerie());
 			pst.setLong(6, equipamento.getLocal().getId());
-			//pst.setLong(6, equipamento.getResponsavel().getId());
+			pst.setLong(7, equipamento.getResponsavel().getId_responsavel());
 			int affectedRows = pst.executeUpdate();
 			if(affectedRows ==0) {
 				throw new SQLException("Cadastro falhou");
@@ -168,7 +168,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		
 		return eqp;
 	}
-public ResultSet buscarPorId(long id) {
+public ResultSet buscarPorId(Long id) {
 		
 		
 		String sql = "select * from equipamento where id = ?";

@@ -6,32 +6,27 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import br.com.minhaCasaTech.model.DAO.ClienteDAO;
+import br.com.minhaCasaTech.model.DAO.CompraDAO;
 import br.com.minhaCasaTech.model.DAO.EquipamentoDAO;
 import br.com.minhaCasaTech.model.DAO.LocalDAO;
 import br.com.minhaCasaTech.model.DAO.PessoaDAO;
 import br.com.minhaCasaTech.model.DAO.ResponsavelDAO;
-import br.com.minhaCasaTech.model.DAO.VendaDAO;
-import br.com.minhaCasaTech.model.VO.ClienteVO;
 import br.com.minhaCasaTech.model.VO.CompraVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
-import br.com.minhaCasaTech.model.VO.VendaVO;
 import exception.InsertException;
 import exception.NotFoundException;
 
-public class VendaBO implements BaseInterBO<VendaVO> {
-	static private VendaDAO dao0 = new VendaDAO();
+public class CompraBO implements BaseInterBO<CompraVO> {
+	static private CompraDAO dao0 = new CompraDAO();
 	static private EquipamentoDAO dao1 = new EquipamentoDAO();
 	static private LocalDAO dao2 = new LocalDAO();
 	static private ResponsavelDAO dao3 = new ResponsavelDAO();
 	static private PessoaDAO dao4 = new PessoaDAO();
-	static private ClienteDAO dao5 = new ClienteDAO();
-	
 	
 	@Override
-	public void cadastrar(VendaVO vo) throws InsertException {
+	public void cadastrar(CompraVO vo) throws InsertException {
 		// TODO Auto-generated method stub
 		try {
 			if (vo == null) {
@@ -46,65 +41,65 @@ public class VendaBO implements BaseInterBO<VendaVO> {
 	}
 
 	@Override
-	public VendaVO buscarPorId(Long id) throws NotFoundException {
+	public CompraVO buscarPorId(Long id) throws NotFoundException {
 		if (id < 0)
 			throw new NotFoundException();
 		else {
 			ResultSet rs = dao0.buscarPorId(id);
-			return montarVenda(rs);
+			return montarCompra(rs);
 		}
 	}
 
 	@Override
-	public VendaVO buscarPorId(VendaVO vo) throws NotFoundException {
+	public CompraVO buscarPorId(CompraVO vo) throws NotFoundException {
 		ResultSet rs = dao0.buscarPorId(vo);
-		return montarVenda(rs);
+		return montarCompra(rs);
 	}
 
 	@Override
-	public List<VendaVO> listar() throws NotFoundException {
-		// TODO Auto-generated method stub
+	public List<CompraVO> listar() throws NotFoundException {
 		try {
 			ResultSet rs = dao0.listar();
-			ArrayList<VendaVO> vendas = new ArrayList<VendaVO>();
-			VendaVO generic = new VendaVO();
+			ArrayList<CompraVO> compras = new ArrayList<CompraVO>();
+			CompraVO generic = new CompraVO();
 			
 			while (rs.next()) {
 				generic.setId_transacao(rs.getLong("id"));
-				vendas.add(this.buscarPorId(generic));
+				compras.add(this.buscarPorId(generic));
 			}
 			
-			return vendas;
+			return compras;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			throw new NotFoundException();
 		}
 	}
 	
-	public List<VendaVO> gerarRelatorio(Calendar dataInicio, Calendar dataFim) throws NotFoundException{
+	public List<CompraVO> gerarRelatorio(Calendar dataInicio, Calendar dataFim) throws NotFoundException{
 		try {
-			ResultSet rs = dao0.gerarRelatorio(dataInicio, dataFim, 0);
-			ArrayList<VendaVO> vendas = new ArrayList<VendaVO>();
-			VendaVO generic = new VendaVO();
+			ResultSet rs = dao0.gerarRelatorio(dataInicio, dataFim, 1);
+			ArrayList<CompraVO> compras = new ArrayList<CompraVO>();
+			CompraVO generic = new CompraVO();
 			
 			while (rs.next()) {
 				generic.setId_transacao(rs.getLong("id"));
-				vendas.add(this.buscarPorId(generic));
+				compras.add(this.buscarPorId(generic));
 			}
 			
-			return vendas;
+			return compras;
 		}catch (SQLException e) {
 			throw new NotFoundException();
 		}
 	}
-
-	public VendaVO montarVenda(ResultSet rs){
+	
+	public CompraVO montarCompra(ResultSet rs){
 		try {
 			while(rs.next()) {
-				VendaVO generic = new VendaVO();
+				CompraVO generic = new CompraVO();
 				Calendar data = Calendar.getInstance();
-				generic.setId_venda(rs.getLong("venda.id"));
+				generic.setId_compra(rs.getLong("compra.id"));
 				generic.setId_transacao(rs.getLong("id_transacao"));
+				
 				ResultSet rs2 = dao0.buscarPorId(generic);
 				
 				while(rs2.next()) {
@@ -116,19 +111,7 @@ public class VendaBO implements BaseInterBO<VendaVO> {
 					generic.setTipo(rs2.getInt("tipo"));
 					generic.addEquipamento(montarEquipamento(rs2));
 				}
-				
-				ClienteVO c = new ClienteVO();
-				c.setId_cliente(rs.getLong("id_cliente"));
-				ResultSet rs3 = dao5.buscarPorId(c.getId_cliente());
-				rs3.next();
-				c.setCpf(rs3.getString("cpf"));
-				c.setId_pessoa(rs3.getLong("id_pessoa"));
-				ResultSet rs4 = dao5.buscarPorId(c);
-				rs4.next();
-				c.setNome(rs4.getString("nome"));
-				c.setEndereco(rs4.getString("endereco"));
-				
-				generic.setCliente(c);
+		
 				return generic;
 			}
 		} catch (SQLException e) {
@@ -166,15 +149,15 @@ public class VendaBO implements BaseInterBO<VendaVO> {
 		
 		return eqp;
 	}
-
+	
 	@Override
-	public void editar(VendaVO vo) throws InsertException {
+	public void editar(CompraVO vo) throws InsertException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deletar(VendaVO vo) throws InsertException {
+	public void deletar(CompraVO vo) throws InsertException {
 		// TODO Auto-generated method stub
 		
 	}

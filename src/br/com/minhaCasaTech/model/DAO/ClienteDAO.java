@@ -16,7 +16,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 		try {
 			ptst = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1, pessoa.getCpf());
-			ptst.setLong(4, pessoa.getId_pessoa());
+			ptst.setLong(2, pessoa.getId_pessoa());
 			
 			int affectedRows = ptst.executeUpdate();
 			
@@ -51,7 +51,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 	}
 	
 	public ResultSet buscarPorId(ClienteVO pessoa) {
-		String sql = "select * from pessoa, cliente where pessoa.id = ?, cliente.id = ?";
+		String sql = "select * from pessoa, cliente where pessoa.id = ? and cliente.id = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		

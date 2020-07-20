@@ -95,7 +95,7 @@ public class TransacaoVO {
 		String str =
 		"Valor Total: "+valorTotal+"\n"+
 		"Peso Total: "+pesoTotal+"\n"+
-		"Data: "+data.toString()+"\n"+
+		"Data: "+data.getTime()+"\n"+
 		"Equipamentos: \n";
 		
 		for (EquipamentoVO eqp : equipamentos) {
