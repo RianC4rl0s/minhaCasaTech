@@ -2,8 +2,10 @@ package br.com.minhaCasaTech.view;
 
 
 
+import br.com.minhaCasaTech.controller.DeletarResponsavelController;
 import br.com.minhaCasaTech.controller.EditarLocalController;
 import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,15 +25,13 @@ private static Stage primaryStage;
 	
 	public static void main(String args[]) {
 		launch();
-		}
+	}
 		
 	public void start(Stage primaryStage) throws Exception {
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.show();
-		telaLogin();
-		
-		
+		telaGerenciarResponsavel();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -65,12 +65,8 @@ private static Stage primaryStage;
 	}
 	public static void telaGerenciarEquipamento() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarEquipamento.fxml"));
-		
-		Scene cena = new Scene(root);
-		
-		
+		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
-		
 	}
 	public static void telaCadastrarResponsavel() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaCadastrarResponsavel.fxml"));
@@ -81,10 +77,22 @@ private static Stage primaryStage;
 		secondarySage.show();
 	
 	}
+	public static void telaDeletarResponsavel(ResponsavelVO vo) throws Exception{
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/TelaDeletarResponsavel.fxml"));
+		FXMLLoader.load(Telas.class.getResource("VE/TelaDeletarResponsavel.fxml"));
+		Parent root = loader.load();
+		DeletarResponsavelController controller = loader.getController();
+		controller.setResp(vo);
+		Scene cena = new Scene(root);
+		Stage secondarySage = new Stage();
+		secondarySage.setScene(cena);
+		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.show();
+	
+	}
 	public static void telaGerenciarResponsavel() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarResponsavel.fxml"));
 		Scene cena  = new Scene(root);
-		
 		primaryStage.setScene(cena);
 	}
 	public static void telaGerenciarCliente() throws Exception{

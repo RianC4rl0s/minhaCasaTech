@@ -11,6 +11,10 @@ public class ProprietarioVO extends ResponsavelVO {
 	public void setId_proprietario(Long id) {
 		this.id_proprietario = id;
 	}
+	
+	public ProprietarioVO() {
+		
+	}
 
 	public ProprietarioVO(String nome,String endereco,String telefone,String login,String senha) {
 		super(nome,endereco,telefone,login,senha);

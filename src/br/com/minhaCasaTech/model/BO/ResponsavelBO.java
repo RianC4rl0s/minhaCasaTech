@@ -89,7 +89,7 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 	}
 	
 	@Override
-	public void editar(ResponsavelVO vo) throws InsertException {
+	public void editar(VO vo) throws InsertException {
 		try {
 			if (this.buscarPorLogin(vo) != null)
 				if (vo instanceof ProprietarioVO)
@@ -103,7 +103,7 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 	}
 
 	@Override
-	public void deletar(ResponsavelVO vo) throws InsertException {
+	public void deletar(VO vo) throws InsertException {
 		try {
 			if (this.buscarPorLogin(vo) != null)
 				if (vo instanceof ProprietarioVO)
