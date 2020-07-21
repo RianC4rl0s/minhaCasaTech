@@ -7,6 +7,7 @@ import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +20,7 @@ public class CadastrarEquipamentoController implements Initializable{
     @FXML private TextField ns_equipamento_txf;
     @FXML private TextField preco_equipamento_txf;
     @FXML private ComboBox<LocalVO> select_local_cbb;
-    @FXML private ComboBox<EquipamentoVO> select_responsavel_bb;
+    @FXML private ComboBox<ResponsavelVO> select_responsavel_bb;
     @FXML private TextField nome_equipamento_txf;
     @FXML private Button cancelar_btm;
     @FXML private Button cadastrar_equipamento_btm;
@@ -39,9 +40,9 @@ public class CadastrarEquipamentoController implements Initializable{
     }
 	public void carregarLocais() {
 		LocalBO lbo = new LocalBO();
-	//	ResponsavelBO rbo = new ResponsavelBO();
+		ResponsavelBO<ResponsavelVO> rbo = new ResponsavelBO<>();
 		select_local_cbb.setItems(FXCollections.observableArrayList(lbo.listar()));
-	//	select_responsavel_bb.setItems(FXCollections.observableArrayList(rbo.listar()));
+		select_responsavel_bb.setItems(FXCollections.observableArrayList(rbo.listar()));
 	}
     
     public void cadastrarEquipamento() {

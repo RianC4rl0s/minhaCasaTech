@@ -44,7 +44,7 @@ public class CaixaDAO {
 		try {
 			st =getCon().createStatement();
 			rs = st.executeQuery(sql);
-			
+		
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

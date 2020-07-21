@@ -29,9 +29,10 @@ public class LocalBO implements localInterBO{
 		
 		//return local;
 	}
-	public LocalVO buscarPorId(ResultSet rs) {
-		
+	public LocalVO buscarPorId(Long id) {
+		LocalDAO ldao = new LocalDAO();
 		LocalVO local = new LocalVO();
+		ResultSet rs = ldao.buscarPorId(id);
 		try {
 		local.setCasa(rs.getString("casa"));
 		local.setCompartimento(rs.getString("compartimento"));

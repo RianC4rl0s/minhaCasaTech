@@ -1,3 +1,4 @@
+//ESSA É A TELA ONDE EU PEGO OS DADOS DA TABELA
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
@@ -9,11 +10,9 @@ import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class GerenciarLocalController implements Initializable {
@@ -44,15 +43,17 @@ public class GerenciarLocalController implements Initializable {
 	}
 	public void chamarTelaEditarLocal(LocalVO l) {
 		try {
-			
+			 System.out.println("Abrir tela editar");
 			Telas.telaEditarLocal(l);
-			
+			 System.out.println("Abrir tela editar");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void editarItem() {
+		//aqui eu pego os dados da tabela e chamo a proxima tela
 		   TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
+		   System.out.println(selectionModel.getSelectedItem().toString());
 		   chamarTelaEditarLocal(selectionModel.getSelectedItem());
 	   }
 	public void recarregarTela() {
@@ -62,8 +63,6 @@ public class GerenciarLocalController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
-	
 	public void initialize(URL url, ResourceBundle rb) {
 		initTable();
 	}
@@ -80,12 +79,9 @@ public class GerenciarLocalController implements Initializable {
 	 public void excluirItem() {
 		 LocalBO lbo = new LocalBO();
 		 TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
-		 
+		
 		 lbo.deletar(selectionModel.getSelectedItem());
 		 recarregarTela();
-	 }
-	 
-	 
-	    
+	 } 
 	   
 }

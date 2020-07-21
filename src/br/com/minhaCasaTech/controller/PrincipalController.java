@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import br.com.minhaCasaTech.model.BO.CaixaBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
+import br.com.minhaCasaTech.model.VO.CaixaVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.view.Telas;
 import javafx.fxml.FXML;
@@ -127,11 +128,13 @@ public class PrincipalController implements Initializable{
 	public void initialize(URL url, ResourceBundle rb) {
 		iniciarCaixa();
 	}
+
 	public void iniciarCaixa() {
+		CaixaVO c = new CaixaVO();
 		CaixaBO cbo = new CaixaBO();
-		System.out.println(cbo.pegarValor());
-		caixa_txf.setText( String.valueOf(cbo.pegarValor()));
-		System.out.println(cbo.pegarValor());
+		c = cbo.pegarValor();
+		System.out.println(c.getValor());
+		caixa_txf.setText( String.valueOf(c.getValor()));
 	}
 	
 }

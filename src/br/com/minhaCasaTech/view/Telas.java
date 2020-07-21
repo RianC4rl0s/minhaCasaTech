@@ -107,16 +107,26 @@ private static Stage primaryStage;
 		secondaryStage.show();
 	
 	}	public static void telaEditarLocal(LocalVO local) throws Exception{
-
+		 System.out.println("Tela aberta");
 		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/EditarLocal.fxml"));
-		loader.setController(new EditarLocalController(local));
+		
+		 System.out.println("Loader criado");
+		//	loader.setController(new EditarLocalController(local));
 		 //FXMLLoader.load(Telas.class.getResource("VE/EditarLocal.fxml"));
+		 FXMLLoader.load(Telas.class.getResource("VE/EditarLocal.fxml"));
 		Parent root = loader.load();
+		System.out.println("Loader criado");
+		//EditarLocalController  controller = EditarLocalController.getMenuController();
+		EditarLocalController controler = loader.getController();
+		controler.setL(local);
+		controler.setValores();
 		Scene cena = new Scene(root);
+		 System.out.println("Cena carregada");
 		Stage secondaryStage = new Stage();
 		secondaryStage.setTitle("MinaCasaTECH");
 		secondaryStage.setScene(cena);
 		secondaryStage.show();
-	
+		 System.out.println("chegou aq");
+		System.out.println("Tela aberta");
 	}
 }
