@@ -7,16 +7,18 @@ import java.sql.Statement;
 
 import br.com.minhaCasaTech.model.VO.PessoaVO;
 import br.com.minhaCasaTech.model.VO.ProprietarioVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
-public class ProprietarioDAO extends ResponsavelDAO<ProprietarioVO> {
-	public void cadastrar(ProprietarioVO pessoa) {
+public class ProprietarioDAO<VO extends ProprietarioVO> extends ResponsavelDAO<VO> {
+	public void cadastrar(VO pessoa) {
 		super.cadastrar(pessoa);
 		
-		String sql = "insert into proprietario (id_responsavel) values (?,?)";
+		String sql = "insert into proprietario (id_responsavel, id_pessoa) values (?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setLong(1, pessoa.getId_responsavel());
+			ptst.setLong(2, pessoa.getId_pessoa());
 			
 			int affectedRows = ptst.executeUpdate();
 			
@@ -34,11 +36,11 @@ public class ProprietarioDAO extends ResponsavelDAO<ProprietarioVO> {
 		}
 	}
 	
-	public void editar(ProprietarioVO pessoa) {
+	public void editar(VO pessoa) {
 		super.editar(pessoa);
 	}
 	
-	public ResultSet buscarPorId(ProprietarioVO pessoa) {
+	public ResultSet buscarPorId(VO pessoa) {
 		String sql = "select * from pessoa, responsavel, proprietario where pessoa.id = ?, responsavel.id = ?, proprietario.id = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -84,9 +86,7 @@ public class ProprietarioDAO extends ResponsavelDAO<ProprietarioVO> {
 		return rs;
 	}
 	
-	public void deletar(ProprietarioVO pessoa) {
-		super.deletar(pessoa);
-		
+	public void deletar(VO pessoa) {
 		String sql = "delete from proprietario where id=?";
 		PreparedStatement ptst;
 		
@@ -94,6 +94,7 @@ public class ProprietarioDAO extends ResponsavelDAO<ProprietarioVO> {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_proprietario());
 			ptst.executeUpdate();
+			super.deletar(pessoa);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

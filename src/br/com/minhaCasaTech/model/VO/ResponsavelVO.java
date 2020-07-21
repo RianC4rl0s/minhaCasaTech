@@ -3,7 +3,6 @@ package br.com.minhaCasaTech.model.VO;
 public class ResponsavelVO extends PessoaVO{
 	
 	private Long id_responsavel;
-	private Long id_pessoa;
 	private String login;
 	private String senha;
 	private String telefone;
@@ -84,11 +83,5 @@ public class ResponsavelVO extends PessoaVO{
 	}
 	public void setId_responsavel(Long id) {
 		this.id_responsavel = id;
-	}
-	public Long getId_pessoa() {
-		return id_pessoa;
-	}
-	public void setId_pessoa(Long id_pessoa) {
-		this.id_pessoa = id_pessoa;
 	}
 }

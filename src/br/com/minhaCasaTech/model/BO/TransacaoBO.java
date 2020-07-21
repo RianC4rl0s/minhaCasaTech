@@ -22,53 +22,21 @@ public class TransacaoBO implements BaseInterBO<TransacaoVO>{
 
 	@Override
 	public TransacaoVO buscarPorId(Long id) throws NotFoundException {
+		ResultSet rs;
 		try {
-			if (id < 0)
-				throw new NotFoundException();
-			else {
-				ResultSet rs = dao0.buscarPorId(id);
-				TransacaoVO generic = new TransacaoVO();
-				while(rs.next()) {
-					Calendar data = Calendar.getInstance();
-					generic.setId_transacao(rs.getLong("id"));
-					generic.setValorTotal(rs.getDouble("valor_total"));
-					generic.setPesoTotal(rs.getDouble("peso_total"));
-					generic.setTotalEquip(rs.getInt("total_equip"));
-					data.setTime(rs.getDate("data"));
-					generic.setData(data);
-					generic.setTipo(rs.getInt("tipo"));
-				}
-				return generic;
-			}
-		} catch (SQLException e){
-			throw new NotFoundException();
+			rs = dao0.buscarPorId(id);
+			return this.montarTransacao(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+		return null;		
 	}
 
 	@Override
 	public TransacaoVO buscarPorId(TransacaoVO vo) throws NotFoundException {
-		// TODO Auto-generated method stub
-		try {
-			ResultSet rs = dao0.buscarPorId(vo);
-			TransacaoVO generic = new TransacaoVO();
-			
-			while(rs.next()) {
-				Calendar data = Calendar.getInstance();
-				generic.setId_transacao(rs.getLong("id"));
-				generic.setValorTotal(rs.getDouble("valor_total"));
-				generic.setPesoTotal(rs.getDouble("peso_total"));
-				generic.setTotalEquip(rs.getInt("total_equip"));
-				data.setTime(rs.getDate("data"));
-				generic.setData(data);
-				generic.setTipo(rs.getInt("tipo"));
-			}
-			
-			return generic;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new NotFoundException();
-		}
+		ResultSet rs = dao0.buscarPorId(vo);		
+		return this.montarTransacao(rs);
 	}
 
 	@Override
@@ -77,8 +45,21 @@ public class TransacaoBO implements BaseInterBO<TransacaoVO>{
 		try {
 			ResultSet rs = dao0.listar();
 			ArrayList<TransacaoVO> transacoes = new ArrayList<TransacaoVO>();
-			TransacaoVO generic = new TransacaoVO();
+			while (rs.next())
+				transacoes.add(this.montarTransacao(rs));
 			
+			
+			return transacoes;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new NotFoundException();
+		}
+	}
+	
+	
+	public TransacaoVO montarTransacao(ResultSet rs) {
+		TransacaoVO generic = new TransacaoVO();
+		try {
 			while (rs.next()) {
 				Calendar data = Calendar.getInstance();
 				generic.setId_transacao(rs.getLong("id"));
@@ -88,14 +69,13 @@ public class TransacaoBO implements BaseInterBO<TransacaoVO>{
 				data.setTime(rs.getDate("data"));
 				generic.setData(data);
 				generic.setTipo(rs.getInt("tipo"));
-				transacoes.add(generic);
+				return generic;
 			}
-			
-			return transacoes;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			throw new NotFoundException();
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
