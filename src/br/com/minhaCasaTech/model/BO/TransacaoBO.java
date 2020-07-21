@@ -1,62 +1,93 @@
 package br.com.minhaCasaTech.model.BO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.TimeZone;
+import java.util.List;
 
+import br.com.minhaCasaTech.model.DAO.TransacaoDAO;
 import br.com.minhaCasaTech.model.VO.TransacaoVO;
+import exception.InsertException;
+import exception.NotFoundException;
 
-public class TransacaoBO {
+public class TransacaoBO implements BaseInterBO<TransacaoVO>{
 	
-	public void cadastar(TransacaoVO transacao) {
-		if (transacao != null)
-			System.out.println("Transação adicionada:\n=================="+transacao.toString());
-		else
-			System.out.println("Responsável nulo!");
-	}
-	
-	public void editar(TransacaoVO transacao) {
-		// EDITAR
-	}
-	
-	public void deletar(TransacaoVO transacao) {
-		System.out.println("Deletada");
+	static private TransacaoDAO<TransacaoVO> dao0 = new TransacaoDAO<TransacaoVO>();
+
+	@Override
+	public void cadastrar(TransacaoVO vo) throws InsertException {
+		// TODO Auto-generated method stub
 	}
 
-	public TransacaoVO buscar(TransacaoVO transacao) {
-		return transacao;
+	@Override
+	public TransacaoVO buscarPorId(Long id) throws NotFoundException {
+		ResultSet rs;
+		try {
+			rs = dao0.buscarPorId(id);
+			return this.montarTransacao(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;		
 	}
 
-	public TransacaoVO[] listar(TransacaoVO transacao) {
-		//TransacaoVO a = new TransacaoVO(1200,300,3);
-		//TransacaoVO b = new TransacaoVO(5200,340,4);
-		//TransacaoVO c = new TransacaoVO(4444,450,6);
-		
-		/*TransacaoVO transacoes[] = new TransacaoVO[3];
-		
-		transacoes[0] = a;
-		transacoes[1] = b;
-		transacoes[2]= c;
-		
-		return transacoes;*/
+	@Override
+	public TransacaoVO buscarPorId(TransacaoVO vo) throws NotFoundException {
+		ResultSet rs = dao0.buscarPorId(vo);		
+		return this.montarTransacao(rs);
+	}
+
+	@Override
+	public List<TransacaoVO> listar() throws NotFoundException{
+		// TODO Auto-generated method stub		
+		try {
+			ResultSet rs = dao0.listar();
+			ArrayList<TransacaoVO> transacoes = new ArrayList<TransacaoVO>();
+			while (rs.next())
+				transacoes.add(this.montarTransacao(rs));
+			
+			
+			return transacoes;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new NotFoundException();
+		}
+	}
+	
+	
+	public TransacaoVO montarTransacao(ResultSet rs) {
+		TransacaoVO generic = new TransacaoVO();
+		try {
+			while (rs.next()) {
+				Calendar data = Calendar.getInstance();
+				generic.setId_transacao(rs.getLong("id"));
+				generic.setValorTotal(rs.getDouble("valor_total"));
+				generic.setPesoTotal(rs.getDouble("peso_total"));
+				generic.setTotalEquip(rs.getInt("total_equip"));
+				data.setTime(rs.getDate("data"));
+				generic.setData(data);
+				generic.setTipo(rs.getInt("tipo"));
+				return generic;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
-	public TransacaoVO[] gerarRelatorio(Calendar dataInicio, Calendar dataFim, int tipo) {
-		TransacaoVO transacoes[] = null;
-		TimeZone zone = TimeZone.getTimeZone("GMT-3:00");
+	@Override
+	public void editar(TransacaoVO vo) throws InsertException {
+		// TODO Auto-generated method stub
 		
-		if (dataInicio.after(dataFim))
-			System.out.println("Data de início depois da data fim");
-		else if (dataInicio.after(Calendar.getInstance(zone)))
-			System.out.println("Data de início inválida");
-		else
-			if (tipo == 0)
-				//VENDAS
-				;
-			else
-				//COMPRAS
-				;
-		
-		return transacoes;
 	}
+
+	@Override
+	public void deletar(TransacaoVO vo) throws InsertException {
+		// TODO Auto-generated method stub
+		
+	}	
+	
 }

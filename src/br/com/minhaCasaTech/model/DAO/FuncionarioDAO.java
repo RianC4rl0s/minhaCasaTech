@@ -6,9 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
+import br.com.minhaCasaTech.model.VO.PessoaVO;
 
-public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
-	public void cadastrar(FuncionarioVO pessoa) {
+public class FuncionarioDAO<VO extends FuncionarioVO> extends ResponsavelDAO<VO> {
+	public void cadastrar(VO pessoa) {
 		super.cadastrar(pessoa);
 		
 		String sql = "insert into funcionario (id_responsavel, id_pessoa) values (?,?)";
@@ -34,11 +35,11 @@ public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
 		}
 	}
 	
-	public void editar(FuncionarioVO pessoa) {
+	public void editar(VO pessoa) {
 		super.editar(pessoa);
 	}
 	
-	public ResultSet buscarPorId(FuncionarioVO pessoa) {
+	public ResultSet buscarPorId(VO pessoa) {
 		String sql = "select * from pessoa, responsavel, proprietario where pessoa.id = ?, responsavel.id = ?, funcionario.id = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -48,6 +49,21 @@ public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
 			ptst.setLong(1, pessoa.getId_pessoa());
 			ptst.setLong(2, pessoa.getId_responsavel());
 			ptst.setLong(3, pessoa.getId_funcionario());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorId(Long id) {
+		String sql = "select * from funcionario where id=?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setLong(1, id);
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,9 +85,7 @@ public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
 		return rs;
 	}
 	
-	public void deletar(FuncionarioVO pessoa) {
-		super.deletar(pessoa);
-		
+	public void deletar(VO pessoa) {		
 		String sql = "delete from funcionario where id=?";
 		PreparedStatement ptst;
 		
@@ -79,6 +93,7 @@ public class FuncionarioDAO extends ResponsavelDAO<FuncionarioVO> {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_funcionario());
 			ptst.executeUpdate();
+			super.deletar(pessoa);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

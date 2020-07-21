@@ -15,6 +15,10 @@ public class TransacaoVO {
 	private Calendar data;
 	List<EquipamentoVO> equipamentos = new ArrayList<EquipamentoVO>();
 	
+	public TransacaoVO() {
+		
+	}
+	
 	public TransacaoVO(double valorTotal, double pesoTotal, int totalEquip, int tipo) {
 		this.setValorTotal(valorTotal);
 		this.setPesoTotal(pesoTotal);
@@ -49,6 +53,10 @@ public class TransacaoVO {
 	public void setData() {
 		TimeZone zone = TimeZone.getTimeZone("GMT-3:00");
 		this.data = Calendar.getInstance(zone);
+	}
+	
+	public void setData(Calendar data) {
+		this.data = data;
 	}
 	
 	public void addEquipamento(EquipamentoVO eqp) {
@@ -87,7 +95,7 @@ public class TransacaoVO {
 		String str =
 		"Valor Total: "+valorTotal+"\n"+
 		"Peso Total: "+pesoTotal+"\n"+
-		"Data: "+data.toString()+"\n"+
+		"Data: "+data.getTime()+"\n"+
 		"Equipamentos: \n";
 		
 		for (EquipamentoVO eqp : equipamentos) {

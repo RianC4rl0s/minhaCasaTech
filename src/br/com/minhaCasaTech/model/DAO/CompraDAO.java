@@ -8,15 +8,14 @@ import java.sql.Statement;
 import br.com.minhaCasaTech.model.VO.CompraVO;
 import br.com.minhaCasaTech.model.VO.VendaVO;
 
-public class CompraDAO extends TransacaoDAO<CompraVO> {
-	public void cadastrar(CompraVO transacao) {
+public class CompraDAO<VO extends CompraVO> extends TransacaoDAO<CompraVO> {
+	public void cadastrar(VO transacao) {
 		super.cadastrar(transacao);
-		
 		String sql = "insert into compra (id_transacao) values (?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setDouble(1, transacao.getId_transacao());
+			ptst.setLong(1, transacao.getId_transacao());
 			
 			int affectedRows = ptst.executeUpdate();
 			
@@ -34,14 +33,14 @@ public class CompraDAO extends TransacaoDAO<CompraVO> {
 		}
 	}
 	
-	public ResultSet buscarPorId(CompraVO transacao) {
-		String sql = "select * from compra, transacao, transacao_equipamentos where compra.id=? and transacao.id=? and transacao_equipamentos.id_transacao=?";
+	public ResultSet buscarPorId(VO transacao) {
+		String sql = "select * from compra, transacao, transacao_equipamentos where compra.id_transacao=? and transacao.id=? and transacao_equipamentos.id_transacao=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
 		try {
 			ptst = getCon().prepareStatement(sql);
-			ptst.setLong(1, transacao.getId_compra());
+			ptst.setLong(1, transacao.getId_transacao());
 			ptst.setLong(2, transacao.getId_transacao());
 			ptst.setLong(3, transacao.getId_transacao());
 			rs = ptst.executeQuery();
@@ -51,8 +50,23 @@ public class CompraDAO extends TransacaoDAO<CompraVO> {
 		return rs;
 	}
 	
+	public ResultSet buscarPorId(Long id) {
+		String sql = "select * from compra where id=?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setLong(1, id);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	public ResultSet listar() {
-		String sql = "select * from compra, transacao where (tipo = 1)";
+		String sql = "select * from transacao, compra where transacao.tipo = 1";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		

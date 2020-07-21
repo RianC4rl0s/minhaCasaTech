@@ -6,17 +6,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
+
+import br.com.minhaCasaTech.model.BO.CompraBO;
+import br.com.minhaCasaTech.model.BO.ResponsavelBO;
+import br.com.minhaCasaTech.model.BO.VendaBO;
 import br.com.minhaCasaTech.model.DAO.*;
+import br.com.minhaCasaTech.model.VO.ClienteVO;
 import br.com.minhaCasaTech.model.VO.CompraVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.model.VO.ProprietarioVO;
+import br.com.minhaCasaTech.model.VO.VendaVO;
+import exception.NotFoundException;
 
 public class Principal {
 	/*public static void main(String args[]) throws SQLException {
 		
 	    System.out.println("================");
 
+<<<<<<< HEAD
 		LocalDAO d1 = new LocalDAO();
 		EquipamentoDAO d2 = new EquipamentoDAO();
 		ClienteDAO d3 = new ClienteDAO();

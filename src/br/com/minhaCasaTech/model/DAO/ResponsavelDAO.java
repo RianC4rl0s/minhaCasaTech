@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import br.com.minhaCasaTech.model.VO.PessoaVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 
 public class ResponsavelDAO<VO extends ResponsavelVO> extends PessoaDAO<VO> {
@@ -57,14 +58,44 @@ public class ResponsavelDAO<VO extends ResponsavelVO> extends PessoaDAO<VO> {
 	}
 	
 	public ResultSet buscarPorId(VO pessoa) {
-		String sql = "select * from pessoa, responsavel where pessoa.id = ?, responsavel.id = ?";
+		String sql = "select * from pessoa, responsavel where pessoa.id = ? and responsavel.id_pessoa = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
 		try {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_pessoa());
-			ptst.setLong(2, pessoa.getId_responsavel());
+			ptst.setLong(2, pessoa.getId_pessoa());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorLogin(VO pessoa) {
+		String sql = "select * from responsavel where login = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setString(1, pessoa.getLogin());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorId(Long id) {
+		String sql = "select * from responsavel where id=?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setLong(1, id);
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,7 +104,7 @@ public class ResponsavelDAO<VO extends ResponsavelVO> extends PessoaDAO<VO> {
 	}
 	
 	public ResultSet listar() {
-		String sql = "select * from pessoa, responsavel";
+		String sql = "select * from responsavel";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
@@ -86,9 +117,7 @@ public class ResponsavelDAO<VO extends ResponsavelVO> extends PessoaDAO<VO> {
 		return rs;
 	}
 	
-	public void deletar(VO pessoa) {
-		super.deletar(pessoa);
-		
+	public void deletar(VO pessoa) {		
 		String sql = "delete from responsavel where id=?";
 		PreparedStatement ptst;
 		
@@ -96,6 +125,7 @@ public class ResponsavelDAO<VO extends ResponsavelVO> extends PessoaDAO<VO> {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_responsavel());
 			ptst.executeUpdate();
+			super.deletar(pessoa);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

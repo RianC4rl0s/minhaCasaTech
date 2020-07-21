@@ -42,7 +42,7 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
 	
 	public abstract ResultSet buscarPorId(VO entity) throws SQLException;
 	
-	public abstract ResultSet buscarPorId(long id) throws SQLException;
+	public abstract ResultSet buscarPorId(Long id) throws SQLException;
 	
 	public abstract ResultSet listar() throws SQLException;
 	

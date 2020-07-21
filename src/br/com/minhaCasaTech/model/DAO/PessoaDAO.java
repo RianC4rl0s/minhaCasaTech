@@ -46,7 +46,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 			e.printStackTrace();
 		}
 	}
-	public ResultSet buscarPorId(long id) {
+	public ResultSet buscarPorId(Long id) throws SQLException{
 		String sql = "select * from pessoa where id=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -60,7 +60,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> {
 		}
 		return rs;
 	}
-	public ResultSet buscarPorId(PessoaVO pessoa) {
+	public ResultSet buscarPorId(VO pessoa) {
 		String sql = "select * from pessoa where id=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;

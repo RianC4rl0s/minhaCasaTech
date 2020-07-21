@@ -5,6 +5,10 @@ public class CompraVO extends TransacaoVO {
 	private Long id_compra;
 	private Long id_transacao;
 	
+	public CompraVO() {
+		
+	}
+	
 	public CompraVO(double valorTotal, double pesoTotal, int totalEquip) {
 		super(valorTotal, pesoTotal, totalEquip, 1);
 		// TODO Auto-generated constructor stub
