@@ -252,7 +252,7 @@ public ResultSet buscarPorId(long id) {
 		
 		return rs;
 	}
-	
+
 	public EquipamentoVO buscarPorLocal(LocalVO local) {
 	
 		

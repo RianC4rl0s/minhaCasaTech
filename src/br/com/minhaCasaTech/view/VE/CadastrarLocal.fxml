@@ -27,7 +27,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="clear_local_btm" layoutX="31.0" layoutY="234.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #1C3940;" text="Limpar campos" textFill="WHITE">
+      <Button fx:id="clear_local_btm" layoutX="31.0" layoutY="234.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #1C3940;" text="Limpar campos" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

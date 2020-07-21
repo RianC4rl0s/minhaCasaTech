@@ -95,6 +95,11 @@ public class EquipamentoBO implements EquipamentoInterBO{
 		
 		return eqp;
 	}
+	public EquipamentoVO buscarPorLocal(String Local) {
+		
+		EquipamentoVO eqp = new EquipamentoVO();
+		return eqp;
+	}
 	
 	public ResponsavelVO adicionnarResponsavel(ResponsavelVO responsael) {
 		ResponsavelVO rep =null;

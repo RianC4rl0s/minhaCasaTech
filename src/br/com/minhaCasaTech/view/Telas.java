@@ -1,6 +1,9 @@
 package br.com.minhaCasaTech.view;
 
 
+
+import br.com.minhaCasaTech.controller.EditarLocalController;
+import br.com.minhaCasaTech.model.VO.LocalVO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,6 +45,7 @@ private static Stage primaryStage;
 	public static void telaPrincipal() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaPrincipal.fxml"));
 		
+	    
 		Scene cena = new Scene(root);
 		
 		
@@ -96,6 +100,18 @@ private static Stage primaryStage;
 	public static void telaCadastrarLocal() throws Exception{
 
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/CadastrarLocal.fxml"));
+		Scene cena = new Scene(root);
+		Stage secondaryStage = new Stage();
+		secondaryStage.setTitle("MinaCasaTECH");
+		secondaryStage.setScene(cena);
+		secondaryStage.show();
+	
+	}	public static void telaEditarLocal(LocalVO local) throws Exception{
+
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/EditarLocal.fxml"));
+		loader.setController(new EditarLocalController(local));
+		 //FXMLLoader.load(Telas.class.getResource("VE/EditarLocal.fxml"));
+		Parent root = loader.load();
 		Scene cena = new Scene(root);
 		Stage secondaryStage = new Stage();
 		secondaryStage.setTitle("MinaCasaTECH");

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.FrontController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.GerenciarEquipamentoController">
    <children>
       <Pane layoutY="-1.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
          <children>
@@ -14,17 +14,23 @@
       </Pane>
       <Pane layoutX="38.0" layoutY="106.0" prefHeight="43.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
          <children>
-            <Button fx:id="cadastrar_eqp_btm" layoutX="22.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
+            <Button fx:id="cadastrar_eqp_btm" layoutX="22.0" layoutY="9.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarEquipamento" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
             <Button fx:id="editar_eqp_btm" layoutX="114.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
-            <Button fx:id="excluir_eqp_btm" layoutX="202.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
+            <Button fx:id="excluir_eqp_btm" layoutX="202.0" layoutY="9.0" mnemonicParsing="false" onAction="#excluirEquipamento" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
          </children>
       </Pane>
       <Pane layoutX="365.0" layoutY="168.0" prefHeight="480.0" prefWidth="880.0" style="-fx-background-color: #BAD9D6;">
          <children>
-            <TableView layoutX="27.0" layoutY="20.0" prefHeight="441.0" prefWidth="827.0">
+            <TableView fx:id="tabela_equipamento" layoutX="27.0" layoutY="20.0" prefHeight="441.0" prefWidth="827.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="44.0" />
+                <TableColumn fx:id="nome_coluna_tb" prefWidth="198.0" text="Nome" />
+                  <TableColumn fx:id="preco_coluna_tb" prefWidth="53.0" text="Preço" />
+                  <TableColumn fx:id="peso_coluna_tb" prefWidth="75.0" text="Peso" />
+                  <TableColumn fx:id="quantidade_coluna_tb" text="Quantidade" />
+                  <TableColumn fx:id="ns_coluna_tb" prefWidth="75.0" text="N° de serie" />
+                  <TableColumn fx:id="local_coluna_tb" prefWidth="134.0" text="Local" />
+                  <TableColumn fx:id="reponsavel_coluna_tb" prefWidth="167.0" text="Responsavel" />
               </columns>
             </TableView>
          </children>
@@ -37,22 +43,25 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <RadioButton fx:id="nome_eqp_rdb" layoutX="33.0" layoutY="117.0" mnemonicParsing="false" text="Nome" textFill="WHITE">
+            <RadioButton fx:id="nome_eqp_rdb1" layoutX="33.0" layoutY="117.0" mnemonicParsing="false" selected="true" text="Nome" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="grupoRadio" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="local_eqp_rdb2" layoutX="33.0" layoutY="154.0" mnemonicParsing="false" text="Local" textFill="WHITE" toggleGroup="$grupoRadio">
                <font>
                   <Font size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="local_eqp_rdb" layoutX="33.0" layoutY="154.0" mnemonicParsing="false" text="Local" textFill="WHITE">
+            <RadioButton fx:id="ns_eqp_rdb3" layoutX="33.0" layoutY="196.0" mnemonicParsing="false" text="Numero de serie" textFill="WHITE" toggleGroup="$grupoRadio">
                <font>
                   <Font size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="ns_eqp_rdb" layoutX="33.0" layoutY="196.0" mnemonicParsing="false" text="Numero de serie" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="responsavel_eqp_rdb" layoutX="33.0" layoutY="240.0" mnemonicParsing="false" text="Responsavel" textFill="WHITE">
+            <RadioButton fx:id="responsavel_eqp_rdb4" layoutX="33.0" layoutY="240.0" mnemonicParsing="false" text="Responsavel" textFill="WHITE" toggleGroup="$grupoRadio">
                <font>
                   <Font size="15.0" />
                </font>
@@ -64,7 +73,7 @@
             <Separator layoutX="50.0" layoutY="270.0" prefWidth="200.0" />
          </children>
       </Pane>
-      <Button fx:id="voltar_btt" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+      <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
