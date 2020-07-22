@@ -11,6 +11,7 @@ import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.view.Telas;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -136,6 +137,7 @@ public class GerenciarEquipamentoController implements Initializable{
 	    private TextField buscar_txf;
 	    
 	    public void realizarBuscar() {
+	    
 	    	EquipamentoBO ebo = new EquipamentoBO();
 	    	RadioButton rb = (RadioButton) grupoRadio.getProperties();
 	    	List<EquipamentoVO> eqpL= new ArrayList<EquipamentoVO>();
