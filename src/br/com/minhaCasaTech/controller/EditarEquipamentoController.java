@@ -3,10 +3,11 @@ package br.com.minhaCasaTech.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,8 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EditarEquipamentoController implements Initializable{
-	@FXML
-    private Button editar_eqp_btm;
+	
     @FXML
     private Button cancelar_btm;
     
@@ -80,5 +80,29 @@ public class EditarEquipamentoController implements Initializable{
 	    Stage stage = (Stage) cancelar_btm.getScene().getWindow(); //Obtendo a janela atual
 	    stage.close(); //Fechando o Stage
 	   
+	}
+	@FXML
+    private Button editar_eqp_btm;
+	public void confirmarEdicao() {
+		EquipamentoVO eqp = new EquipamentoVO();
+		EquipamentoBO ebo = new EquipamentoBO();
+		try {
+		eqp = e;
+		eqp.setQuantidade(Integer.parseInt(quantidade_edt_txf.getText()));
+		eqp.setLocal(local_edt_txf.getSelectionModel().getSelectedItem());
+		eqp.setPeso(Double.parseDouble(peso_edt_txf.getText()));
+		eqp.setPeso(Double.parseDouble(peso_edt_txf.getText()));
+		eqp.setNumeroDeSerie(Integer.parseInt(ns_edt_txf.getText()));
+		
+		ebo.editar(eqp);
+		  Stage stage = (Stage) editar_eqp_btm.getScene().getWindow(); //Obtendo a janela atual
+		  stage.close(); //Fechando o Stage
+		  
+		Telas.telaGerenciarEquipamento();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 }

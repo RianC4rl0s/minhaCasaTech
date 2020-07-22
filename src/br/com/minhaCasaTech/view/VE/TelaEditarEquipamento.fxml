@@ -69,7 +69,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="editar_eqp_btm" layoutX="761.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #1C3940;" text="Confirmar Edição" textFill="WHITE">
+      <Button fx:id="editar_eqp_btm" layoutX="761.0" layoutY="424.0" mnemonicParsing="false" onAction="#confirmarEdicao" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #1C3940;" text="Confirmar Edição" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -79,5 +79,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Label layoutX="33.0" layoutY="74.0" text="Não modificavel" />
    </children>
 </Pane>

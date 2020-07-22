@@ -205,59 +205,135 @@ public class EquipamentoBO implements EquipamentoInterBO{
 		return equipamentos;
 	}
 	
-	public EquipamentoVO buscarPorNS(int ns) {
+	public List<EquipamentoVO> buscarPorNS(int ns) {
 		
-		EquipamentoVO eqp = new EquipamentoVO();
-		EquipamentoDAO edao = new EquipamentoDAO();
-		ResultSet rs = edao.buscarPorNS(ns);
-		
+		EquipamentoDAO dao = new EquipamentoDAO();
+		ResultSet rs = dao.buscarPorNS(ns);
+		List<EquipamentoVO> equipamentos = new ArrayList<EquipamentoVO>();
 		try {
-		eqp.setId_equipamento(rs.getLong("id"));
-		eqp.setNome(rs.getString("nome"));
-		eqp.setPeso(rs.getDouble("peso"));
-		eqp.setPreco(rs.getDouble("preco"));
-		eqp.setQuantidade(rs.getInt("quantidade"));
-		eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
-		
-		LocalVO l = new LocalVO();
-		LocalBO lbo = new LocalBO();
-		//LocalDAO ldao = new LocalDAO();
-		//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
-		l =lbo.buscarPorId((rs.getLong("id_local")));
-		eqp.setLocal(l);
-		
-		//mesma coisa s� q com responsavel
-		
-		ResponsavelVO r = new ResponsavelVO();
-		ResponsavelBO<ResponsavelVO> rbo = new ResponsavelBO<>();
-		try {
-			r = rbo.buscarPorId(rs.getLong("id_responsavel"));
-		} catch (NotFoundException e) {
-			
-			e.printStackTrace();
-		}	
-		eqp.setResponsavel(r);
-		
-		
-		
+			while(rs.next()) {
+				EquipamentoVO eqp = new EquipamentoVO();	
+				eqp.setId_equipamento(rs.getLong("id"));
+				eqp.setNome(rs.getString("nome"));
+				eqp.setPeso(rs.getDouble("peso"));
+				eqp.setPreco(rs.getDouble("preco"));
+				eqp.setQuantidade(rs.getInt("quantidade"));
+				eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
+				
+				LocalVO l = new LocalVO();
+				LocalBO lbo = new LocalBO();
+				//LocalDAO ldao = new LocalDAO();
+				//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+				l =lbo.buscarPorId((rs.getLong("id_local")));
+				eqp.setLocal(l);
+				
+				//mesma coisa s� q com responsavel
+				
+				ResponsavelVO r = new ResponsavelVO();
+				ResponsavelBO<ResponsavelVO> rbo = new ResponsavelBO<>();
+				try {
+					r = rbo.buscarPorId(rs.getLong("id_responsavel"));
+				} catch (NotFoundException e) {
+					
+					e.printStackTrace();
+				}	
+				eqp.setResponsavel(r);
+				
+				equipamentos.add(eqp);
+				}
 		}catch(SQLException e) {
 			e.printStackTrace();
-			}
+		}
+		
+		
+		return equipamentos;
+	}
+	
+	public List<EquipamentoVO> buscarPorLocal(String local) {
+		EquipamentoDAO dao = new EquipamentoDAO();
+		ResultSet rs = dao.buscarPorLocal(local);
+		List<EquipamentoVO> equipamentos = new ArrayList<EquipamentoVO>();
+		try {
+			while(rs.next()) {
+				EquipamentoVO eqp = new EquipamentoVO();	
+				eqp.setId_equipamento(rs.getLong("id"));
+				eqp.setNome(rs.getString("nome"));
+				eqp.setPeso(rs.getDouble("peso"));
+				eqp.setPreco(rs.getDouble("preco"));
+				eqp.setQuantidade(rs.getInt("quantidade"));
+				eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
+				
+				LocalVO l = new LocalVO();
+				LocalBO lbo = new LocalBO();
+				//LocalDAO ldao = new LocalDAO();
+				//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+				l =lbo.buscarPorId((rs.getLong("id_local")));
+				eqp.setLocal(l);
+				
+				//mesma coisa s� q com responsavel
+				
+				ResponsavelVO r = new ResponsavelVO();
+				ResponsavelBO<ResponsavelVO> rbo = new ResponsavelBO<>();
+				try {
+					r = rbo.buscarPorId(rs.getLong("id_responsavel"));
+				} catch (NotFoundException e) {
+					
+					e.printStackTrace();
+				}	
+				eqp.setResponsavel(r);
+				
+				equipamentos.add(eqp);
+				}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return equipamentos;
+		
+	}
+	public List<EquipamentoVO> buscarPorResponsavel(String nome){
+		EquipamentoDAO dao = new EquipamentoDAO();
+		ResultSet rs = dao.buscarPorResponsavel(nome);
+		List<EquipamentoVO> equipamentos = new ArrayList<EquipamentoVO>();
+		try {
+			while(rs.next()) {
+				EquipamentoVO eqp = new EquipamentoVO();	
+				eqp.setId_equipamento(rs.getLong("id"));
+				eqp.setNome(rs.getString("nome"));
+				eqp.setPeso(rs.getDouble("peso"));
+				eqp.setPreco(rs.getDouble("preco"));
+				eqp.setQuantidade(rs.getInt("quantidade"));
+				eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
+				
+				LocalVO l = new LocalVO();
+				LocalBO lbo = new LocalBO();
+				//LocalDAO ldao = new LocalDAO();
+				//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
+				l =lbo.buscarPorId((rs.getLong("id_local")));
+				eqp.setLocal(l);
+				
+				//mesma coisa s� q com responsavel
+				
+				ResponsavelVO r = new ResponsavelVO();
+				ResponsavelBO<ResponsavelVO> rbo = new ResponsavelBO<>();
+				try {
+					r = rbo.buscarPorId(rs.getLong("id_responsavel"));
+				} catch (NotFoundException e) {
+					
+					e.printStackTrace();
+				}	
+				eqp.setResponsavel(r);
+				
+				equipamentos.add(eqp);
+				}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return equipamentos;
+	}
 
-		
-		return eqp;
-	}
-	
-	public EquipamentoVO buscarPorLocal(LocalVO local) {
-	
-		EquipamentoVO eqp = null;
-		
-		return eqp;
-	}
-	public EquipamentoVO buscarPorLocal(String Local) {
-		
-		EquipamentoVO eqp = new EquipamentoVO();
-		return eqp;
-	}
 	
 }

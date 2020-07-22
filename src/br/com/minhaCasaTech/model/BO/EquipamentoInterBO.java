@@ -20,13 +20,14 @@ public interface EquipamentoInterBO {
 	
 	public List<EquipamentoVO> buscarPorNome(String nome);
 	
-	public EquipamentoVO buscarPorNS(int ns);
+	public List<EquipamentoVO> buscarPorNS(int ns);
 	
 	public EquipamentoVO buscarPorId(Long id);
 	
 	public EquipamentoVO buscarPorId(EquipamentoVO equipamento);
 	
-	public EquipamentoVO buscarPorLocal(LocalVO local);
+	public List<EquipamentoVO> buscarPorLocal(String local);
 	
+	public List<EquipamentoVO> buscarPorResponsavel(String responsavel);
 	
 }

@@ -28,7 +28,6 @@
          <children>
             <TableView fx:id="tabela_locais" layoutX="27.0" layoutY="20.0" prefHeight="441.0" prefWidth="1153.0">
                <columns>
-                  <TableColumn fx:id="local_selec" prefWidth="67.0" />
                   <TableColumn fx:id="local_casa" prefWidth="547.0" text="Casa" />
                   <TableColumn fx:id="local_compartimento" prefWidth="538.0" text="Compartimento" />
                </columns>

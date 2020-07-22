@@ -4,9 +4,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.com.minhaCasaTech.model.BO.CaixaBO;
-import br.com.minhaCasaTech.model.BO.LocalBO;
+
 import br.com.minhaCasaTech.model.VO.CaixaVO;
-import br.com.minhaCasaTech.model.VO.LocalVO;
+
 import br.com.minhaCasaTech.view.Telas;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -103,26 +103,7 @@ public class PrincipalController implements Initializable{
 	
 	//Tela Cadastrar local
 	
-	@FXML TextField casa_cad_txf;
-	@FXML TextField compartimento_cad_txf;
-	@FXML Button cadastar_local_btm;
-	public void cadastrarLocal() {
-		LocalVO l = new LocalVO(casa_cad_txf.getText(),compartimento_cad_txf.getText());
-		LocalBO lbo = new LocalBO(); 
-		lbo.cadastrar(l);
-		Stage stage = (Stage) cadastar_local_btm.getScene().getWindow(); //Obtendo a janela atual
-		try {
-			Telas.telaGerenciarLocal();
-		} catch (Exception e) {
-			
-		}
-		stage.close(); //Fechando o Stage
-		
-	}
-	public void limparCampos() {
-		compartimento_cad_txf.setText("");
-		casa_cad_txf.setText("");
-	}
+	
 	@FXML
     private TextField caixa_txf;
 	public void initialize(URL url, ResourceBundle rb) {

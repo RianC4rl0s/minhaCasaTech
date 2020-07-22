@@ -69,4 +69,14 @@ public class CadastrarEquipamentoController implements Initializable{
 		Stage stage = (Stage) cadastrar_equipamento_btm.getScene().getWindow(); 
 		stage.close(); 
 	}
+    public void limparCampos() {
+    	   ns_equipamento_txf.setText("");;
+    	   preco_equipamento_txf.setText("");
+    	 
+    	   nome_equipamento_txf.setText("");
+    	   cancelar_btm.setText("");
+    	   cadastrar_equipamento_btm.setText("");
+    	   peso_equipamento_txf.setText("");
+    	   quantidade_equipamento_txf.setText("");
+    }
 }

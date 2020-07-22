@@ -1,9 +1,14 @@
 package br.com.minhaCasaTech.model.DAO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.minhaCasaTech.model.BO.CaixaBO;
+import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
 import br.com.minhaCasaTech.model.VO.CaixaVO;
+import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ProprietarioVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
@@ -12,7 +17,7 @@ import exception.InsertException;
 public class testeDAo {
 
 	public static void main(String[] args) {
-		CaixaVO c = new CaixaVO();
+		/*CaixaVO c = new CaixaVO();
 		CaixaBO b = new CaixaBO();
 		
 		c = b.pegarValor();
@@ -31,7 +36,14 @@ public class testeDAo {
 		l = lbo.buscarPorId((long) 8);
 		System.out.println(l.getCasa());
 		System.out.println(l.getCompartimento());
-		
+		*/
+		EquipamentoVO eqp = new EquipamentoVO();
+		EquipamentoBO ebo = new EquipamentoBO();
+		List<EquipamentoVO> eqpL = new ArrayList<>();
+		eqpL = ebo.buscarPorNome("joao");
+		for (int i = 0; i < eqpL.size(); i++) {
+			System.out.println(eqpL.get(i));
+		}
 	}
 
 }

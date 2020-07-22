@@ -17,6 +17,11 @@
             <Button fx:id="cadastrar_eqp_btm" layoutX="22.0" layoutY="9.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarEquipamento" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
             <Button fx:id="editar_eqp_btm" layoutX="114.0" layoutY="9.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
             <Button fx:id="excluir_eqp_btm" layoutX="202.0" layoutY="9.0" mnemonicParsing="false" onAction="#excluirEquipamento" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
+            <Button fx:id="recarregar_btm" layoutX="1171.0" layoutY="9.0" mnemonicParsing="false" onAction="#recarregarTela" style="-fx-background-color: #5B93C6;" text="⟲" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Pane layoutX="365.0" layoutY="168.0" prefHeight="480.0" prefWidth="880.0" style="-fx-background-color: #BAD9D6;">

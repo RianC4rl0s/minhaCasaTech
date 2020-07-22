@@ -11,7 +11,6 @@ import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.view.Telas;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -139,22 +138,24 @@ public class GerenciarEquipamentoController implements Initializable{
 	    public void realizarBuscar() {
 	    
 	    	EquipamentoBO ebo = new EquipamentoBO();
-	    	RadioButton rb = (RadioButton) grupoRadio.getProperties();
-	    	List<EquipamentoVO> eqpL= new ArrayList<EquipamentoVO>();
-	    	if(rb.getText() ==  "nome_eqp_rdb1") {
+	    	//RadioButton rb = (RadioButton) grupoRadio.getProperties();
+	    	List<EquipamentoVO> eqpL= new ArrayList<>();
+	    	
+	    	System.out.println(nome_coluna_tb.getText());
+	    	//System.out.println(eqpL.get(0).getNome());
+	    	if(nome_eqp_rdb1.isSelected()) {
 	    		eqpL = ebo.buscarPorNome(buscar_txf.getText());
-	    		preencherTabelaBusca(eqpL);
-	    	}else if(rb.getText() ==  "local_eqp_rdb2") {
-	    		//ebo.buscarPorLocal(buscar_txf.getText());
+	    	}else if(local_eqp_rdb2.isSelected()) {
+	    		eqpL = ebo.buscarPorLocal(buscar_txf.getText());
 	    		System.out.println("local");
-	    	}else if(rb.getText() ==  "ns_eqp_rdb3") {
-	    		ebo.buscarPorNS(Integer.parseInt(buscar_txf.getText()));
+	    	}else if(ns_eqp_rdb3.isSelected()) {
+	    		eqpL = ebo.buscarPorNS(Integer.parseInt(buscar_txf.getText()));
 	    		System.out.println("ns");
-	    	}else if(rb.getText() ==  "responsavel_eqp_rdb4"){
+	    	}else if(responsavel_eqp_rdb4.isSelected()){
 	    		System.out.println("resp");
 	    		//ebo.buscarPorResponsavel(buscar_txf.getText());
 	    	}
-	    	
+	    	preencherTabelaBusca(eqpL);
 	    }
 	    public void preencherTabelaBusca(List<EquipamentoVO> equipamentos) {
 	    	nome_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -169,5 +170,11 @@ public class GerenciarEquipamentoController implements Initializable{
 	    	
 	    	tabela_equipamento.setItems(FXCollections.observableArrayList(equipamentos));
 	    }
-	    
+	    public void recarregarTela() {
+			try {
+				Telas.telaGerenciarEquipamento();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+	    }
 }

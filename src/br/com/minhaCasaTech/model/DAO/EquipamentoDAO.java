@@ -94,13 +94,13 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 	
 	public ResultSet buscarPorNome(String nome) {
 		
-		String sql = "select * from equipamento where nome = ?";
+		String sql = "select * from equipamento where nome like ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
 		
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setString(1, nome);
+			pst.setString(1,"%"+nome+"%");
 			rs = pst.executeQuery();
 			
 		}catch(SQLException e) {
@@ -164,39 +164,34 @@ public ResultSet buscarPorId(Long id) {
 		return rs;
 	}
 
-	public ResultSet buscarPorLocal(LocalVO local) {
+	public ResultSet buscarPorLocal(String local) {
 	
 		
+		String sql = "SELECT * FROM equipamento where id_local in(SELECT id FROM local where casa LIKE ? or compartimento like ?)";
+		PreparedStatement pst;
+		ResultSet rs = null;
+		try {
+			pst = getCon().prepareStatement(sql);
+			pst.setString(1,"%"+local+"%");
+			pst.setString(2,"%"+local+"%");
+			rs = pst.executeQuery();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
+	public ResultSet buscarPorResponsavel(String responsavel) {
 		String sql = "select * from equipamento where id_local = ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
-		EquipamentoVO eqp = new EquipamentoVO();
+		
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setLong(1,local.getId());
+			pst.setString(1,responsavel);
 			rs = pst.executeQuery();
-			eqp.setId_equipamento(rs.getLong("id"));
-			eqp.setNome(rs.getString("nome"));
-			eqp.setPeso(rs.getDouble("peso"));
-			eqp.setPreco(rs.getDouble("preco"));
-			eqp.setQuantidade(rs.getInt("quantidade"));
-			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			//LocalVO l = new LocalVO();
-			//LocalBO lbo = new LocalBO();
-			//LocalDAO ldao = new LocalDAO();
-			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
-			//	l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
-			//eqp.setLocal(l);
-			
-			
-			//mesma coisa s� q com responsavel
-			/*
-			ResponsavelVO r = new ResponsavelVO();
-			ResponsavelDAO rdao = new ResponsavelDAO();
-			r = rdao.buscarId(rs.getLong("id_responsavel"));	
-			eqp.setResponsavel(r);
-			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
