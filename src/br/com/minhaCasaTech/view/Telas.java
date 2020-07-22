@@ -2,7 +2,9 @@ package br.com.minhaCasaTech.view;
 
 
 
+import br.com.minhaCasaTech.controller.EditarEquipamentoController;
 import br.com.minhaCasaTech.controller.EditarLocalController;
+import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -129,4 +131,27 @@ private static Stage primaryStage;
 		 System.out.println("chegou aq");
 		System.out.println("Tela aberta");
 	}
+	public static void telaEditarEquipamento(EquipamentoVO equipamento) throws Exception{
+		 System.out.println("Tela aberta");
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/TelaEditarEquipamento.fxml"));
+		
+		 System.out.println("Loader criado");
+		
+		 FXMLLoader.load(Telas.class.getResource("VE/EditarLocal.fxml"));
+		Parent root = loader.load();
+		System.out.println("Loader criado");
+		
+		EditarEquipamentoController controler = loader.getController();
+		controler.setE(equipamento);
+		controler.setValores();
+		Scene cena = new Scene(root);
+		 System.out.println("Cena carregada");
+		Stage secondaryStage = new Stage();
+		secondaryStage.setTitle("MinaCasaTECH");
+		secondaryStage.setScene(cena);
+		secondaryStage.show();
+		 System.out.println("chegou aq");
+		System.out.println("Tela aberta");
+	}
+	
 }

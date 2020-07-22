@@ -18,7 +18,7 @@ public interface EquipamentoInterBO {
 	
 	public List<EquipamentoVO> listar();
 	
-	public EquipamentoVO buscarPorNome(String nome);
+	public List<EquipamentoVO> buscarPorNome(String nome);
 	
 	public EquipamentoVO buscarPorNS(int ns);
 	

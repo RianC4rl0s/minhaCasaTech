@@ -81,10 +81,10 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		try {
 			st = getCon().createStatement();
 			rs = st.executeQuery(sql);
-			while(rs.next()) {
+			/*while(rs.next()) {
 			EquipamentoVO eqp = new EquipamentoVO();	
 			eqp.setId_equipamento(rs.getLong("id"));
-			}
+			}*/
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -182,12 +182,12 @@ public ResultSet buscarPorId(Long id) {
 			eqp.setQuantidade(rs.getInt("quantidade"));
 			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			LocalVO l = new LocalVO();
-			LocalBO lbo = new LocalBO();
-			LocalDAO ldao = new LocalDAO();
+			//LocalVO l = new LocalVO();
+			//LocalBO lbo = new LocalBO();
+			//LocalDAO ldao = new LocalDAO();
 			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
 			//	l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
-			eqp.setLocal(l);
+			//eqp.setLocal(l);
 			
 			
 			//mesma coisa s� q com responsavel

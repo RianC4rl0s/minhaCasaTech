@@ -3,11 +3,13 @@ package br.com.minhaCasaTech.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,14 +38,15 @@ public class CadastrarEquipamentoController implements Initializable{
 	}
     
     public void initialize(URL url, ResourceBundle rb) {
-    	carregarLocais();
+    	carregarCaixas();
     }
-	public void carregarLocais() {
+	public void carregarCaixas() {
 		LocalBO lbo = new LocalBO();
 		ResponsavelBO<ResponsavelVO> rbo = new ResponsavelBO<>();
 		select_local_cbb.setItems(FXCollections.observableArrayList(lbo.listar()));
 		select_responsavel_bb.setItems(FXCollections.observableArrayList(rbo.listar()));
 	}
+
     
     public void cadastrarEquipamento() {
 		EquipamentoVO e = new EquipamentoVO();
@@ -53,9 +56,16 @@ public class CadastrarEquipamentoController implements Initializable{
 		e.setQuantidade(Integer.parseInt(quantidade_equipamento_txf.getText()));
 		e.setNumeroDeSerie(Integer.parseInt(ns_equipamento_txf.getText()));
 		e.setLocal(select_local_cbb.getSelectionModel().getSelectedItem());
-		//e.setResponsavel(select_responsavel_bb.getSelectionModel().getSelectedItem());*/
+		e.setResponsavel(select_responsavel_bb.getSelectionModel().getSelectedItem());
 		
-		
+		EquipamentoBO ebo = new EquipamentoBO();
+		ebo.cadastrar(e);
+		try {
+			Telas.telaGerenciarEquipamento();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		Stage stage = (Stage) cadastrar_equipamento_btm.getScene().getWindow(); 
 		stage.close(); 
 	}

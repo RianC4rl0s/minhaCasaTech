@@ -11,6 +11,7 @@ import br.com.minhaCasaTech.view.Telas;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -59,6 +60,7 @@ private void cancelarOperacao(){
     stage.close(); //Fechando o Stage
    
 }
+
 @FXML
 private Button editar_local_btm;
 public void confirmarEdicao() {

@@ -15,7 +15,7 @@
       <Pane layoutX="38.0" layoutY="106.0" prefHeight="43.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
          <children>
             <Button fx:id="cadastrar_eqp_btm" layoutX="22.0" layoutY="9.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarEquipamento" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
-            <Button fx:id="editar_eqp_btm" layoutX="114.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
+            <Button fx:id="editar_eqp_btm" layoutX="114.0" layoutY="9.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
             <Button fx:id="excluir_eqp_btm" layoutX="202.0" layoutY="9.0" mnemonicParsing="false" onAction="#excluirEquipamento" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
          </children>
       </Pane>
@@ -38,7 +38,7 @@
       <Pane layoutX="40.0" layoutY="168.0" prefHeight="480.0" prefWidth="299.0" style="-fx-background-color: #466673;">
          <children>
             <TextField fx:id="buscar_txf" layoutX="39.0" layoutY="39.0" prefHeight="25.0" prefWidth="222.0" promptText="Buscar" />
-            <Button fx:id="buscar_btt" layoutX="73.0" layoutY="349.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="137.0" style="-fx-background-color: #ADBF95;" text="Buscar" textFill="WHITE">
+            <Button fx:id="buscar_btt" layoutX="73.0" layoutY="349.0" mnemonicParsing="false" onAction="#realizarBuscar" prefHeight="43.0" prefWidth="137.0" style="-fx-background-color: #ADBF95;" text="Buscar" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

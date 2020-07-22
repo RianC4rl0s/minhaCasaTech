@@ -34,7 +34,14 @@ public class LocalBO implements localInterBO{
 		LocalVO local = new LocalVO();
 		ResultSet rs = ldao.buscarPorId(id);
 		try {
+			rs.next();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 		local.setCasa(rs.getString("casa"));
+		System.out.println(local.getCasa());
 		local.setCompartimento(rs.getString("compartimento"));
 		local.setId(rs.getLong("id"));
 		}catch(SQLException e) {

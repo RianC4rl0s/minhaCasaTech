@@ -40,5 +40,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Label fx:id="exception_jlb" alignment="CENTER" layoutX="503.0" layoutY="65.0" prefHeight="20.0" prefWidth="279.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
