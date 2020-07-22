@@ -4,6 +4,8 @@ package br.com.minhaCasaTech.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.view.Telas;
@@ -85,11 +87,18 @@ public class GerenciarLocalController implements Initializable {
 	    	LocalBO lbo = new LocalBO();
 	    	tabela_locais.setItems(FXCollections.observableArrayList(lbo.listar()));
 	 }
+	    @FXML
+	    private Label excep_delet_error;
 	 public void excluirItem() {
 		 LocalBO lbo = new LocalBO();
 		 TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
-		
+		try {
 		 lbo.deletar(selectionModel.getSelectedItem());
+		
+		 }catch(Exception e) {
+			 excep_delet_error.setVisible(true);
+			
+		 }
 		 recarregarTela();
 	 } 
 	   

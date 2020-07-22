@@ -122,6 +122,7 @@ public class GerenciarEquipamentoController implements Initializable{
 	    	TableViewSelectionModel<EquipamentoVO> selectedModel = tabela_equipamento.getSelectionModel();
 	    	
 	    	ebo.deletar(selectedModel.getSelectedItem());
+	    	recarregarTela();
 	    }
 	    
 	    @FXML

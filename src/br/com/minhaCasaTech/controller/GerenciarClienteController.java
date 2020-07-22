@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-
 import br.com.minhaCasaTech.model.VO.ClienteVO;
+
 import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class GerenciarClienteController implements Initializable{
@@ -56,7 +57,8 @@ public class GerenciarClienteController implements Initializable{
 		nome_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		endereco_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 		cpf_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-		
+		//ClienteBO cbo = new ClienteBo();
+		//clientes = cbo.listar();
 		tabela_cliente_tb.setItems(FXCollections.observableArrayList(clientes));
 	}
 	public void chamarTelaCadastrarCliente() {
@@ -66,6 +68,13 @@ public class GerenciarClienteController implements Initializable{
 			
 			e.printStackTrace();
 		}
+	}
+	public void excluirItem() {
+		//ClienteBO cbo = new ClienteBO();
+		//TableViewSelectionModel<ClienteBO> selectionModel = tabela_cliente_tb.getSelectionModel();
+		
+		 //cbo.deletar(selectionModel.getSelectedItem());
+		 recarregarTela();
 	}
 	public void voltarInicio() {
 		try {

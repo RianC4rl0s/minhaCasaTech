@@ -85,7 +85,7 @@ public class LocalBO implements localInterBO{
 		return locais;
 	}
 	
-	public void deletar(LocalVO local) {
+	public void deletar(LocalVO local){
 		LocalDAO dao = new LocalDAO();
 		try{
 		dao.deletar(local);

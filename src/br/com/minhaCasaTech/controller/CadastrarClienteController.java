@@ -32,7 +32,17 @@ public class CadastrarClienteController {
 
     public void cadastrarCliente() {
     	ClienteVO c = new ClienteVO();
+    	c.setNome(nome_cliente_txf.getText());
+    	c.setCpf(cpf_cliente_txf.getText());
+    	c.setEndereco(endereco_cliente_txf.getText());
     	//ClienteBO b = new ClienteBO();
+    	/*
+    	 try{
+    	 cbo.cadastrar(c)
+    	 }catch(Exception e){
+    	 e.printStackTrace();
+    	 
+    	 }*/
     }
 
 	public void limparCampos() {
