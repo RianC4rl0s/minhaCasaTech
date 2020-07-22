@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.FrontController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.EditarEquipamentoController">
    <children>
       <Label layoutX="30.0" layoutY="59.0" text="Nome:">
          <font>
@@ -32,58 +32,53 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="468.0" layoutY="145.0" text="Local:">
+      <Label layoutX="468.0" layoutY="145.0" text="Novo local:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="465.0" layoutY="223.0" text="Responsavel:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <TextField layoutX="30.0" layoutY="93.0" prefHeight="25.0" prefWidth="429.0">
+      <TextField fx:id="nome_edt_txf" editable="false" layoutX="30.0" layoutY="93.0" prefHeight="25.0" prefWidth="429.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="30.0" layoutY="173.0" prefHeight="30.0" prefWidth="85.0">
+      <TextField fx:id="peso_edt_txf" layoutX="30.0" layoutY="173.0" prefHeight="30.0" prefWidth="85.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="30.0" layoutY="255.0" prefHeight="30.0" prefWidth="214.0">
+      <TextField fx:id="ns_edt_txf" layoutX="30.0" layoutY="255.0" prefHeight="30.0" prefWidth="214.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="30.0" layoutY="323.0" prefHeight="30.0" prefWidth="132.0" promptText="R$">
+      <TextField fx:id="preco_edt_txf" layoutX="30.0" layoutY="323.0" prefHeight="30.0" prefWidth="132.0" promptText="R$">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="468.0" layoutY="93.0" prefHeight="30.0" prefWidth="85.0">
+      <TextField fx:id="quantidade_edt_txf" layoutX="468.0" layoutY="93.0" prefHeight="30.0" prefWidth="85.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
       <Label layoutX="115.0" layoutY="180.0" text="Kg." />
-      <ComboBox layoutX="465.0" layoutY="176.0" prefHeight="25.0" prefWidth="270.0" promptText="Selecionar local" />
-      <ComboBox layoutX="465.0" layoutY="258.0" prefHeight="25.0" prefWidth="333.0" promptText="Selecionar responsável" />
-      <Button layoutX="21.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #1C3940;" text="Limpar campos" textFill="WHITE">
+      <ComboBox fx:id="local_edt_txf" layoutX="465.0" layoutY="176.0" prefHeight="25.0" prefWidth="270.0" promptText="Selecionar local" />
+      <Button fx:id="cancelar_btm" layoutX="639.0" layoutY="424.0" mnemonicParsing="false" onAction="#cancelarOperacao" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #1C3940;" text="Cancelar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="639.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #1C3940;" text="Cancelar" textFill="WHITE">
+      <Button fx:id="editar_eqp_btm" layoutX="761.0" layoutY="424.0" mnemonicParsing="false" onAction="#confirmarEdicao" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #1C3940;" text="Confirmar Edição" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="761.0" layoutY="424.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #1C3940;" text="Confirmar Edição" textFill="WHITE">
+      <Label fx:id="ultimo_local_jlb" alignment="TOP_LEFT" layoutX="465.0" layoutY="222.0" prefHeight="64.0" prefWidth="270.0" textFill="RED">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
-      </Button>
+      </Label>
+      <Label layoutX="33.0" layoutY="74.0" text="Não modificavel" />
    </children>
 </Pane>

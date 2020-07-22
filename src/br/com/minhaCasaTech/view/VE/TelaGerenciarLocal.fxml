@@ -28,7 +28,6 @@
          <children>
             <TableView fx:id="tabela_locais" layoutX="27.0" layoutY="20.0" prefHeight="441.0" prefWidth="1153.0">
                <columns>
-                  <TableColumn fx:id="local_selec" prefWidth="67.0" />
                   <TableColumn fx:id="local_casa" prefWidth="547.0" text="Casa" />
                   <TableColumn fx:id="local_compartimento" prefWidth="538.0" text="Compartimento" />
                </columns>
@@ -40,5 +39,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Label fx:id="exception_jlb" alignment="CENTER" layoutX="503.0" layoutY="65.0" prefHeight="20.0" prefWidth="279.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

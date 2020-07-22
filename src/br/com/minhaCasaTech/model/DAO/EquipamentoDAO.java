@@ -7,11 +7,10 @@ import java.sql.Statement;
 
 
 import br.com.minhaCasaTech.model.BO.LocalBO;
-import br.com.minhaCasaTech.model.BO.PessoaBO;
-import br.com.minhaCasaTech.model.BO.ResponsavelBO;
+
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
-import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+
 
 
 public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
@@ -43,7 +42,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 	}
 	
 	public void editar(EquipamentoVO eqpOrigem) {
-		String sql ="update equipamento nome = ?, peso = ?, preco = ? , quantidade = ?, numero_de_serie";
+		String sql ="update equipamento set nome = ?, peso = ?, preco = ? , quantidade = ?, numero_de_serie = ? where id = ?";
 		try {
 			PreparedStatement pst = getCon().prepareStatement(sql);
 			pst.setString(1,eqpOrigem.getNome());
@@ -51,7 +50,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			pst.setDouble(3, eqpOrigem.getPreco());
 			pst.setInt(4, eqpOrigem.getQuantidade());
 			pst.setInt(5, eqpOrigem.getNumeroDeSerie());
-			
+			pst.setLong(6, eqpOrigem.getId_equipamento());
 			pst.execute();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -82,10 +81,10 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		try {
 			st = getCon().createStatement();
 			rs = st.executeQuery(sql);
-			while(rs.next()) {
+			/*while(rs.next()) {
 			EquipamentoVO eqp = new EquipamentoVO();	
 			eqp.setId_equipamento(rs.getLong("id"));
-			}
+			}*/
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -93,86 +92,41 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		return rs;
 	}
 	
-	public EquipamentoVO buscarPorNome(String nome) {
+	public ResultSet buscarPorNome(String nome) {
 		
-		String sql = "select * from equipamento where nome = ?";
+		String sql = "select * from equipamento where nome like ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
-		EquipamentoVO eqp = new EquipamentoVO();
+		
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setString(1, nome);
+			pst.setString(1,"%"+nome+"%");
 			rs = pst.executeQuery();
-			eqp.setId_equipamento(rs.getLong("id"));
-			eqp.setNome(rs.getString("nome"));
-			eqp.setPeso(rs.getDouble("peso"));
-			eqp.setPreco(rs.getDouble("preco"));
-			eqp.setQuantidade(rs.getInt("quantidade"));
-			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			LocalVO l = new LocalVO();
-			LocalBO lbo = new LocalBO();
-			LocalDAO ldao = new LocalDAO();
-			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
-			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
-			eqp.setLocal(l);
-			
-			/*ResponsavelVO r = new ResponsavelVO();
-			PessoaBO<ResponsavelVO> rbo = new PessoaBO<ResponsavelBO>();
-			ResponsavelDAO<ResponsavelVO> rdao = new ResponsavelDAO<ResponsavelVO>();
-			*/
-			//mesma coisa s� q com responsavel
-			/*
-			ResponsavelVO r = new ResponsavelVO();
-			ResponsavelDAO rdao = new ResponsavelDAO();
-			r = rdao.buscarId(rs.getLong("id_responsavel"));	
-			eqp.setResponsavel(r);
-			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return eqp;
+		return rs;
 	}
 	
-	public EquipamentoVO buscarPorNS(int ns) {
+	public ResultSet buscarPorNS(int ns) {
 		
 		
 		String sql = "select * from equipamento where numero_de_serie = ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
-		EquipamentoVO eqp = new EquipamentoVO();
+		
 		try {
 			pst = getCon().prepareStatement(sql);
 			pst.setInt(1, ns);
 			rs = pst.executeQuery();
-			eqp.setId_equipamento(rs.getLong("id"));
-			eqp.setNome(rs.getString("nome"));
-			eqp.setPeso(rs.getDouble("peso"));
-			eqp.setPreco(rs.getDouble("preco"));
-			eqp.setQuantidade(rs.getInt("quantidade"));
-			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			LocalVO l = new LocalVO();
-			LocalBO lbo = new LocalBO();
-			LocalDAO ldao = new LocalDAO();
-			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
-			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
-			eqp.setLocal(l);
-			
-			
-			//mesma coisa s� q com responsavel
-			/*
-			ResponsavelVO r = new ResponsavelVO();
-			ResponsavelDAO rdao = new ResponsavelDAO();
-			r = rdao.buscarId(rs.getLong("id_responsavel"));	
-			eqp.setResponsavel(r);
-			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return eqp;
+		return rs;
 	}
 public ResultSet buscarPorId(Long id) {
 		
@@ -180,33 +134,11 @@ public ResultSet buscarPorId(Long id) {
 		String sql = "select * from equipamento where id = ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
-	//	EquipamentoVO eqp = new EquipamentoVO();
 		try {
 			pst = getCon().prepareStatement(sql);
 			pst.setLong(1, id);
 			rs = pst.executeQuery();
-			/*eqp.setId_equipamento(rs.getLong("id"));
-			eqp.setNome(rs.getString("nome"));
-			eqp.setPeso(rs.getDouble("peso"));
-			eqp.setPreco(rs.getDouble("preco"));
-			eqp.setQuantidade(rs.getInt("quantidade"));
-			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			
-			LocalVO l = new LocalVO();
-			LocalBO lbo = new LocalBO();
-			LocalDAO ldao = new LocalDAO();
-			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
-			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
-			eqp.setLocal(l);
-			*/
-			//mesma coisa s� q com responsavel
-			/*
-			ResponsavelVO r = new ResponsavelVO();
-			ResponsavelDAO rdao = new ResponsavelDAO();
-			r = rdao.buscarId(rs.getLong("id_responsavel"));	
-			eqp.setResponsavel(r);
-			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -219,33 +151,12 @@ public ResultSet buscarPorId(Long id) {
 		String sql = "select * from equipamento where id = ?";
 		PreparedStatement pst;
 		ResultSet rs = null;
-		EquipamentoVO eqp = new EquipamentoVO();
+		
 		try {
 			pst = getCon().prepareStatement(sql);
 			pst.setLong(1, equipamento.getId_equipamento());
 			rs = pst.executeQuery();
-			eqp.setId_equipamento(rs.getLong("id"));
-			eqp.setNome(rs.getString("nome"));
-			eqp.setPeso(rs.getDouble("peso"));
-			eqp.setPreco(rs.getDouble("preco"));
-			eqp.setQuantidade(rs.getInt("quantidade"));
-			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			LocalVO l = new LocalVO();
-			LocalBO lbo = new LocalBO();
-			LocalDAO ldao = new LocalDAO();
-			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
-			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
-			eqp.setLocal(l);
-			
-			
-			//mesma coisa s� q com responsavel
-			/*
-			ResponsavelVO r = new ResponsavelVO();
-			ResponsavelDAO rdao = new ResponsavelDAO();
-			r = rdao.buscarId(rs.getLong("id_responsavel"));	
-			eqp.setResponsavel(r);
-			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -253,44 +164,39 @@ public ResultSet buscarPorId(Long id) {
 		return rs;
 	}
 
-	public EquipamentoVO buscarPorLocal(LocalVO local) {
+	public ResultSet buscarPorLocal(String local) {
 	
 		
-		String sql = "select * from equipamento where id_local = ?";
+		String sql = "SELECT * FROM equipamento where id_local in(SELECT id FROM local where casa LIKE ? or compartimento like ?)";
 		PreparedStatement pst;
 		ResultSet rs = null;
-		EquipamentoVO eqp = new EquipamentoVO();
 		try {
 			pst = getCon().prepareStatement(sql);
-			pst.setLong(1,local.getId());
+			pst.setString(1,"%"+local+"%");
+			pst.setString(2,"%"+local+"%");
 			rs = pst.executeQuery();
-			eqp.setId_equipamento(rs.getLong("id"));
-			eqp.setNome(rs.getString("nome"));
-			eqp.setPeso(rs.getDouble("peso"));
-			eqp.setPreco(rs.getDouble("preco"));
-			eqp.setQuantidade(rs.getInt("quantidade"));
-			eqp.setNumeroDeSerie(rs.getInt("numero_de_serie"));
 			
-			LocalVO l = new LocalVO();
-			LocalBO lbo = new LocalBO();
-			LocalDAO ldao = new LocalDAO();
-			//lbo.buscarPorId recebe um resultSet, e retorna um localvo. ldao.buscarPorId recebe um long e retorna 1 result set
-			l =lbo.buscarPorId(ldao.buscarPorId(rs.getLong("id_local")));
-			eqp.setLocal(l);
-			
-			
-			//mesma coisa s� q com responsavel
-			/*
-			ResponsavelVO r = new ResponsavelVO();
-			ResponsavelDAO rdao = new ResponsavelDAO();
-			r = rdao.buscarId(rs.getLong("id_responsavel"));	
-			eqp.setResponsavel(r);
-			*/
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return eqp;
+		return rs;
+	}
+	public ResultSet buscarPorResponsavel(String responsavel) {
+		String sql = "select * from equipamento where id_local = ?";
+		PreparedStatement pst;
+		ResultSet rs = null;
+		
+		try {
+			pst = getCon().prepareStatement(sql);
+			pst.setString(1,responsavel);
+			rs = pst.executeQuery();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return rs;
 	}
 	
 }
