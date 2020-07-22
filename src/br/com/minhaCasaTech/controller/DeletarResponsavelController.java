@@ -61,17 +61,24 @@ public class DeletarResponsavelController implements Initializable {
 			errorLabel.setVisible(true);
 		else {
 			ResponsavelBO<ResponsavelVO> bo = new ResponsavelBO();
+			ResponsavelVO r;
 			
 			if (radioProp.isSelected())
 				try {
-					bo.deletar((ProprietarioVO) resp);
+					r = new ProprietarioVO(resp.getNome(),resp.getEndereco(),resp.getTelefone(),resp.getLogin(), resp.getSenha());
+					r.setId_pessoa(resp.getId_pessoa());
+					r.setId_responsavel(resp.getId_responsavel());
+					bo.deletar(r);
 				} catch (InsertException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			else
 				try {
-					bo.deletar((FuncionarioVO) resp);
+					r = new FuncionarioVO(resp.getNome(),resp.getEndereco(),resp.getTelefone(),resp.getLogin(), resp.getSenha());
+					r.setId_pessoa(resp.getId_pessoa());
+					r.setId_responsavel(resp.getId_responsavel());
+					bo.deletar(r);
 				} catch (InsertException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

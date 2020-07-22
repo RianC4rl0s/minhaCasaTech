@@ -40,7 +40,7 @@ public class FuncionarioDAO<VO extends FuncionarioVO> extends ResponsavelDAO<VO>
 	}
 	
 	public ResultSet buscarPorId(VO pessoa) {
-		String sql = "select * from pessoa, responsavel, proprietario where pessoa.id = ?, responsavel.id = ?, funcionario.id = ?";
+		String sql = "select * from pessoa, responsavel, funcionario where pessoa.id = ? and responsavel.id = ? and funcionario.id_responsavel = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
@@ -48,7 +48,7 @@ public class FuncionarioDAO<VO extends FuncionarioVO> extends ResponsavelDAO<VO>
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_pessoa());
 			ptst.setLong(2, pessoa.getId_responsavel());
-			ptst.setLong(3, pessoa.getId_funcionario());
+			ptst.setLong(3, pessoa.getId_responsavel());
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
