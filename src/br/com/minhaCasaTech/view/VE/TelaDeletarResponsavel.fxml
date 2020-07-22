@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="203.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.DeletarResponsavelController">
+   <children>
+      <Button fx:id="cancelar" layoutX="29.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#cancelarOperacao" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #1C3940;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="deletar" layoutX="168.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#deletarResponsavel" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #1C3940;" text="Deletar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="28.0" layoutY="37.0" text="Qual o tipo desse responsavel?" />
+      <RadioButton fx:id="radioProp" layoutX="28.0" layoutY="68.0" mnemonicParsing="false" text="Proprietario">
+         <toggleGroup>
+            <ToggleGroup fx:id="responsavel" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioFunc" layoutX="28.0" layoutY="99.0" mnemonicParsing="false" text="Funcionario" toggleGroup="$responsavel" />
+      <Label fx:id="errorLabel" layoutX="51.0" layoutY="14.0" text="Selecione um dos responsaveis" textFill="#e10c0c" visible="false" />
+   </children>
+</Pane>
