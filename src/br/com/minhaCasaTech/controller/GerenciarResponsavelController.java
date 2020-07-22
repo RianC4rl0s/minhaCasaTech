@@ -58,14 +58,6 @@ public class GerenciarResponsavelController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-		
-	public void chamarTelaCadastrarResponsavel() {
-		try {
-			Telas.telaCadastrarResponsavel();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}	
-	}
 	
 	public void initialize(URL url, ResourceBundle rb) {
 		iniciarTabela();
@@ -81,6 +73,25 @@ public class GerenciarResponsavelController implements Initializable {
 	private TableColumn<ResponsavelVO, String> telefone;
 	@FXML
 	private TableView<ResponsavelVO> tabela_responsaveis;
+	
+	public void chamarTelaCadastrarResponsavel() {
+		try {
+			Telas.telaCadastrarResponsavel();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void chamarTelaEditarResponsavel() {
+		
+		try {
+			TableViewSelectionModel<ResponsavelVO> selectedModel = tabela_responsaveis.getSelectionModel();
+			Telas.telaEditarResponsavel(selectedModel.getSelectedItem());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 		
     public void iniciarTabela() {
     	id_responsavel.setCellValueFactory(new PropertyValueFactory<>("id_responsavel"));

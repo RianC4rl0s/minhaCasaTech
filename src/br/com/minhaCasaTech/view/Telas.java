@@ -4,6 +4,7 @@ package br.com.minhaCasaTech.view;
 
 import br.com.minhaCasaTech.controller.DeletarResponsavelController;
 import br.com.minhaCasaTech.controller.EditarLocalController;
+import br.com.minhaCasaTech.controller.EditarResponsavelController;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import javafx.application.Application;
@@ -68,6 +69,8 @@ private static Stage primaryStage;
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
 	}
+	
+	// RESPONSAVEL
 	public static void telaCadastrarResponsavel() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaCadastrarResponsavel.fxml"));
 		Scene cena = new Scene(root);
@@ -88,13 +91,26 @@ private static Stage primaryStage;
 		secondarySage.setScene(cena);
 		secondarySage.setTitle("MinhaCasaTECH");
 		secondarySage.show();
-	
+	}
+	public static void telaEditarResponsavel(ResponsavelVO vo) throws Exception{
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/TelaEditarResponsavel.fxml"));
+		FXMLLoader.load(Telas.class.getResource("VE/TelaEditarResponsavel.fxml"));
+		Parent root = loader.load();
+		EditarResponsavelController controller = loader.getController();
+		controller.setResp(vo);
+		controller.setValores();
+		Scene cena = new Scene(root);
+		Stage secondarySage = new Stage();
+		secondarySage.setScene(cena);
+		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.show();
 	}
 	public static void telaGerenciarResponsavel() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarResponsavel.fxml"));
 		Scene cena  = new Scene(root);
 		primaryStage.setScene(cena);
 	}
+	
 	public static void telaGerenciarCliente() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarCliente.fxml"));
 		Scene cena = new Scene(root);

@@ -112,10 +112,7 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 	public void editar(VO vo) throws InsertException {
 		try {
 			if (this.buscarPorLogin(vo) != null)
-				if (vo instanceof ProprietarioVO)
-					dao1.editar((ProprietarioVO) vo);
-				else
-					dao2.editar((FuncionarioVO) vo);
+				dao0.editar(vo);
 		} catch (NotFoundException e) {
 			throw new InsertException("Usuário não existe");
 		}

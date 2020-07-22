@@ -15,7 +15,7 @@
       <Pane layoutX="38.0" layoutY="106.0" prefHeight="43.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
          <children>
             <Button fx:id="cadastrar" layoutX="22.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#chamarTelaCadastrarResponsavel" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
-            <Button fx:id="editar_cliente_btm" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
+            <Button fx:id="editar_cliente_btm" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#chamarTelaEditarResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
             <Button fx:id="excluir" layoutX="202.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#excluirResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
          </children>
       </Pane>
