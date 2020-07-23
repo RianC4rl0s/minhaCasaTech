@@ -129,7 +129,7 @@ public class GerenciarVendaController implements Initializable {
     
     public void chamarTelaCadastrarEquipamento() {
 		try {
-			Telas.telaCadastrarEquipamentoCP();
+			Telas.telaCadastrarEquipamentoVP();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

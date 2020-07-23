@@ -34,7 +34,7 @@ private static Stage primaryStage;
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.show();
-		telaGerenciarCompra();
+		telaRelatorio();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -74,8 +74,15 @@ private static Stage primaryStage;
 		secondarySage.setTitle("MinhaCasaTECH");
 		secondarySage.show();
 		secondarySage.setScene(cena);
+	}
+	public static void telaCadastrarEquipamentoVP() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaCadastrarEquipamentoVP.fxml"));
 		
-		
+		Scene cena = new Scene(root);
+		Stage secondarySage = new Stage();
+		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.show();
+		secondarySage.setScene(cena);
 	}
 	public static void telaGerenciarEquipamento() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarEquipamento.fxml"));
@@ -137,6 +144,14 @@ private static Stage primaryStage;
 		Scene cena  = new Scene(root);
 		primaryStage.setScene(cena);
 	}
+	
+	// RELATORIO
+	public static void telaRelatorio() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaRelatorio.fxml"));
+		Scene cena  = new Scene(root);
+		primaryStage.setScene(cena);
+	}
+	
 	
 	public static void telaGerenciarCliente() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarCliente.fxml"));
