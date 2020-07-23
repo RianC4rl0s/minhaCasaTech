@@ -51,8 +51,7 @@ public class TransacaoVO {
 	}
 	
 	public void setData() {
-		TimeZone zone = TimeZone.getTimeZone("GMT-3:00");
-		this.data = Calendar.getInstance(zone);
+		this.data = Calendar.getInstance();
 	}
 	
 	public void setData(Calendar data) {

@@ -66,6 +66,17 @@ private static Stage primaryStage;
 		
 		
 	}
+	public static void telaCadastrarEquipamentoCP() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaCadastrarEquipamentoCP.fxml"));
+		
+		Scene cena = new Scene(root);
+		Stage secondarySage = new Stage();
+		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.show();
+		secondarySage.setScene(cena);
+		
+		
+	}
 	public static void telaGerenciarEquipamento() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarEquipamento.fxml"));
 		Scene cena = new Scene(root);		

@@ -92,5 +92,10 @@
             <Font size="17.0" />
          </font>
       </Label>
+      <Label fx:id="saldoInsuficiente" layoutX="1093.0" layoutY="65.0" text="Saldo insuficiente" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

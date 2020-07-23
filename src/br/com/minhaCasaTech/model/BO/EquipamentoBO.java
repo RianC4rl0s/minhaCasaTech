@@ -39,7 +39,7 @@ public class EquipamentoBO implements EquipamentoInterBO{
 		try {
 			while(rs.next()) {
 				EquipamentoVO eqp = new EquipamentoVO();	
-				eqp.setId_equipamento(rs.getLong("id"));
+				eqp.setId_equipamento(rs.getLong("equipamento.id"));
 				eqp.setNome(rs.getString("nome"));
 				eqp.setPeso(rs.getDouble("peso"));
 				eqp.setPreco(rs.getDouble("preco"));

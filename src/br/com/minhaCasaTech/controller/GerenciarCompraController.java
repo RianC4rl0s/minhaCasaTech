@@ -4,11 +4,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+import br.com.minhaCasaTech.model.BO.CaixaBO;
+import br.com.minhaCasaTech.model.BO.CompraBO;
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.VO.CompraVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.view.Telas;
+import exception.InsertException;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -23,7 +26,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
 public class GerenciarCompraController implements Initializable {
+	EquipamentoBO ebo = new EquipamentoBO();
+	CompraBO cbo = new CompraBO();
+	CaixaBO caixa = new CaixaBO();
 	private static CompraVO compra = new CompraVO();
+	
 	@FXML private TableView tabela_equipamentos;
 	@FXML private TableColumn<EquipamentoVO, Long> id_coluna_tb;
 	@FXML private TableColumn<EquipamentoVO, String> quantidade_coluna_tb;
@@ -42,6 +49,8 @@ public class GerenciarCompraController implements Initializable {
 	
 	@FXML private Label noEquipamento;
 	@FXML private Label qtdInvalida;
+	@FXML private Label labelTotal;
+	@FXML private Label saldoInsuficiente;
 	@FXML private TitledPane qtdEquipamento;
 	@FXML private TextField quantidade;
 
@@ -50,10 +59,11 @@ public class GerenciarCompraController implements Initializable {
 		// TODO Auto-generated method stub
 		iniciarTabelaEquipamentos();
 		iniciarTabelaCarrinho();
+		labelTotal.setText("R$ " + compra.getValorTotal());
 	}
     
     public void iniciarTabelaEquipamentos() {
-    	id_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	id_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("id_equipamento"));
     	nome_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	preco_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("preco"));
     	peso_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("peso"));
@@ -62,13 +72,12 @@ public class GerenciarCompraController implements Initializable {
 	
     	local_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("local"));
     	reponsavel_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("responsavel"));
-    	
-    	EquipamentoBO ebo = new EquipamentoBO();
+    
     	tabela_equipamentos.setItems(FXCollections.observableArrayList(ebo.listar()));
     }
     
     public void iniciarTabelaCarrinho() {
-    	id_carrinho.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	id_carrinho.setCellValueFactory(new PropertyValueFactory<>("id_equipamento"));
     	nome_carrinho.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	preco_carrinho.setCellValueFactory(new PropertyValueFactory<>("preco"));
     	quantidade_carrinho.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
@@ -82,11 +91,61 @@ public class GerenciarCompraController implements Initializable {
     }
     
     public void finalizarCompra() {
+    	compra.setPesoTotal(0.00);
+    	compra.setTotalEquip(0);
+    	for(EquipamentoVO eqp : compra.getEquipamentos()) {
+    		compra.setPesoTotal(compra.getPesoTotal()+eqp.getValorTotal());
+    		compra.setTotalEquip(compra.getTotalEquip()+eqp.getQuantidade());
+    	}
+    	compra.setData();
     	
+    	if(caixa.pegarValor().getValor() < compra.getValorTotal()) {
+    		saldoInsuficiente.setVisible(true);
+    	}else {
+    		caixa.subValor(compra.getValorTotal());
+    		try {
+    			cbo.cadastrar(compra);
+    			try {
+    				Telas.telaPrincipal();
+    			}catch(Exception e) {
+    				e.printStackTrace();
+    			}
+    		} catch (InsertException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
     }
     
+    public void chamarTelaCadastrarEquipamento() {
+		try {
+			Telas.telaCadastrarEquipamentoCP();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+    
     public void removeEquipamento() {
-    	
+    	TableViewSelectionModel<EquipamentoVO> selectionModel = tabela_carrinho.getSelectionModel();
+    	if(selectionModel.getSelectedItem() != null) {
+    		EquipamentoVO eqpTabelaCarrinho = selectionModel.getSelectedItem();
+    		compra.setValorTotal(compra.getValorTotal()-eqpTabelaCarrinho.getValorTotal());
+    		
+    		EquipamentoVO eqpTabelaEquipamento = ebo.buscarPorId(eqpTabelaCarrinho);
+    		eqpTabelaEquipamento.setQuantidade(eqpTabelaEquipamento.getQuantidade()+eqpTabelaCarrinho.getQuantidade());
+    		ebo.editar(eqpTabelaEquipamento);
+    		
+    		compra.removeEquipamento(eqpTabelaCarrinho);
+    		try {
+    			Telas.telaGerenciarCompra();
+    		} catch (Exception e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
+    	else
+    		noEquipamento.setVisible(true);
     }
     
     public void mostrarAddQuantidade() {
@@ -105,14 +164,19 @@ public class GerenciarCompraController implements Initializable {
     		noEquipamento.setVisible(true);
     	} else {
     		String qtd = quantidade.getText();
-    		if(qtd.equals("") || !qtd.matches("(.*)([0-9])(.*)"))
+    		if(qtd.equals("") || !qtd.matches("(.*)([1-9])(.*)"))
     			qtdInvalida.setVisible(true);
     		else {
     			qtdEquipamento.setVisible(false);
-    			EquipamentoVO eqp = selectionModel.getSelectedItem();
-    			eqp.setQuantidade(Integer.parseInt(qtd));
-    			eqp.setValorTotal();
-    			compra.addEquipamento(eqp);
+    			EquipamentoVO eqpTabela = selectionModel.getSelectedItem();
+    			// BUG DE CANCELAR A COMPRA NO MEIO DA OPERAÇÃO
+    			eqpTabela.setQuantidade(eqpTabela.getQuantidade()-Integer.parseInt(qtd));
+    			ebo.editar(eqpTabela);
+    			EquipamentoVO eqpCarrinho = eqpTabela;
+    			eqpCarrinho.setQuantidade(Integer.parseInt(qtd));
+    			eqpCarrinho.setValorTotal();
+    			compra.addEquipamento(eqpCarrinho);
+    			compra.setValorTotal(compra.getValorTotal()+eqpCarrinho.getValorTotal());
     			try {
     				Telas.telaGerenciarCompra();
     			} catch (Exception e) {
