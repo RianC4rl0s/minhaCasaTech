@@ -1,7 +1,5 @@
 package br.com.minhaCasaTech.model.BO;
 
-
-import java.sql.ResultSet;
 import java.util.List;
 
 import br.com.minhaCasaTech.model.VO.LocalVO;
@@ -11,7 +9,7 @@ public interface localInterBO {
 	
 	public void editar(LocalVO local);
 	
-	public LocalVO buscarPorId(ResultSet rs);
+	public LocalVO buscarPorId(Long id);
 	
 	public LocalVO buscarPorId(LocalVO local);
 	

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.RelatorioEquipamentosController">
+   <children>
+      <Button fx:id="voltar_btm" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#voltar" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="noEquipamento" layoutX="1011.0" layoutY="65.0" text="Selecione um equipamento" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="qtdInvalida" layoutX="1073.0" layoutY="65.0" text="Quantidade Inválida" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="saldoInsuficiente" layoutX="1093.0" layoutY="65.0" text="Saldo insuficiente" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabela_equipamentos" layoutX="69.0" layoutY="64.0" prefHeight="240.0" prefWidth="1143.0">
+         <columns>
+            <TableColumn fx:id="id_coluna_tb" prefWidth="60.0" text="ID" />
+            <TableColumn fx:id="nome_coluna_tb" prefWidth="142.0" text="Nome" />
+            <TableColumn fx:id="peso_coluna_tb" minWidth="0.0" prefWidth="112.0" text="Peso" />
+            <TableColumn fx:id="ns_coluna_tb" minWidth="0.0" prefWidth="134.0" text="NS" />
+            <TableColumn fx:id="preco_coluna_tb" minWidth="0.0" prefWidth="123.0" text="Preço" />
+            <TableColumn fx:id="quantidade_coluna_tb" prefWidth="119.0" text="Quantidade" />
+            <TableColumn fx:id="local_coluna_tb" prefWidth="256.0" text="Local" />
+            <TableColumn fx:id="reponsavel_coluna_tb" minWidth="0.0" prefWidth="196.0" text="Responsavel" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>

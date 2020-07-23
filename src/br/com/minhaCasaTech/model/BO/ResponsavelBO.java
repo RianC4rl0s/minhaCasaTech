@@ -35,7 +35,27 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 
 	@Override
 	public VO buscarPorId(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
+		ResultSet rs =  dao0.buscarPorId(id);
+		try {
+			ResponsavelVO generic = new ResponsavelVO();
+			while(rs.next()) {
+				generic.setId_pessoa(rs.getLong("responsavel.id_pessoa"));
+				generic.setId_responsavel(rs.getLong("responsavel.id"));
+				generic.setTelefone(rs.getString("telefone"));
+				generic.setLogin(rs.getString("login"));
+				generic.setSenha(rs.getString("senha"));
+					
+				ResultSet rs1 = dao0.buscarPorId(generic);
+				rs1.next();
+				
+				generic.setNome(rs1.getString("nome"));
+				generic.setEndereco(rs1.getString("endereco"));
+				return (VO) generic;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -89,13 +109,10 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 	}
 	
 	@Override
-	public void editar(ResponsavelVO vo) throws InsertException {
+	public void editar(VO vo) throws InsertException {
 		try {
 			if (this.buscarPorLogin(vo) != null)
-				if (vo instanceof ProprietarioVO)
-					dao1.editar((ProprietarioVO) vo);
-				else
-					dao2.editar((FuncionarioVO) vo);
+				dao0.editar(vo);
 		} catch (NotFoundException e) {
 			throw new InsertException("Usuário não existe");
 		}
@@ -103,13 +120,30 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 	}
 
 	@Override
-	public void deletar(ResponsavelVO vo) throws InsertException {
+	public void deletar(VO vo) throws InsertException {
 		try {
 			if (this.buscarPorLogin(vo) != null)
-				if (vo instanceof ProprietarioVO)
+				if (vo instanceof ProprietarioVO) {
+					ResultSet rs = dao1.buscarPorId((ProprietarioVO) vo);
+					try {
+						rs.next();
+						((ProprietarioVO) vo).setId_proprietario(rs.getLong("proprietario.id"));
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					dao1.deletar((ProprietarioVO) vo);
-				else
+				} else {
+					ResultSet rs = dao2.buscarPorId((FuncionarioVO) vo);
+					try {
+						rs.next();
+						((FuncionarioVO) vo).setId_funcionario(rs.getLong("funcionario.id"));
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					dao2.deletar((FuncionarioVO) vo);
+				}
 		} catch (NotFoundException e) {
 			throw new InsertException("Usuário não existe");
 		}

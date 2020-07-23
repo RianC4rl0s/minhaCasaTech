@@ -51,14 +51,29 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 	}
 	
 	public ResultSet buscarPorId(ClienteVO pessoa) {
-		String sql = "select * from pessoa, cliente where pessoa.id = ? and cliente.id = ?";
+		String sql = "select * from pessoa, cliente where pessoa.id = ? and cliente.id_pessoa = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
 		try {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_pessoa());
-			ptst.setLong(2, pessoa.getId_cliente());
+			ptst.setLong(2, pessoa.getId_pessoa());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorCpf(ClienteVO pessoa) {
+		String sql = "select * from cliente where cpf = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setString(1, pessoa.getCpf());
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -96,8 +111,6 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 	}
 	
 	public void deletar(ClienteVO pessoa) {
-		super.deletar(pessoa);
-		
 		String sql = "delete from pessoa where id=?";
 		PreparedStatement ptst;
 		
@@ -105,6 +118,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_cliente());
 			ptst.executeUpdate();
+			super.deletar(pessoa);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

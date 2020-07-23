@@ -87,14 +87,12 @@ public ResultSet buscarPorId(Long id) {
 		PreparedStatement pst;
 		ResultSet rs = null;
 		String sql = "select * from local where id = ?";
-		LocalVO l = new LocalVO();
+		
 		try {
 			pst = getCon().prepareStatement(sql);
 			pst.setLong(1,local.getId());
 			rs = pst.executeQuery();
-			l.setCasa(rs.getString("casa"));
-			l.setCompartimento(rs.getString("compartimento"));
-			l.setId(rs.getLong("id"));
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

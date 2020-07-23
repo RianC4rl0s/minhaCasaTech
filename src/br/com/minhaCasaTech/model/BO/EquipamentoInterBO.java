@@ -4,29 +4,30 @@ import java.util.List;
 
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
-import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+
 
 public interface EquipamentoInterBO {
 	
 	
 	public void cadastrar(EquipamentoVO equipamento);
 	
-	public EquipamentoVO  editar(EquipamentoVO eqpOrigem) ;
+	public void  editar(EquipamentoVO eqpOrigem) ;
 	
 	public void deletar(EquipamentoVO equipamento) ;
 	
-	public EquipamentoVO buscar(EquipamentoVO e); 
 	
 	public List<EquipamentoVO> listar();
 	
-	public EquipamentoVO buscarPorNome(String nome);
+	public List<EquipamentoVO> buscarPorNome(String nome);
 	
-	public EquipamentoVO buscarPorNS(int ns);
+	public List<EquipamentoVO> buscarPorNS(int ns);
 	
-	public EquipamentoVO buscarPorLocal(LocalVO local);
+	public EquipamentoVO buscarPorId(Long id);
 	
-	public ResponsavelVO adicionnarResponsavel(ResponsavelVO responsael);
+	public EquipamentoVO buscarPorId(EquipamentoVO equipamento);
 	
-	public LocalVO adicionarLocal(LocalVO local);
+	public List<EquipamentoVO> buscarPorLocal(String local);
+	
+	public List<EquipamentoVO> buscarPorResponsavel(String responsavel);
 	
 }
