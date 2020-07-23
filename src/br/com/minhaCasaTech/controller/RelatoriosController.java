@@ -86,11 +86,14 @@ public class RelatoriosController implements Initializable {
     	data_coluna_tb2.setCellValueFactory(new PropertyValueFactory<>("data"));
     
     	try {
-    		/*LocalDate localDate = dI.getValue();
-    		Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-    		Date date = Date.from(instant);*/
-    		
     		Calendar cI = Calendar.getInstance();
+    		/*dI.init(cI.get(Calendar.YEAR), cI.get(Calendar.MONTH), cI.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+    	        @Override
+    	        public void onDateChanged(DatePicker datePicker, int i, int i2, int i3) {
+    	            cI.set(i, i2, i3);
+    	        }});
+    		
+    		*/
     		cI.set(2020,06,22);
     		
     		/*LocalDate localDate2 = dF.getValue();
