@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -47,14 +48,20 @@ public class CadastrarEquipamentoController implements Initializable{
 		select_responsavel_bb.setItems(FXCollections.observableArrayList(rbo.listar()));
 	}
 
-    
+	@FXML
+    private Label exception_jlb;
     public void cadastrarEquipamento() {
 		EquipamentoVO e = new EquipamentoVO();
 		e.setNome(nome_equipamento_txf.getText());
 		e.setPeso(Double.parseDouble(peso_equipamento_txf.getText()));
 		e.setPreco(Double.parseDouble(preco_equipamento_txf.getText()));
 		e.setQuantidade(Integer.parseInt(quantidade_equipamento_txf.getText()));
-		e.setNumeroDeSerie(Integer.parseInt(ns_equipamento_txf.getText()));
+		try{
+			exception_jlb.setText("");
+			e.setNumeroDeSerie(Integer.parseInt(ns_equipamento_txf.getText()));
+		}catch(Exception e2) {
+			exception_jlb.setText("Numero de serie maior que o suportado");
+		}
 		e.setLocal(select_local_cbb.getSelectionModel().getSelectedItem());
 		e.setResponsavel(select_responsavel_bb.getSelectionModel().getSelectedItem());
 		

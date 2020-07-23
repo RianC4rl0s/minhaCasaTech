@@ -4,8 +4,10 @@ package br.com.minhaCasaTech.view;
 
 import br.com.minhaCasaTech.controller.EditarEquipamentoController;
 import br.com.minhaCasaTech.controller.DeletarResponsavelController;
+import br.com.minhaCasaTech.controller.EditarClienteController;
 import br.com.minhaCasaTech.controller.EditarLocalController;
 import br.com.minhaCasaTech.controller.EditarResponsavelController;
+import br.com.minhaCasaTech.model.VO.ClienteVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
@@ -34,7 +36,7 @@ private static Stage primaryStage;
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.show();
-		telaGerenciarCompra();
+		telaLogin();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -47,6 +49,16 @@ private static Stage primaryStage;
 	}
 	public static void telaPrincipal() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaPrincipal.fxml"));
+		
+	    
+		Scene cena = new Scene(root);
+		
+		
+		primaryStage.setScene(cena);
+		
+	}
+	public static void telaPrincipalFuncionario() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaPrincipalFuncionario.fxml"));
 		
 	    
 		Scene cena = new Scene(root);
@@ -135,6 +147,27 @@ private static Stage primaryStage;
 		secondaryStage.show();
 	
 	}	
+	public static void telaEditarCliente(ClienteVO cliente) throws Exception{
+		 System.out.println("Tela aberta");
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/EditarLocal.fxml"));
+		
+		 System.out.println("Loader criado");
+		
+		 FXMLLoader.load(Telas.class.getResource("VE/EditarLocal.fxml"));
+		Parent root = loader.load();
+		System.out.println("Loader criado");
+		EditarClienteController controler = loader.getController();
+		controler.setC(cliente);
+		controler.iniciarCampos();
+		Scene cena = new Scene(root);
+		 System.out.println("Cena carregada");
+		Stage secondaryStage = new Stage();
+		secondaryStage.setTitle("MinaCasaTECH");
+		secondaryStage.setScene(cena);
+		secondaryStage.show();
+		 System.out.println("chegou aq");
+		System.out.println("Tela aberta");
+	}
 	public static void telaGerenciarLocal() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarLocal.fxml"));
 		Scene cena = new Scene(root);

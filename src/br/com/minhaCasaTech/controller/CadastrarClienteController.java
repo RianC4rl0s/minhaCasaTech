@@ -1,5 +1,6 @@
 package br.com.minhaCasaTech.controller;
 
+import br.com.minhaCasaTech.model.DAO.ClienteDAO;
 import br.com.minhaCasaTech.model.VO.ClienteVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,6 +36,12 @@ public class CadastrarClienteController {
     	c.setNome(nome_cliente_txf.getText());
     	c.setCpf(cpf_cliente_txf.getText());
     	c.setEndereco(endereco_cliente_txf.getText());
+    	try{
+    		ClienteDAO cdao = new ClienteDAO();
+    	
+    	cdao.cadastrar(c);}catch(Exception e) {
+    		e.printStackTrace();
+    	}
     	//ClienteBO b = new ClienteBO();
     	/*
     	 try{
@@ -43,6 +50,8 @@ public class CadastrarClienteController {
     	 e.printStackTrace();
     	 
     	 }*/
+    	Stage stage = (Stage) cadastar_cli_btm.getScene().getWindow(); //Obtendo a janela atual
+  	    stage.close(); //Fechando o Stage
     }
 
 	public void limparCampos() {

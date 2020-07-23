@@ -1,21 +1,23 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+import br.com.minhaCasaTech.model.DAO.ClienteDAO;
 import br.com.minhaCasaTech.model.VO.ClienteVO;
-
+import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class GerenciarClienteController implements Initializable{
@@ -57,6 +59,19 @@ public class GerenciarClienteController implements Initializable{
 		nome_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		endereco_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 		cpf_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		ClienteDAO cdao = new ClienteDAO();
+		ResultSet rs = cdao.listar();
+		try{
+			while(rs.next()) {
+				ClienteVO cliente = new ClienteVO();
+				cliente.setNome(rs.getString("nome"));
+				cliente.setCpf(rs.getString("cpf"));
+				cliente.setEndereco(rs.getString("endereco"));
+				clientes.add(cliente);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		//ClienteBO cbo = new ClienteBo();
 		//clientes = cbo.listar();
 		tabela_cliente_tb.setItems(FXCollections.observableArrayList(clientes));
@@ -98,4 +113,25 @@ public class GerenciarClienteController implements Initializable{
 					e.printStackTrace();
 				}
 		    }
+
+	    @FXML
+	    private Label exception_jlb;
+	   public void editarItem() {
+		   try {  
+				exception_jlb.setText("");
+				TableViewSelectionModel<ClienteVO> selectionModel = tabela_cliente_tb.getSelectionModel();
+				System.out.println(selectionModel.getSelectedItem().toString());
+				chamarTelaEditarCliente(selectionModel.getSelectedItem());
+			}catch(Exception e) {
+				exception_jlb.setText("Nenhum item selecionado");
+			}
+	   }
+	   public void chamarTelaEditarCliente(ClienteVO c) {
+		   try {
+			Telas.telaEditarCliente(c);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   }
 }

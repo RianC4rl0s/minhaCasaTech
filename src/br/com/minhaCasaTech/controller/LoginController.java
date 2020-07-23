@@ -12,6 +12,7 @@ public class LoginController {
 	@FXML Label error_senha_lb;
 	
 	public void autenticar(){
+		
 		try {
 			Telas.telaPrincipal();
 		} catch (Exception e) {
