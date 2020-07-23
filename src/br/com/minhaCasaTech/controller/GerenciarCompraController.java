@@ -104,6 +104,7 @@ public class GerenciarCompraController implements Initializable {
     	}else {
     		caixa.subValor(compra.getValorTotal());
     		try {
+    			compra.setTipo(1);
     			cbo.cadastrar(compra);
     			try {
     				Telas.telaPrincipal();
