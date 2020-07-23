@@ -38,7 +38,7 @@ private static Stage primaryStage;
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.show();
-		telaGerenciarVenda();
+		telaLogin();
 	}
 	
 	public static void telaLogin() throws Exception{
