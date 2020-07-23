@@ -1,5 +1,7 @@
 package br.com.minhaCasaTech.controller;
 
+import br.com.minhaCasaTech.model.BO.ResponsavelBO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.view.Telas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,7 +14,10 @@ public class LoginController {
 	@FXML Label error_senha_lb;
 	
 	public void autenticar(){
-		
+		ResponsavelVO resp = new ResponsavelVO();
+		resp.setLogin(login_txf.getText());
+		ResponsavelBO<ResponsavelVO> rbo= new ResponsavelBO<>();
+		ResponsavelVO respAuten = new ResponsavelVO();
 		try {
 			Telas.telaPrincipal();
 		} catch (Exception e) {
