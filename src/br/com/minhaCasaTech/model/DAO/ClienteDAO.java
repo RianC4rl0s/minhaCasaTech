@@ -111,8 +111,6 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 	}
 	
 	public void deletar(ClienteVO pessoa) {
-		
-		
 		String sql = "delete from pessoa where id=?";
 		PreparedStatement ptst;
 		

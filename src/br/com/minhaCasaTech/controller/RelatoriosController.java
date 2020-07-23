@@ -19,10 +19,13 @@ import exception.NotFoundException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 
 public class RelatoriosController implements Initializable {
 	private TransacaoBO tbo = new TransacaoBO();
@@ -44,6 +47,7 @@ public class RelatoriosController implements Initializable {
     
     @FXML private DatePicker dI;
     @FXML private DatePicker dF;
+    @FXML private Button verEqps;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -117,6 +121,28 @@ public class RelatoriosController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void iniciarTabelaEquipamentos(TransacaoVO vo){
+		try {
+			Telas.telaMostrarEquipamentos(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void verEquipamentos() {
+		TableViewSelectionModel<TransacaoVO> selectionModelVendas = tabela_vendas.getSelectionModel();
+		TableViewSelectionModel<TransacaoVO> selectionModelCompras = tabela_compras.getSelectionModel();
+    	if(selectionModelVendas.getSelectedItem() != null || selectionModelCompras.getSelectedItem() != null) {
+    		if (selectionModelVendas.getSelectedItem() != null) {
+    			iniciarTabelaEquipamentos(selectionModelVendas.getSelectedItem());
+    		}else
+    		{
+    			iniciarTabelaEquipamentos(selectionModelCompras.getSelectedItem());
+    		}
+    	}
 	}
 	
 	public void voltarInicio() {
