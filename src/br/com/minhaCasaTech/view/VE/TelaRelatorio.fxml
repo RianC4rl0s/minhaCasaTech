@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.RelatoriosController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
+         <children>
+            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="8.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutX="40.0" layoutY="86.0" prefHeight="620.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
+         <children>
+            <TabPane layoutX="20.0" layoutY="69.0" prefHeight="551.0" prefWidth="1163.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Vendas">
+                     <content>
+                        <TableView fx:id="tabela_vendas" prefHeight="484.0" prefWidth="1044.0">
+                           <columns>
+                              <TableColumn fx:id="id_coluna_tb1" prefWidth="60.0" text="ID" />
+                              <TableColumn fx:id="vt_coluna_tb1" prefWidth="345.0" text="Valor Total" />
+                              <TableColumn fx:id="peso_coluna_tb1" minWidth="0.0" prefWidth="283.0" text="Peso Total" />
+                              <TableColumn fx:id="totalEqp_coluna_tb1" minWidth="0.0" prefWidth="229.0" text="Total de Equipamentos" />
+                              <TableColumn fx:id="data_coluna_tb1" minWidth="0.0" prefWidth="246.0" text="Data" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                <Tab text="Compras">
+                     <content>
+                        <TableView fx:id="tabela_compras" prefHeight="484.0" prefWidth="1044.0">
+                           <columns>
+                              <TableColumn fx:id="id_coluna_tb2" prefWidth="60.0" text="ID" />
+                              <TableColumn fx:id="vt_coluna_tb2" prefWidth="345.0" text="Valor Total" />
+                              <TableColumn fx:id="peso_coluna_tb2" minWidth="0.0" prefWidth="283.0" text="Peso Total" />
+                              <TableColumn fx:id="totalEqp_coluna_tb2" minWidth="0.0" prefWidth="229.0" text="Total de Equipamentos" />
+                              <TableColumn fx:id="data_coluna_tb2" minWidth="0.0" prefWidth="246.0" text="Data" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <Label layoutX="20.0" layoutY="32.0" style="-fx-font-weight: bold; -fx-font-size: 26px;" text="Relatórios" />
+            <DatePicker fx:id="dI" layoutX="316.0" layoutY="35.0" />
+            <DatePicker fx:id="dF" layoutX="603.0" layoutY="35.0" />
+            <Label layoutX="257.0" layoutY="32.0" style="-fx-font-weight: bold; -fx-font-size: 26px;" text="De:" />
+            <Label layoutX="534.0" layoutY="32.0" style="-fx-font-weight: bold; -fx-font-size: 26px;" text="Até:" />
+            <Button fx:id="gerar" layoutX="820.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#gerarRelatorio" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #ADBF95;" text="Gerar" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="noEquipamento" layoutX="1011.0" layoutY="65.0" text="Selecione um equipamento" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="qtdInvalida" layoutX="1073.0" layoutY="65.0" text="Quantidade Inválida" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="saldoInsuficiente" layoutX="1093.0" layoutY="65.0" text="Saldo insuficiente" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

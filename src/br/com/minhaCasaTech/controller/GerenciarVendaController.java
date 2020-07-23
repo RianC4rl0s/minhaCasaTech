@@ -7,15 +7,21 @@ import java.util.regex.Pattern;
 import br.com.minhaCasaTech.model.BO.CaixaBO;
 import br.com.minhaCasaTech.model.BO.CompraBO;
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
+import br.com.minhaCasaTech.model.BO.LocalBO;
+import br.com.minhaCasaTech.model.BO.ResponsavelBO;
+import br.com.minhaCasaTech.model.BO.VendaBO;
 import br.com.minhaCasaTech.model.VO.CompraVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+import br.com.minhaCasaTech.model.VO.VendaVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.InsertException;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,11 +31,11 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
-public class GerenciarCompraController implements Initializable {
+public class GerenciarVendaController implements Initializable {
 	EquipamentoBO ebo = new EquipamentoBO();
-	CompraBO cbo = new CompraBO();
+	VendaBO vbo = new VendaBO();
 	CaixaBO caixa = new CaixaBO();
-	private static CompraVO compra = new CompraVO();
+	private static VendaVO venda = new VendaVO();
 	
 	@FXML private TableView tabela_equipamentos;
 	@FXML private TableColumn<EquipamentoVO, Long> id_coluna_tb;
@@ -51,6 +57,7 @@ public class GerenciarCompraController implements Initializable {
 	@FXML private Label qtdInvalida;
 	@FXML private Label labelTotal;
 	@FXML private Label saldoInsuficiente;
+	@FXML private ComboBox clienteCB;
 	@FXML private TitledPane qtdEquipamento;
 	@FXML private TextField quantidade;
 
@@ -59,7 +66,8 @@ public class GerenciarCompraController implements Initializable {
 		// TODO Auto-generated method stub
 		iniciarTabelaEquipamentos();
 		iniciarTabelaCarrinho();
-		labelTotal.setText("R$ " + compra.getValorTotal());
+		//carregarCaixas();
+		labelTotal.setText("R$ " + venda.getValorTotal());
 	}
     
     public void iniciarTabelaEquipamentos() {
@@ -83,7 +91,7 @@ public class GerenciarCompraController implements Initializable {
     	quantidade_carrinho.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
     	valorTotal_carrinho.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
     	
-		tabela_carrinho.setItems(FXCollections.observableArrayList(compra.getEquipamentos()));
+		tabela_carrinho.setItems(FXCollections.observableArrayList(venda.getEquipamentos()));
     }
     
     public void buscarEquipamento() {
@@ -91,35 +99,37 @@ public class GerenciarCompraController implements Initializable {
     }
     
     public void finalizarCompra() {
-    	compra.setPesoTotal(0.00);
-    	compra.setTotalEquip(0);
-    	for(EquipamentoVO eqp : compra.getEquipamentos()) {
-    		compra.setPesoTotal(compra.getPesoTotal()+eqp.getValorTotal());
-    		compra.setTotalEquip(compra.getTotalEquip()+eqp.getQuantidade());
+    	venda.setPesoTotal(0.00);
+    	venda.setTotalEquip(0);
+    	for(EquipamentoVO eqp : venda.getEquipamentos()) {
+    		venda.setPesoTotal(venda.getPesoTotal()+eqp.getValorTotal());
+    		venda.setTotalEquip(venda.getTotalEquip()+eqp.getQuantidade());
     	}
-    	compra.setData();
+    	venda.setData();
     	
-    	if(caixa.pegarValor().getValor() < compra.getValorTotal()) {
-    		saldoInsuficiente.setVisible(true);
-    	}else {
-    		caixa.subValor(compra.getValorTotal());
+    
+    	caixa.addValor(venda.getValorTotal());
+    	try {
+    		vbo.cadastrar(venda);
     		try {
-    			cbo.cadastrar(compra);
-    			try {
-    				Telas.telaPrincipal();
-    			}catch(Exception e) {
-    				e.printStackTrace();
-    			}
-    		} catch (InsertException e) {
-    			// TODO Auto-generated catch block
+    			Telas.telaPrincipal();
+    		}catch(Exception e) {
     			e.printStackTrace();
     		}
+    	} catch (InsertException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
     	}
     }
     
+    /*public void carregarCaixas() {
+		ClienteBO cbo = new ClienteBO();
+		clienteCB.setItems(FXCollections.observableArrayList(lbo.listar()));
+	}*/
+    
     public void chamarTelaCadastrarEquipamento() {
 		try {
-			Telas.telaCadastrarEquipamentoCP();
+			Telas.telaCadastrarEquipamentoVP();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -130,13 +140,13 @@ public class GerenciarCompraController implements Initializable {
     	TableViewSelectionModel<EquipamentoVO> selectionModel = tabela_carrinho.getSelectionModel();
     	if(selectionModel.getSelectedItem() != null) {
     		EquipamentoVO eqpTabelaCarrinho = selectionModel.getSelectedItem();
-    		compra.setValorTotal(compra.getValorTotal()-eqpTabelaCarrinho.getValorTotal());
+    		venda.setValorTotal(venda.getValorTotal()-eqpTabelaCarrinho.getValorTotal());
     		
     		EquipamentoVO eqpTabelaEquipamento = ebo.buscarPorId(eqpTabelaCarrinho);
-    		eqpTabelaEquipamento.setQuantidade(eqpTabelaEquipamento.getQuantidade()-eqpTabelaCarrinho.getQuantidade());
+    		eqpTabelaEquipamento.setQuantidade(eqpTabelaEquipamento.getQuantidade()+eqpTabelaCarrinho.getQuantidade());
     		ebo.editar(eqpTabelaEquipamento);
     		
-    		compra.removeEquipamento(eqpTabelaCarrinho);
+    		venda.removeEquipamento(eqpTabelaCarrinho);
     		try {
     			Telas.telaGerenciarCompra();
     		} catch (Exception e) {
@@ -170,13 +180,13 @@ public class GerenciarCompraController implements Initializable {
     			qtdEquipamento.setVisible(false);
     			EquipamentoVO eqpTabela = selectionModel.getSelectedItem();
     			// BUG DE CANCELAR A COMPRA NO MEIO DA OPERAÇÃO
-    			eqpTabela.setQuantidade(eqpTabela.getQuantidade()+Integer.parseInt(qtd));
+    			eqpTabela.setQuantidade(eqpTabela.getQuantidade()-Integer.parseInt(qtd));
     			ebo.editar(eqpTabela);
     			EquipamentoVO eqpCarrinho = eqpTabela;
     			eqpCarrinho.setQuantidade(Integer.parseInt(qtd));
     			eqpCarrinho.setValorTotal();
-    			compra.addEquipamento(eqpCarrinho);
-    			compra.setValorTotal(compra.getValorTotal()+eqpCarrinho.getValorTotal());
+    			venda.addEquipamento(eqpCarrinho);
+    			venda.setValorTotal(venda.getValorTotal()+eqpCarrinho.getValorTotal());
     			try {
     				Telas.telaGerenciarCompra();
     			} catch (Exception e) {

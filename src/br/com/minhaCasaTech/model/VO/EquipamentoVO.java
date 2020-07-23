@@ -58,7 +58,7 @@ public class EquipamentoVO {
 	}
 	
 	public void setQuantidade(int quantidade) {
-		if (quantidade <= 0) {
+		if (quantidade < 0) {
 			System.out.println("Valor invalido");
 		}else {
 			this.quantidade = quantidade;
