@@ -2,6 +2,7 @@ package br.com.minhaCasaTech.controller;
 
 import br.com.minhaCasaTech.model.DAO.ClienteDAO;
 import br.com.minhaCasaTech.model.VO.ClienteVO;
+import br.com.minhaCasaTech.view.Telas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -52,6 +53,12 @@ public class CadastrarClienteController {
     	 }*/
     	Stage stage = (Stage) cadastar_cli_btm.getScene().getWindow(); //Obtendo a janela atual
   	    stage.close(); //Fechando o Stage
+  	    try {
+			Telas.telaGerenciarCliente();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 	public void limparCampos() {

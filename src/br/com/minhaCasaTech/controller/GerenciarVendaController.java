@@ -5,11 +5,13 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import br.com.minhaCasaTech.model.BO.CaixaBO;
+import br.com.minhaCasaTech.model.BO.ClienteBO;
 import br.com.minhaCasaTech.model.BO.CompraBO;
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
 import br.com.minhaCasaTech.model.BO.VendaBO;
+import br.com.minhaCasaTech.model.VO.ClienteVO;
 import br.com.minhaCasaTech.model.VO.CompraVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
@@ -57,7 +59,7 @@ public class GerenciarVendaController implements Initializable {
 	@FXML private Label qtdInvalida;
 	@FXML private Label labelTotal;
 	@FXML private Label saldoInsuficiente;
-	@FXML private ComboBox clienteCB;
+	@FXML private ComboBox<ClienteVO> clienteCB;
 	@FXML private TitledPane qtdEquipamento;
 	@FXML private TextField quantidade;
 
@@ -66,7 +68,7 @@ public class GerenciarVendaController implements Initializable {
 		// TODO Auto-generated method stub
 		iniciarTabelaEquipamentos();
 		iniciarTabelaCarrinho();
-		//carregarCaixas();
+		carregarCaixas();
 		labelTotal.setText("R$ " + venda.getValorTotal());
 	}
     
@@ -110,6 +112,9 @@ public class GerenciarVendaController implements Initializable {
     
     	caixa.addValor(venda.getValorTotal());
     	try {
+    		venda.setCliente(clienteCB.getValue());
+    		venda.setTipo(0);
+    		System.out.println(venda);
     		vbo.cadastrar(venda);
     		try {
     			Telas.telaPrincipal();
@@ -122,10 +127,10 @@ public class GerenciarVendaController implements Initializable {
     	}
     }
     
-    /*public void carregarCaixas() {
+    public void carregarCaixas() {
 		ClienteBO cbo = new ClienteBO();
-		clienteCB.setItems(FXCollections.observableArrayList(lbo.listar()));
-	}*/
+		clienteCB.setItems(FXCollections.observableArrayList(cbo.listar()));
+	}
     
     public void chamarTelaCadastrarEquipamento() {
 		try {
@@ -188,7 +193,7 @@ public class GerenciarVendaController implements Initializable {
     			venda.addEquipamento(eqpCarrinho);
     			venda.setValorTotal(venda.getValorTotal()+eqpCarrinho.getValorTotal());
     			try {
-    				Telas.telaGerenciarCompra();
+    				Telas.telaGerenciarVenda();
     			} catch (Exception e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();

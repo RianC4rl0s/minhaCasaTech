@@ -97,7 +97,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 	}
 	
 	public ResultSet listar() {
-		String sql = "select * from pessoa, cliente";
+		String sql = "select * from cliente";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
@@ -111,7 +111,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 	}
 	
 	public void deletar(ClienteVO pessoa) {
-		String sql = "delete from pessoa where id=?";
+		String sql = "delete from cliente where id=?";
 		PreparedStatement ptst;
 		
 		try {
