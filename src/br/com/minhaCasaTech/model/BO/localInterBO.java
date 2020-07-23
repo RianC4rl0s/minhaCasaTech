@@ -1,7 +1,5 @@
 package br.com.minhaCasaTech.model.BO;
 
-
-
 import java.util.List;
 
 import br.com.minhaCasaTech.model.VO.LocalVO;

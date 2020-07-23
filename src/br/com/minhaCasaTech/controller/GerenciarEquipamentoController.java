@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -112,16 +113,34 @@ public class GerenciarEquipamentoController implements Initializable{
 				e1.printStackTrace();
 			}
 	    }
+	    @FXML
+	    private Label exception_jlb;
 	    public void editarItem() {
-	    	TableViewSelectionModel<EquipamentoVO> selectionModel = tabela_equipamento.getSelectionModel();
-	    	chamarTelaEditarEquipamento(selectionModel.getSelectedItem());
-	    	System.out.println(selectionModel.getSelectedItem().getLocal().getCasa());
+	    	try {
+	    		exception_jlb.setText("");
+	    		TableViewSelectionModel<EquipamentoVO> selectionModel = tabela_equipamento.getSelectionModel();
+		    	chamarTelaEditarEquipamento(selectionModel.getSelectedItem());
+		    	System.out.println(selectionModel.getSelectedItem().getLocal().getCasa());
+			} catch (Exception e) {
+				exception_jlb.setText("Nenhum item selecionado");
+			}
+	    	
 	    }
 	    public void excluirEquipamento() {
-	    	EquipamentoBO ebo = new EquipamentoBO();
-	    	TableViewSelectionModel<EquipamentoVO> selectedModel = tabela_equipamento.getSelectionModel();
 	    	
-	    	ebo.deletar(selectedModel.getSelectedItem());
+	    	
+	    	try {
+	    		exception_jlb.setText("");
+		    	EquipamentoBO ebo = new EquipamentoBO();
+		    	TableViewSelectionModel<EquipamentoVO> selectedModel = tabela_equipamento.getSelectionModel();
+		    	
+		    	ebo.deletar(selectedModel.getSelectedItem());
+			} catch (Exception e) {
+				exception_jlb.setText("Nenhum item selecionado");
+			}
+	    
+	    	
+	    	
 	    	recarregarTela();
 	    }
 	    

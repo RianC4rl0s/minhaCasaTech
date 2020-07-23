@@ -84,5 +84,6 @@
          </font>
       </Button>
       <Label alignment="CENTER" layoutX="627.0" layoutY="67.0" textFill="RED" />
+      <Label fx:id="exception_jlb" alignment="CENTER" layoutX="622.0" layoutY="67.0" prefHeight="17.0" prefWidth="38.0" textFill="RED" />
    </children>
 </Pane>

@@ -89,9 +89,10 @@ public class LocalBO implements localInterBO{
 		LocalDAO dao = new LocalDAO();
 		try{
 		dao.deletar(local);
+		System.out.println("Deletado");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Deletado");
+		
 	}
 }

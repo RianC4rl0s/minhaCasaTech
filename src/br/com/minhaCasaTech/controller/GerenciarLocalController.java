@@ -2,6 +2,7 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -89,15 +90,19 @@ public class GerenciarLocalController implements Initializable {
 	 }
 	    @FXML
 	    private Label excep_delet_error;
-	 public void excluirItem() {
+	 public void excluirItem() throws SQLException {
 		 LocalBO lbo = new LocalBO();
-		 TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
+	
 		try {
-		 lbo.deletar(selectionModel.getSelectedItem());
+		exception_jlb.setText("");
+		TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
+		lbo.deletar(selectionModel.getSelectedItem());
 		
+		
+
 		 }catch(Exception e) {
-			 excep_delet_error.setVisible(true);
 			
+			 exception_jlb.setText("Nenhum item selecionado");
 		 }
 		 recarregarTela();
 	 } 
