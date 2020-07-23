@@ -131,6 +131,13 @@ private static Stage primaryStage;
 		primaryStage.setScene(cena);
 	}
 	
+	// GERENCIAR VENDA
+	public static void telaGerenciarVenda() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarVenda.fxml"));
+		Scene cena  = new Scene(root);
+		primaryStage.setScene(cena);
+	}
+	
 	public static void telaGerenciarCliente() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarCliente.fxml"));
 		Scene cena = new Scene(root);
