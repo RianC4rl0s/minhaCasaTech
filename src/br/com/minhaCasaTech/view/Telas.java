@@ -6,9 +6,11 @@ import br.com.minhaCasaTech.controller.EditarEquipamentoController;
 import br.com.minhaCasaTech.controller.DeletarResponsavelController;
 import br.com.minhaCasaTech.controller.EditarLocalController;
 import br.com.minhaCasaTech.controller.EditarResponsavelController;
+import br.com.minhaCasaTech.controller.RelatorioEquipamentosController;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+import br.com.minhaCasaTech.model.VO.TransacaoVO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -151,7 +153,18 @@ private static Stage primaryStage;
 		Scene cena  = new Scene(root);
 		primaryStage.setScene(cena);
 	}
-	
+	public static void telaMostrarEquipamentos(TransacaoVO vo) throws Exception{
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/TelaMostrarEquipamentos.fxml"));
+		FXMLLoader.load(Telas.class.getResource("VE/TelaMostrarEquipamentos.fxml"));
+		Parent root = loader.load();
+		RelatorioEquipamentosController controller = loader.getController();
+		controller.setResp(vo);
+		Scene cena = new Scene(root);
+		Stage secondarySage = new Stage();
+		secondarySage.setScene(cena);
+		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.show();
+	}
 	
 	public static void telaGerenciarCliente() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaGerenciarCliente.fxml"));

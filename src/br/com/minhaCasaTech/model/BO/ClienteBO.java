@@ -139,13 +139,9 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 		try {
 			generic.setId_pessoa(rs.getLong("cliente.id_pessoa"));
 			generic.setId_cliente(rs.getLong("cliente.id"));
-			generic.setCpf(rs.getString("cpf"));
-				
-			ResultSet rs1 = dao0.buscarPorId(generic);
-			rs1.next();
-			
-			generic.setNome(rs1.getString("nome"));
-			generic.setEndereco(rs1.getString("endereco"));
+			generic.setCpf(rs.getString("cpf"));			
+			generic.setNome(rs.getString("nome"));
+			generic.setEndereco(rs.getString("endereco"));
 			return generic;		
 		} catch (SQLException e) {
 			throw new NotFoundException();
