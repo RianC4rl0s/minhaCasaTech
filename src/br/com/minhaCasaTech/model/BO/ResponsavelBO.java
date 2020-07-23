@@ -112,10 +112,7 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 	public void editar(VO vo) throws InsertException {
 		try {
 			if (this.buscarPorLogin(vo) != null)
-				if (vo instanceof ProprietarioVO)
-					dao1.editar((ProprietarioVO) vo);
-				else
-					dao2.editar((FuncionarioVO) vo);
+				dao0.editar(vo);
 		} catch (NotFoundException e) {
 			throw new InsertException("Usuário não existe");
 		}
@@ -126,10 +123,27 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 	public void deletar(VO vo) throws InsertException {
 		try {
 			if (this.buscarPorLogin(vo) != null)
-				if (vo instanceof ProprietarioVO)
+				if (vo instanceof ProprietarioVO) {
+					ResultSet rs = dao1.buscarPorId((ProprietarioVO) vo);
+					try {
+						rs.next();
+						((ProprietarioVO) vo).setId_proprietario(rs.getLong("proprietario.id"));
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					dao1.deletar((ProprietarioVO) vo);
-				else
+				} else {
+					ResultSet rs = dao2.buscarPorId((FuncionarioVO) vo);
+					try {
+						rs.next();
+						((FuncionarioVO) vo).setId_funcionario(rs.getLong("funcionario.id"));
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					dao2.deletar((FuncionarioVO) vo);
+				}
 		} catch (NotFoundException e) {
 			throw new InsertException("Usuário não existe");
 		}

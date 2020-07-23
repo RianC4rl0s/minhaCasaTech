@@ -6,6 +6,7 @@ public class EquipamentoVO {
 	private String nome;
 	private double peso;
 	private double preco;
+	private double valorTotal;
 	private int quantidade;
 	private int numeroDeSerie;
 	private ResponsavelVO responsavel;
@@ -135,5 +136,11 @@ public class EquipamentoVO {
 	}
 	public void setId_equipamento(Long id) {
 		this.id_equipamento = id;
+	}
+	public double getValorTotal() {
+		return valorTotal;
+	}
+	public void setValorTotal() {
+		this.valorTotal = preco * quantidade;
 	}
 }

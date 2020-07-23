@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.GerenciarCompraController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
+         <children>
+            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="8.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutX="40.0" layoutY="86.0" prefHeight="620.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
+         <children>
+            <TitledPane fx:id="qtdEquipamento" animated="false" layoutX="460.0" layoutY="110.0" text="Quantidade">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="145.0" prefWidth="284.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="28.0" prefHeight="25.0" prefWidth="264.0" text="Qual a quantidade do equipamento?" />
+                        <TextField fx:id="quantidade" layoutX="15.0" layoutY="54.0" prefHeight="25.0" prefWidth="38.0" />
+                        <Button fx:id="cancelarAdd" layoutX="15.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#cancelarOperacao" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: FF8282;" text="Cancelar" textFill="WHITE" />
+                        <Button fx:id="addQuantidade" layoutX="177.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#addEquipamento" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #ADBF95;" text="Adicionar" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TableView fx:id="tabela_equipamentos" layoutX="31.0" layoutY="62.0" prefHeight="240.0" prefWidth="1143.0">
+               <columns>
+                  <TableColumn fx:id="id_coluna_tb" prefWidth="60.0" text="ID" />
+                  <TableColumn fx:id="nome_coluna_tb" prefWidth="142.0" text="Nome" />
+                  <TableColumn fx:id="peso_coluna_tb" minWidth="0.0" prefWidth="112.0" text="Peso" />
+                  <TableColumn fx:id="ns_coluna_tb" minWidth="0.0" prefWidth="134.0" text="NS" />
+                  <TableColumn fx:id="preco_coluna_tb" minWidth="0.0" prefWidth="123.0" text="Preço" />
+                  <TableColumn fx:id="quantidade_coluna_tb" prefWidth="119.0" text="Quantidade" />
+                  <TableColumn fx:id="local_coluna_tb" prefWidth="256.0" text="Local" />
+                  <TableColumn fx:id="reponsavel_coluna_tb" minWidth="0.0" prefWidth="196.0" text="Responsavel" />
+               </columns>
+            </TableView>
+            <Label layoutX="31.0" layoutY="21.0" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="Equipamentos Cadastrados">
+               <font>
+                  <Font name="Lucida Sans Regular" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="busca" layoutX="978.0" layoutY="22.0" prefHeight="25.0" prefWidth="163.0" />
+            <ImageView fx:id="buscar" fitHeight="25.0" fitWidth="25.0" layoutX="1149.0" layoutY="22.0" onMouseClicked="#buscarEquipamento" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@lupa.png" />
+               </image>
+            </ImageView>
+            <TableView fx:id="tabela_carrinho" layoutX="31.0" layoutY="357.0" prefHeight="221.0" prefWidth="684.0">
+               <columns>
+                  <TableColumn fx:id="id_carrinho" prefWidth="66.0" text="ID" />
+                  <TableColumn fx:id="nome_carrinho" prefWidth="248.0" text="Nome" />
+                  <TableColumn fx:id="quantidade_carrinho" minWidth="0.0" prefWidth="110.0" text="Quantidade" />
+                  <TableColumn fx:id="preco_carrinho" minWidth="0.0" prefWidth="110.0" text="Valor Unit" />
+                  <TableColumn fx:id="valorTotal_carrinho" minWidth="0.0" prefWidth="149.0" text="Valor Total" />
+               </columns>
+            </TableView>
+            <Label layoutX="31.0" layoutY="322.0" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="Carrinho">
+               <font>
+                  <Font name="Lucida Sans Regular" size="32.0" />
+               </font>
+            </Label>
+            <Pane layoutX="802.0" layoutY="374.0" prefHeight="188.0" prefWidth="339.0" style="-fx-background-color: #1C3940; -fx-border-color: white;">
+               <children>
+                  <Button fx:id="finalizar" layoutX="182.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#finalizarCompra" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: #ADBF95;" text="Finalizar Venda" textFill="WHITE" />
+                  <Label text="Label" />
+                  <Label fx:id="labelTotal" layoutX="101.0" layoutY="74.0" style="-fx-font-weight: bold; -fx-font-size: 32px;" text="R$ 0,00" textFill="WHITE" />
+                  <Label layoutX="117.0" layoutY="22.0" style="-fx-font-weight: bold; -fx-font-size: 32px;" text="Total:" textFill="WHITE" />
+                  <Button fx:id="cancelarAdd1" layoutX="37.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#voltarInicio" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: FF8282;" text="Cancelar" textFill="WHITE" />
+               </children>
+            </Pane>
+            <Button fx:id="remove" layoutX="622.0" layoutY="587.0" mnemonicParsing="false" onMouseClicked="#removeEquipamento" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: FF8282;" text="Remover" textFill="WHITE" />
+            <Button fx:id="add" layoutX="1081.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#mostrarAddQuantidade" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #ADBF95;" text="Adicionar" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="noEquipamento" layoutX="1011.0" layoutY="65.0" text="Selecione um equipamento" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="qtdInvalida" layoutX="1073.0" layoutY="65.0" text="Quantidade Inválida" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
