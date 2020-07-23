@@ -111,7 +111,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 	}
 	
 	public void deletar(ClienteVO pessoa) {
-		super.deletar(pessoa);
+		
 		
 		String sql = "delete from pessoa where id=?";
 		PreparedStatement ptst;
@@ -120,6 +120,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setLong(1, pessoa.getId_cliente());
 			ptst.executeUpdate();
+			super.deletar(pessoa);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

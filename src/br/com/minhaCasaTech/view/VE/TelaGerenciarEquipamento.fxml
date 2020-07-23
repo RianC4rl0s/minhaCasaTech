@@ -66,7 +66,7 @@
                   <Font size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="responsavel_eqp_rdb4" layoutX="33.0" layoutY="240.0" mnemonicParsing="false" text="Responsavel" textFill="WHITE" toggleGroup="$grupoRadio">
+            <RadioButton fx:id="responsavel_eqp_rdb4" disable="true" layoutX="33.0" layoutY="240.0" mnemonicParsing="false" text="Responsavel" textFill="WHITE" toggleGroup="$grupoRadio" visible="false">
                <font>
                   <Font size="15.0" />
                </font>
@@ -75,7 +75,7 @@
             <Separator layoutX="50.0" layoutY="183.0" prefWidth="200.0" />
             <Separator layoutX="50.0" layoutY="229.0" prefWidth="200.0" />
             <Separator layoutX="50.0" layoutY="108.0" prefWidth="200.0" />
-            <Separator layoutX="50.0" layoutY="270.0" prefWidth="200.0" />
+            <Separator disable="true" layoutX="50.0" layoutY="270.0" prefWidth="200.0" visible="false" />
          </children>
       </Pane>
       <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">

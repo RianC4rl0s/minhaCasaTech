@@ -128,17 +128,20 @@ public class GerenciarEquipamentoController implements Initializable{
 	    }
 	    public void excluirEquipamento() {
 	    	
-	    	
-	    	try {
-	    		exception_jlb.setText("");
-		    	EquipamentoBO ebo = new EquipamentoBO();
-		    	TableViewSelectionModel<EquipamentoVO> selectedModel = tabela_equipamento.getSelectionModel();
-		    	
-		    	ebo.deletar(selectedModel.getSelectedItem());
-			} catch (Exception e) {
-				exception_jlb.setText("Nenhum item selecionado");
-			}
-	    
+	    	TableViewSelectionModel<EquipamentoVO> selectedModel = tabela_equipamento.getSelectionModel();
+	    	if( selectedModel == null) {
+	    		exception_jlb.setText("Nenhum item selecionado");
+	    	}else{
+		    	try {
+		    		exception_jlb.setText("");
+			    	EquipamentoBO ebo = new EquipamentoBO();
+			    	
+			    	
+			    	ebo.deletar(selectedModel.getSelectedItem());
+				} catch (Exception e) {
+					
+				}
+	    	}
 	    	
 	    	
 	    	recarregarTela();

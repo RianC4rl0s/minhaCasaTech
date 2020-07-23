@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.minhaCasaTech.model.BO.CaixaBO;
+import br.com.minhaCasaTech.model.BO.ClienteBO;
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
 import br.com.minhaCasaTech.model.VO.CaixaVO;
+import br.com.minhaCasaTech.model.VO.ClienteVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ProprietarioVO;
@@ -37,12 +39,12 @@ public class testeDAo {
 		System.out.println(l.getCasa());
 		System.out.println(l.getCompartimento());
 		*/
-		EquipamentoVO eqp = new EquipamentoVO();
-		EquipamentoBO ebo = new EquipamentoBO();
-		List<EquipamentoVO> eqpL = new ArrayList<>();
-		eqpL = ebo.buscarPorNome("joao");
+		ClienteVO eqp = new ClienteVO();
+		ClienteBO ebo = new ClienteBO();
+		List<ClienteVO> eqpL = new ArrayList<>();
+		eqpL = ebo.listar();
 		for (int i = 0; i < eqpL.size(); i++) {
-			System.out.println(eqpL.get(i));
+			System.out.println(eqpL.get(i).getNome());
 		}
 	}
 

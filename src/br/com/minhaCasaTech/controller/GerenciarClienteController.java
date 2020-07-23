@@ -1,15 +1,17 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.minhaCasaTech.model.DAO.ClienteDAO;
+import br.com.minhaCasaTech.model.BO.ClienteBO;
+
 import br.com.minhaCasaTech.model.VO.ClienteVO;
-import br.com.minhaCasaTech.model.VO.LocalVO;
+
 import br.com.minhaCasaTech.view.Telas;
+import exception.InsertException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,21 +61,8 @@ public class GerenciarClienteController implements Initializable{
 		nome_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		endereco_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 		cpf_cliente_tb.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-		ClienteDAO cdao = new ClienteDAO();
-		ResultSet rs = cdao.listar();
-		try{
-			while(rs.next()) {
-				ClienteVO cliente = new ClienteVO();
-				cliente.setNome(rs.getString("nome"));
-				cliente.setCpf(rs.getString("cpf"));
-				cliente.setEndereco(rs.getString("endereco"));
-				clientes.add(cliente);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		//ClienteBO cbo = new ClienteBo();
-		//clientes = cbo.listar();
+		ClienteBO cbo = new ClienteBO();
+		clientes = cbo.listar();
 		tabela_cliente_tb.setItems(FXCollections.observableArrayList(clientes));
 	}
 	public void chamarTelaCadastrarCliente() {
@@ -85,10 +74,15 @@ public class GerenciarClienteController implements Initializable{
 		}
 	}
 	public void excluirItem() {
-		//ClienteBO cbo = new ClienteBO();
-		//TableViewSelectionModel<ClienteBO> selectionModel = tabela_cliente_tb.getSelectionModel();
+			ClienteBO cbo = new ClienteBO();
+			TableViewSelectionModel<ClienteVO> selectionModel = tabela_cliente_tb.getSelectionModel();
 		
-		 //cbo.deletar(selectionModel.getSelectedItem());
+			try {
+				cbo.deletar(selectionModel.getSelectedItem());
+			} catch (InsertException e) {
+				
+				e.printStackTrace();
+			}
 		 recarregarTela();
 	}
 	public void voltarInicio() {
