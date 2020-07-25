@@ -56,12 +56,7 @@ public class CadastrarEquipamentoController implements Initializable{
 		e.setPeso(Double.parseDouble(peso_equipamento_txf.getText()));
 		e.setPreco(Double.parseDouble(preco_equipamento_txf.getText()));
 		e.setQuantidade(Integer.parseInt(quantidade_equipamento_txf.getText()));
-		try{
-			exception_jlb.setText("");
-			e.setNumeroDeSerie(Integer.parseInt(ns_equipamento_txf.getText()));
-		}catch(Exception e2) {
-			exception_jlb.setText("Numero de serie maior que o suportado");
-		}
+		e.setNumeroDeSerie(Integer.parseInt(ns_equipamento_txf.getText()));
 		e.setLocal(select_local_cbb.getSelectionModel().getSelectedItem());
 		e.setResponsavel(select_responsavel_bb.getSelectionModel().getSelectedItem());
 		

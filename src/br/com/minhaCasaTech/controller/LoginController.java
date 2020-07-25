@@ -43,23 +43,7 @@ public class LoginController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				/*if(respAuten instanceof ProprietarioVO) {
-					System.out.println("é proprietario");
-						try {
-							Telas.telaPrincipal();
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				}else if(respAuten instanceof FuncionarioVO) {
-					System.out.println("é funcionario");	
-					try {
-							Telas.telaPrincipalFuncionario();
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				}*/
+				
 		}
 			else {
 			erro_login_lb.setVisible(true);
@@ -69,3 +53,21 @@ public class LoginController {
 		}
 	}
 }
+
+/*if(respAuten instanceof ProprietarioVO) {
+System.out.println("é proprietario");
+	try {
+		Telas.telaPrincipal();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}else if(respAuten instanceof FuncionarioVO) {
+System.out.println("é funcionario");	
+try {
+		Telas.telaPrincipalFuncionario();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}*/
