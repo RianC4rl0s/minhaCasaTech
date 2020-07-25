@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.minhaCasaTech.model.DAO.LocalDAO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
-public class LocalBO implements localInterBO{
+public class LocalBO implements BaseInterBO<LocalVO>{
 
 	public void cadastrar(LocalVO local) {
 		LocalDAO dao = new LocalDAO();

@@ -53,7 +53,7 @@ public class CaixaDAO {
 		
 	}
 	public void attValor(double valor) {
-		String sql = "upadte caixa set valor = ? where id = 1";
+		String sql = "update caixa set valor = ? where id = 1";
 		try {
 			PreparedStatement pst =getCon().prepareStatement(sql);
 			pst.setDouble(1, valor);

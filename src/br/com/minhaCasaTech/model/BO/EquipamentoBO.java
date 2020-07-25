@@ -12,7 +12,7 @@ import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import exception.NotFoundException;
 
 
-public class EquipamentoBO implements EquipamentoInterBO{
+public class EquipamentoBO implements BaseInterBO<EquipamentoVO>{
 	
 	public void cadastrar(EquipamentoVO equipamento) {
 		EquipamentoDAO edao = new EquipamentoDAO();

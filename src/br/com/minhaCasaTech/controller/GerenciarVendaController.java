@@ -19,6 +19,7 @@ import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.model.VO.VendaVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.InsertException;
+import exception.NotFoundException;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -59,7 +60,7 @@ public class GerenciarVendaController implements Initializable {
 	@FXML private Label qtdInvalida;
 	@FXML private Label labelTotal;
 	@FXML private Label saldoInsuficiente;
-	@FXML private ComboBox<ClienteVO> clienteCB;
+	@FXML private ComboBox clienteCB;
 	@FXML private TitledPane qtdEquipamento;
 	@FXML private TextField quantidade;
 
@@ -112,7 +113,16 @@ public class GerenciarVendaController implements Initializable {
     
     	caixa.addValor(venda.getValorTotal());
     	try {
-    		venda.setCliente(clienteCB.getValue());
+    		ClienteBO cbo = new ClienteBO();
+    		ClienteVO cliente = new ClienteVO();
+    		cliente.setCpf(clienteCB.getSelectionModel().getSelectedItem().toString());
+    		try {
+				cliente = cbo.buscarPorCpf(cliente);
+				cliente = cbo.buscarPorId(cliente);
+			} catch (NotFoundException e1) {
+				e1.printStackTrace();
+			}
+    		venda.setCliente(cliente);
     		venda.setTipo(0);
     		System.out.println(venda);
     		vbo.cadastrar(venda);
