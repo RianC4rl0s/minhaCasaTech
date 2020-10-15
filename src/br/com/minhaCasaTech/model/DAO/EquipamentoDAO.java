@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-import br.com.minhaCasaTech.model.BO.LocalBO;
+
 
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
-import br.com.minhaCasaTech.model.VO.LocalVO;
+
 
 
 

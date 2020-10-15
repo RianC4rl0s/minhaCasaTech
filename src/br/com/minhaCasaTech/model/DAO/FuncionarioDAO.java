@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
-import br.com.minhaCasaTech.model.VO.PessoaVO;
+
 
 public class FuncionarioDAO<VO extends FuncionarioVO> extends ResponsavelDAO<VO> {
 	public void cadastrar(VO pessoa) {
