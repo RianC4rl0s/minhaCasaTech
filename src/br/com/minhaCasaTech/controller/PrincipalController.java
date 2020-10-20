@@ -206,6 +206,7 @@ public class PrincipalController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		peso_t_tb.setCellValueFactory(new PropertyValueFactory<>("pesoTotal"));
 		totalP_t_tb.setCellValueFactory(new PropertyValueFactory<>("totalEquip"));
 		tipo_t_tb.setCellValueFactory(new PropertyValueFactory<>("tipo"));
@@ -213,6 +214,7 @@ public class PrincipalController implements Initializable{
 		data_t_tb.setCellValueFactory(new PropertyValueFactory<>("data"));
 		
 		tabela_transacao_tb.setItems(FXCollections.observableArrayList(ts));
+		
 	}
 	
 }

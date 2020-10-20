@@ -38,7 +38,8 @@ private static Stage primaryStage;
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.show();
-		telaLogin();
+		telaPrincipal();
+		//telaLogin();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -274,5 +275,7 @@ private static Stage primaryStage;
 		 System.out.println("chegou aq");
 		System.out.println("Tela aberta");
 	}
-	
+	public static void fecharTela() throws Exception {
+		primaryStage.close();
+	}
 }

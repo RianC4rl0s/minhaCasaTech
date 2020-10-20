@@ -3,9 +3,9 @@ package br.com.minhaCasaTech.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import br.com.minhaCasaTech.model.BO.EquipamentoBO;
+
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
-import br.com.minhaCasaTech.model.VO.EquipamentoVO;
+
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
 import br.com.minhaCasaTech.model.VO.ProprietarioVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
@@ -14,7 +14,7 @@ import exception.InsertException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableView.TableViewSelectionModel;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;

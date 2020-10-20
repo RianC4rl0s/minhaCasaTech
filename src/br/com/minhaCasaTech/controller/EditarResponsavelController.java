@@ -4,8 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
-import br.com.minhaCasaTech.model.VO.FuncionarioVO;
-import br.com.minhaCasaTech.model.VO.ProprietarioVO;
+
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.InsertException;

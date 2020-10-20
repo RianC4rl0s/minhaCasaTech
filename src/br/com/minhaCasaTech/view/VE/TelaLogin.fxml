@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #95BBBF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.LoginController">
    <children>
-      <Pane layoutX="365.0" layoutY="185.0" prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: #BAD9D6;">
+      <Pane layoutX="365.0" layoutY="185.0" prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: #BAD9D6; -fx-background-radius: 5px;">
          <children>
             <ImageView fitHeight="109.0" fitWidth="129.0" layoutX="222.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -19,7 +19,7 @@
             <TextField fx:id="login_txf" layoutX="174.0" layoutY="184.0" prefHeight="25.0" prefWidth="203.0" promptText="Login" />
             <PasswordField fx:id="senha_pf" layoutX="174.0" layoutY="230.0" prefHeight="25.0" prefWidth="203.0" promptText="Senha" />
             <Button fx:id="entrar_btm" layoutX="235.0" layoutY="274.0" mnemonicParsing="false" onAction="#autenticar" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: #466673; -fx-border-radius: 25px;" text="Entrar" textFill="WHITE" />
-            <Label layoutX="222.0" layoutY="143.0" text="MINHA CASA" />
+            <Label layoutX="205.0" layoutY="143.0" text="MINHA CASA" />
             <Label layoutX="297.0" layoutY="138.0" text="TECH" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -33,5 +33,11 @@
             <Label fx:id="error_senha_lb" layoutX="174.0" layoutY="213.0" text="Usuario ou senha incorretos" textFill="RED" visible="false" />
          </children>
       </Pane>
+      <ImageView fx:id="close_button_icon" fitHeight="27.0" fitWidth="27.0" layoutX="1239.0" layoutY="14.0" opacity="0.43" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/img/icon/close.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="close_button" layoutX="1232.0" layoutY="8.0" mnemonicParsing="false" onAction="#fechar" opacity="0.14" prefHeight="39.0" prefWidth="42.0" style="-fx-background-radius: 15px;" />
    </children>
 </Pane>

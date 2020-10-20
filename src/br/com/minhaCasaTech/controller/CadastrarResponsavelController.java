@@ -1,24 +1,24 @@
 package br.com.minhaCasaTech.controller;
 
-import java.awt.Checkbox;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import br.com.minhaCasaTech.model.BO.LocalBO;
+
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
-import br.com.minhaCasaTech.model.VO.EquipamentoVO;
+
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
-import br.com.minhaCasaTech.model.VO.LocalVO;
+
 import br.com.minhaCasaTech.model.VO.ProprietarioVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.InsertException;
-import javafx.collections.FXCollections;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
+
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;

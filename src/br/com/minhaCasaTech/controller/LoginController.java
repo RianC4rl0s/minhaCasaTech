@@ -1,12 +1,12 @@
 package br.com.minhaCasaTech.controller;
 
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
-import br.com.minhaCasaTech.model.VO.FuncionarioVO;
-import br.com.minhaCasaTech.model.VO.ProprietarioVO;
+
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.NotFoundException;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -36,7 +36,7 @@ public class LoginController {
 				e1.printStackTrace();
 			}
 			if(respAuten.getLogin().equals(login_txf.getText()) && respAuten.getSenha().equals(senha_pf.getText())){
-				System.out.println("Senha e user confere");
+				System.out.println("Senha e user conferem");
 				try {
 					Telas.telaPrincipal();
 				} catch (Exception e) {
@@ -49,7 +49,15 @@ public class LoginController {
 			erro_login_lb.setVisible(true);
 			error_senha_lb.setVisible(true);
 		}
-		
+			
+		}
+	}
+	public void fechar() {
+		try {
+			Telas.fecharTela();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
