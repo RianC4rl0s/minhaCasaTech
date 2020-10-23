@@ -1,6 +1,7 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -183,7 +185,7 @@ public class PrincipalController implements Initializable{
 
     @FXML
     private Button gerenciar_equipamento_menu_btm;
-
+    //DECLARA AS COLUNAS
     @FXML
     private TableColumn<TransacaoVO, String> peso_t_tb;
     @FXML
@@ -192,27 +194,53 @@ public class PrincipalController implements Initializable{
     private TableColumn<TransacaoVO, String> tipo_t_tb;
 	@FXML
     private TableColumn<TransacaoVO, String> valor_t_tb;
-    @FXML
+    //DECLARA A TABELA
+	@FXML
     private TableView<TransacaoVO> tabela_transacao_tb;
-
+	
+	//COLUNA DO PROBLEMA
     @FXML
     private TableColumn<TransacaoVO, Calendar> data_t_tb;
+    //FUNÇAO A SER CHAMADA QUANDO INICIALIAR A TELA(TIPO UM MAIN)
     public void preencherTabela(){
-		List<TransacaoVO> ts = new ArrayList<>();
-		TransacaoBO tbo = new TransacaoBO();
+		//LISTA
+    	List<TransacaoVO> ts = new ArrayList<>();
+		//CONECÇÃO  DO BANCCO
+    	TransacaoBO tbo = new TransacaoBO();
+		
 		try {
 			ts =tbo.listar();
 		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//ISSO É PARA TESTAR O FORMATO DA DATA
+		int day =  ts.get(1).getData().get(Calendar.DAY_OF_MONTH);
 		
+		//AQ É EU DEFINOQ QUAIS COLUNAS Q VÃO RECEBER AS PROPRIEDADES DAS VARIAVEI COM OS NOME SMAIS A DIREITA
 		peso_t_tb.setCellValueFactory(new PropertyValueFactory<>("pesoTotal"));
 		totalP_t_tb.setCellValueFactory(new PropertyValueFactory<>("totalEquip"));
 		tipo_t_tb.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 		valor_t_tb.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
+		//BO TA AQ
 		data_t_tb.setCellValueFactory(new PropertyValueFactory<>("data"));
-		
+		data_t_tb.setCellFactory(coluna -> {
+			return new TableCell<TransacaoVO,Calendar>(){
+				//CRIA UM FORMATO
+				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				@Override
+				protected void updateItem(Calendar item, boolean empty) {
+					super.updateItem(item, empty);
+					if(item == null||empty) {
+						setText(null);
+					}else {
+						//.GETTIME RETORNA UM DATE POR ISSO O SIMPLEDATEFORMAT FUNCIONA
+						setText(formato.format(item.getTime()));
+					}
+				}
+			};
+		});
+		//AQ EU PEGO AQUELE ARRAYLIST E A FUNÇÃO SETA ELE AUTOMATICAMENTE NA TABELA
 		tabela_transacao_tb.setItems(FXCollections.observableArrayList(ts));
 		
 	}

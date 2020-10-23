@@ -53,10 +53,12 @@ public class CaixaDAO {
 		
 	}
 	public void attValor(double valor) {
+		System.out.println("O novo valor: " + valor);
 		String sql = "update caixa set valor = ? where id = 1";
 		try {
 			PreparedStatement pst =getCon().prepareStatement(sql);
 			pst.setDouble(1, valor);
+			pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

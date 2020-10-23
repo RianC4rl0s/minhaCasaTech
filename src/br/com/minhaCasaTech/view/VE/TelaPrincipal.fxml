@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.media.*?>
@@ -88,7 +89,10 @@
       </Pane>
       <Pane layoutX="299.0" layoutY="-2.0" prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #1C3940;">
          <children>
-            <Button fx:id="sair_btm" layoutX="907.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" styleClass="exitButton" stylesheets="@css/style.css" text="Sair" textFill="WHITE" />
+            <Button fx:id="sair_btm" layoutX="907.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" styleClass="exitButton" stylesheets="@css/style.css" text="Sair" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="CROSSHAIR" />
+               </cursor></Button>
          </children>
       </Pane>
    </children>

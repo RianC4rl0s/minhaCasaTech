@@ -13,14 +13,18 @@ public class CaixaBO {
 	public void addValor(Double valor) {
 		double valorO = pegarValor().getValor();
 		valorO = valorO + valor;
+		System.out.println(valorO);
 		CaixaDAO cdao = new CaixaDAO();
 		cdao.attValor(valorO);
+		System.out.println(valorO);
 	}
 	public void subValor(Double valor) {
 		double valorO = pegarValor().getValor();
 		valorO = valorO - valor;
+		System.out.println(valorO);
 		CaixaDAO cdao = new CaixaDAO();
 		cdao.attValor(valorO);
+		System.out.println(valorO);
 	}
 	
 	public CaixaVO pegarValor() {
