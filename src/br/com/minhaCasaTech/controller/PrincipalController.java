@@ -215,8 +215,10 @@ public class PrincipalController implements Initializable{
 			e.printStackTrace();
 		}
 		//ISSO É PARA TESTAR O FORMATO DA DATA
-		int day =  ts.get(1).getData().get(Calendar.DAY_OF_MONTH);
-		
+		//int day =  ts.get(1).getData().get(Calendar.DAY_OF_MONTH);
+		for(int i = 0; i < ts.size();i++) {
+			System.out.println(ts.get(i));
+		}
 		//AQ É EU DEFINOQ QUAIS COLUNAS Q VÃO RECEBER AS PROPRIEDADES DAS VARIAVEI COM OS NOME SMAIS A DIREITA
 		peso_t_tb.setCellValueFactory(new PropertyValueFactory<>("pesoTotal"));
 		totalP_t_tb.setCellValueFactory(new PropertyValueFactory<>("totalEquip"));

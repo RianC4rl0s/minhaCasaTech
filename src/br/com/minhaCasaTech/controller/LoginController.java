@@ -15,7 +15,8 @@ public class LoginController {
 	@FXML TextField senha_pf;
 	@FXML Label erro_login_lb;
 	@FXML Label error_senha_lb;
-	
+	 @FXML
+	    private Label erro_senha_format;
 	public void autenticar(){
 	
 		
@@ -24,31 +25,38 @@ public class LoginController {
 			error_senha_lb.setVisible(true);
 			System.out.println("é sem nada");
 		}else {
-			ResponsavelVO resp = new ResponsavelVO();
-			resp.setLogin(login_txf.getText());
-			ResponsavelBO<ResponsavelVO> rbo= new ResponsavelBO<>();
-			ResponsavelVO respAuten = new ResponsavelVO();
-			try {
-				respAuten = rbo.buscarPorLogin(resp);
-				System.out.println("Autenticou");
-			} catch (NotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			if(respAuten.getLogin().equals(login_txf.getText()) && respAuten.getSenha().equals(senha_pf.getText())){
-				System.out.println("Senha e user conferem");
+			if(senha_pf.getText().matches("(.*)([a-zA-Z][0-9])(.*)") == true) {
+				ResponsavelVO resp = new ResponsavelVO();
+				resp.setLogin(login_txf.getText());
+				ResponsavelBO<ResponsavelVO> rbo= new ResponsavelBO<>();
+				ResponsavelVO respAuten = new ResponsavelVO();
 				try {
-					Telas.telaPrincipal();
-				} catch (Exception e) {
+					respAuten = rbo.buscarPorLogin(resp);
+					System.out.println("Autenticou");
+				} catch (NotFoundException e1) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e1.printStackTrace();
 				}
-				
-		}
+				if(respAuten.getLogin().equals(login_txf.getText()) && respAuten.getSenha().equals(senha_pf.getText())){
+					System.out.println("Senha e user conferem");
+					try {
+						Telas.telaPrincipal();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+			}
+				else {
+				erro_login_lb.setVisible(true);
+				error_senha_lb.setVisible(true);
+			}
+			}
 			else {
-			erro_login_lb.setVisible(true);
-			error_senha_lb.setVisible(true);
-		}
+				System.out.println("A senha deve conter caracteres Maiusculos, minusculos e numeros");
+				erro_senha_format.setVisible(true);
+			}
+			
 			
 		}
 	}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.MenuProprietarioController">
+   <children>
+      <TabPane layoutY="89.0" prefHeight="630.0" prefWidth="1280.0" style="-fx-background-color: #BAD9D6;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Gerenciar Funcionarios">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="640.0" prefWidth="1280.0">
+                     <children>
+                        <TableView fx:id="table_funcionario" layoutX="327.0" layoutY="20.0" prefHeight="552.0" prefWidth="934.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Gerenciar Caixa">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Pane prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
+         <children>
+            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Button fx:id="voltar_btm" layoutX="21.0" layoutY="54.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="528.0" layoutY="51.0" text="Menu do Proprietário" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

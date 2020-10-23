@@ -38,12 +38,21 @@ private static Stage primaryStage;
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.show();
-		telaPrincipal();
-		//telaLogin();
+		//telaPrincipal();
+		telaLogin();
+		//telaLoginAdmin();
 	}
 	
 	public static void telaLogin() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaLogin.fxml"));
+		
+		Scene cena = new Scene(root);
+		
+		
+		primaryStage.setScene(cena);
+	}
+	public static void telaLoginAdmin() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaLoginAdmin.fxml"));
 		
 		Scene cena = new Scene(root);
 		
