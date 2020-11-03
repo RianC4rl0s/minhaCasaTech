@@ -44,7 +44,7 @@ public class TransacaoBO implements BaseInterBO<TransacaoVO>{
 		// TODO Auto-generated method stub		
 		try {
 			ResultSet rs = dao0.listar();
-			ArrayList<TransacaoVO> transacoes = new ArrayList<TransacaoVO>();
+			List<TransacaoVO> transacoes = new ArrayList<>();
 			while (rs.next())
 				transacoes.add(this.montarTransacao(rs));
 			

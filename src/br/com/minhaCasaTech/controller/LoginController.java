@@ -1,7 +1,7 @@
 package br.com.minhaCasaTech.controller;
 
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
-
+import br.com.minhaCasaTech.model.VO.ProprietarioVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.NotFoundException;
@@ -39,11 +39,22 @@ public class LoginController {
 				}
 				if(respAuten.getLogin().equals(login_txf.getText()) && respAuten.getSenha().equals(senha_pf.getText())){
 					System.out.println("Senha e user conferem");
-					try {
-						Telas.telaPrincipal();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					if(respAuten instanceof ProprietarioVO) {
+						try {
+							Telas.telaSelecionarSetor();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							System.out.println("não foi possivel entrar na tela");
+						}
+					}else {
+							System.out.println("não é proprietario");
+						try {
+							Telas.telaPrincipal();
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					
 			}

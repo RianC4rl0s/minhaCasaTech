@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.SetorProprietarioController">
+   <children>
+      <Pane prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
+         <children>
+            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Button fx:id="voltar_btm" layoutX="10.0" layoutY="54.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="528.0" layoutY="51.0" text="Menu do Proprietário" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TabPane layoutY="81.0" prefHeight="639.0" prefWidth="1280.0" stylesheets="@css/style.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Gerenciar Responsavel">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="593.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
+                     <children>
+                        <Pane layoutX="14.0" layoutY="16.0" prefHeight="569.0" prefWidth="1252.0" style="-fx-background-color: BAD9D6; -fx-background-radius: 8px;">
+                           <children>
+                              <TableView fx:id="tabela_responsaveis" layoutX="27.0" layoutY="49.0" prefHeight="509.0" prefWidth="1194.0">
+                                 <columns>
+                                    <TableColumn fx:id="id_responsavel" prefWidth="91.0" text="ID" />
+                                    <TableColumn fx:id="nome" prefWidth="399.0" text="Nome" />
+                                    <TableColumn fx:id="endereco" minWidth="0.0" prefWidth="434.0" text="Endereço" />
+                                    <TableColumn fx:id="telefone" minWidth="0.0" prefWidth="228.0" text="Telefone" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="excluir" layoutX="207.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#excluirResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
+                              <Button fx:id="editar_cliente_btm" layoutX="122.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#chamarTelaEditarResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
+                              <Button fx:id="cadastrar" layoutX="27.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#chamarTelaCadastrarResponsavel" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
+                              <TextField fx:id="buscar_responsavel_txf" layoutX="294.0" layoutY="9.0" prefHeight="31.0" prefWidth="886.0" promptText="Nome/id/telefone" />
+                              <Button fx:id="buscar_responsavel_btm" layoutX="1180.0" layoutY="9.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" style="-fx-background-color: #ADBF95;" text="?" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Ferramentas do sistema">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1C3940;">
+                     <children>
+                        <Pane layoutX="14.0" layoutY="14.0" prefHeight="570.0" prefWidth="1256.0" style="-fx-background-color: BAD9D6; -fx-background-radius: 8px;" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</Pane>

@@ -39,8 +39,9 @@ private static Stage primaryStage;
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.show();
 		//telaPrincipal();
-		telaLogin();
+		//telaLogin();
 		//telaLoginAdmin();
+		telaSetorProprietario();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -53,6 +54,14 @@ private static Stage primaryStage;
 	}
 	public static void telaLoginAdmin() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaLoginAdmin.fxml"));
+		
+		Scene cena = new Scene(root);
+		
+		
+		primaryStage.setScene(cena);
+	}
+	public static void telaSelecionarSetor()  throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaSelecionarSetor.fxml"));
 		
 		Scene cena = new Scene(root);
 		
@@ -286,5 +295,15 @@ private static Stage primaryStage;
 	}
 	public static void fecharTela() throws Exception {
 		primaryStage.close();
+	}
+	public static void telaSetorProprietario() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaSetorProprietario.fxml"));
+		
+	    
+		Scene cena = new Scene(root);
+		
+		
+		primaryStage.setScene(cena);
+		
 	}
 }
