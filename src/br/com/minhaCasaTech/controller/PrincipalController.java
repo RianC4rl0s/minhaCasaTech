@@ -149,7 +149,6 @@ public class PrincipalController implements Initializable{
 		CaixaVO c = new CaixaVO();
 		CaixaBO cbo = new CaixaBO();
 		c = cbo.pegarValor();
-		System.out.println(c.getValor());
 		caixa_txf.setText( String.valueOf(c.getValor()));
 	}
 	
@@ -201,11 +200,11 @@ public class PrincipalController implements Initializable{
 	//COLUNA DO PROBLEMA
     @FXML
     private TableColumn<TransacaoVO, Calendar> data_t_tb;
-    //FUNÇAO A SER CHAMADA QUANDO INICIALIAR A TELA(TIPO UM MAIN)
+    //FUNï¿½AO A SER CHAMADA QUANDO INICIALIAR A TELA(TIPO UM MAIN)
     public void preencherTabela(){
 		//LISTA
     	List<TransacaoVO> ts = new ArrayList<>();
-		//CONECÇÃO  DO BANCCO
+		//CONECï¿½ï¿½O  DO BANCCO
     	TransacaoBO tbo = new TransacaoBO();
 		
 		try {
@@ -214,12 +213,12 @@ public class PrincipalController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//ISSO É PARA TESTAR O FORMATO DA DATA
+		//ISSO ï¿½ PARA TESTAR O FORMATO DA DATA
 		//int day =  ts.get(1).getData().get(Calendar.DAY_OF_MONTH);
-		for(int i = 0; i < ts.size();i++) {
+		/*for(int i = 0; i < ts.size();i++) {
 			System.out.println(ts.get(i));
-		}
-		//AQ É EU DEFINOQ QUAIS COLUNAS Q VÃO RECEBER AS PROPRIEDADES DAS VARIAVEI COM OS NOME SMAIS A DIREITA
+		}*/
+		//AQ ï¿½ EU DEFINOQ QUAIS COLUNAS Q Vï¿½O RECEBER AS PROPRIEDADES DAS VARIAVEI COM OS NOME SMAIS A DIREITA
 		peso_t_tb.setCellValueFactory(new PropertyValueFactory<>("pesoTotal"));
 		totalP_t_tb.setCellValueFactory(new PropertyValueFactory<>("totalEquip"));
 		tipo_t_tb.setCellValueFactory(new PropertyValueFactory<>("tipo"));
@@ -242,7 +241,7 @@ public class PrincipalController implements Initializable{
 				}
 			};
 		});
-		//AQ EU PEGO AQUELE ARRAYLIST E A FUNÇÃO SETA ELE AUTOMATICAMENTE NA TABELA
+		//AQ EU PEGO AQUELE ARRAYLIST E A FUNï¿½ï¿½O SETA ELE AUTOMATICAMENTE NA TABELA
 		tabela_transacao_tb.setItems(FXCollections.observableArrayList(ts));
 		
 	}

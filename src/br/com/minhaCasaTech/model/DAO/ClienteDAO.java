@@ -66,14 +66,14 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 		return rs;
 	}
 	
-	public ResultSet buscarPorCpf(ClienteVO pessoa) {
+	public ResultSet buscarPorCpf(String cpf) {
 		String sql = "select * from cliente where cpf = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		
 		try {
 			ptst = getCon().prepareStatement(sql);
-			ptst.setString(1, pessoa.getCpf());
+			ptst.setString(1, cpf);
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();

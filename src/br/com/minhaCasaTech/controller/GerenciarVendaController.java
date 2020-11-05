@@ -110,22 +110,19 @@ public class GerenciarVendaController implements Initializable {
     	}
     	venda.setData();
     	
-    
-    	caixa.addValor(venda.getValorTotal());
     	try {
     		ClienteBO cbo = new ClienteBO();
     		ClienteVO cliente = new ClienteVO();
     		cliente.setCpf(clienteCB.getSelectionModel().getSelectedItem().toString());
     		try {
-				cliente = cbo.buscarPorCpf(cliente);
-				cliente = cbo.buscarPorId(cliente);
+				cliente = cbo.buscarPorCpf(cliente.getCpf());
 			} catch (NotFoundException e1) {
 				e1.printStackTrace();
 			}
     		venda.setCliente(cliente);
     		venda.setTipo(0);
-    		System.out.println(venda);
     		vbo.cadastrar(venda);
+    		caixa.addValor(venda.getValorTotal());
     		try {
     			Telas.telaPrincipal();
     		}catch(Exception e) {

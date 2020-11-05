@@ -23,7 +23,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 	@Override
 	public void cadastrar(ClienteVO vo) throws InsertException {
 		try {
-			if (this.buscarPorCpf(vo) != null) {
+			if (this.buscarPorCpf(vo.getCpf()) != null) {
 					dao0.cadastrar(vo);
 			}					
 		} catch (NotFoundException e) {
@@ -61,8 +61,8 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 		return null;
 	}
 	
-	public ClienteVO buscarPorCpf(ClienteVO vo) throws NotFoundException {
-		ResultSet rs = dao0.buscarPorCpf(vo);
+	public ClienteVO buscarPorCpf(String cpf) throws NotFoundException {
+		ResultSet rs = dao0.buscarPorCpf(cpf);
 		
 		try {
 			ClienteVO generic = new ClienteVO();
@@ -105,7 +105,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 	@Override
 	public void editar(ClienteVO vo) throws InsertException {
 		try {
-			if (this.buscarPorCpf(vo) != null)
+			if (this.buscarPorCpf(vo.getCpf()) != null)
 				dao0.editar(vo);
 		} catch (NotFoundException e) {
 			throw new InsertException("Usuário não existe");
@@ -117,7 +117,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 	public void deletar(ClienteVO vo) throws InsertException {
 		try {
 			
-			if (this.buscarPorCpf(vo) != null) {
+			if (this.buscarPorCpf(vo.getCpf()) != null) {
 				ResultSet rs = dao0.buscarPorId(vo);
 				try {
 					rs.next();

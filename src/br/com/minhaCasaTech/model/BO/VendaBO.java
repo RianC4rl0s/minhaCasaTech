@@ -89,6 +89,7 @@ public class VendaBO implements BaseInterBO<VendaVO> {
 			
 			while (rs.next()) {
 				generic.setId_transacao(rs.getLong("id"));
+				System.out.println(buscarPorId(generic));
 				vendas.add(this.buscarPorId(generic));
 			}
 			

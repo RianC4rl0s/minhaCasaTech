@@ -63,18 +63,15 @@ public class RelatoriosController implements Initializable {
     	data_coluna_tb1.setCellValueFactory(new PropertyValueFactory<>("data"));
     
     	try {
-    		/*LocalDate localDate = dI.getValue();
-    		Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-    		Date date = Date.from(instant);*/
-    		
+    		LocalDate localDateI = dI.getValue();
     		Calendar cI = Calendar.getInstance();
-    		cI.set(2020,07,22);
+    		if (localDateI != null)
+    			cI.set(localDateI.getYear(),localDateI.getMonthValue()-1,localDateI.getDayOfMonth());
     		
-    		/*LocalDate localDate2 = dF.getValue();
-    		Instant instant2 = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-    		Date date2 = Date.from(instant);*/
+    		LocalDate localDateF = dF.getValue();
     		Calendar cF = Calendar.getInstance();
-    		cF.set(2020,07,23);
+    		if (localDateF != null)
+    			cF.set(localDateF.getYear(),localDateF.getMonthValue()-1,localDateF.getDayOfMonth());    
     		
 			tabela_vendas.setItems(FXCollections.observableArrayList(vbo.gerarRelatorio(cI, cF)));
 		} catch (NotFoundException e) {
@@ -90,24 +87,16 @@ public class RelatoriosController implements Initializable {
     	data_coluna_tb2.setCellValueFactory(new PropertyValueFactory<>("data"));
     
     	try {
+    		LocalDate localDateI = dI.getValue();
     		Calendar cI = Calendar.getInstance();
-    		/*dI.init(cI.get(Calendar.YEAR), cI.get(Calendar.MONTH), cI.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
-    	        @Override
-    	        public void onDateChanged(DatePicker datePicker, int i, int i2, int i3) {
-    	            cI.set(i, i2, i3);
-    	        }});
+    		if (localDateI != null)
+    			cI.set(localDateI.getYear(),localDateI.getMonthValue()-1,localDateI.getDayOfMonth());
     		
-    		*/
-    		cI.set(2020,06,22);
-    		
-    		/*LocalDate localDate2 = dF.getValue();
-    		Instant instant2 = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-    		Date date2 = Date.from(instant);*/
+    		LocalDate localDateF = dF.getValue();
     		Calendar cF = Calendar.getInstance();
-    		cF.set(2020,06,23);
+    		if (localDateF != null)
+    			cF.set(localDateF.getYear(),localDateF.getMonthValue()-1,localDateF.getDayOfMonth());    		
     		
-    		
-    		System.out.println(cbo.gerarRelatorio(cI, cF));
 			tabela_compras.setItems(FXCollections.observableArrayList(cbo.gerarRelatorio(cI, cF)));
 		} catch (NotFoundException e) {
 			e.printStackTrace();
@@ -115,8 +104,9 @@ public class RelatoriosController implements Initializable {
     }
 	
 	public void gerarRelatorio() {		
-		try {
+		try {			
 			Telas.telaRelatorio();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

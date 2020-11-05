@@ -84,7 +84,7 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 	}
 	
 	public ResultSet listar() {
-		String sql = "select * from transacao, transacao_equipamentos";
+		String sql = "select * from transacao t inner join transacao_equipamentos te where te.id_transacao = t.id";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		

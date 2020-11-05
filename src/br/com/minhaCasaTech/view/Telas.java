@@ -41,7 +41,7 @@ private static Stage primaryStage;
 		//telaPrincipal();
 		//telaLogin();
 		//telaLoginAdmin();
-		telaSetorProprietario();
+		telaGerenciarVenda();
 	}
 	
 	public static void telaLogin() throws Exception{
