@@ -41,7 +41,7 @@ private static Stage primaryStage;
 		//telaPrincipal();
 		//telaLogin();
 		//telaLoginAdmin();
-		telaGerenciarVenda();
+		telaGerenciarCliente();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -214,11 +214,11 @@ private static Stage primaryStage;
 	}	
 	public static void telaEditarCliente(ClienteVO cliente) throws Exception{
 		 System.out.println("Tela aberta");
-		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/EditarLocal.fxml"));
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("VE/TelaEditarCliente.fxml"));
 		
 		 System.out.println("Loader criado");
 		
-		 FXMLLoader.load(Telas.class.getResource("VE/EditarLocal.fxml"));
+		 FXMLLoader.load(Telas.class.getResource("VE/TelaEditarCliente.fxml"));
 		Parent root = loader.load();
 		System.out.println("Loader criado");
 		EditarClienteController controler = loader.getController();

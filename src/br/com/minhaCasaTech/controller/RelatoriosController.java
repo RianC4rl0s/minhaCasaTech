@@ -1,6 +1,7 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
@@ -31,6 +33,9 @@ public class RelatoriosController implements Initializable {
 	private TransacaoBO tbo = new TransacaoBO();
 	private VendaBO vbo = new VendaBO();
 	private CompraBO cbo = new CompraBO();
+	
+	static LocalDate localDateI;
+	static LocalDate localDateF;
 	
 	@FXML private TableView tabela_vendas;
 	@FXML private TableColumn<TransacaoVO, Long> id_coluna_tb1;
@@ -43,7 +48,7 @@ public class RelatoriosController implements Initializable {
 	@FXML private TableColumn<TransacaoVO, Double> vt_coluna_tb2;
     @FXML private TableColumn<TransacaoVO, Double> peso_coluna_tb2;
     @FXML private TableColumn<TransacaoVO, Integer> totalEqp_coluna_tb2;
-    @FXML private TableColumn<TransacaoVO, Date> data_coluna_tb2;
+    @FXML private TableColumn<TransacaoVO, Calendar> data_coluna_tb2;
     
     @FXML private DatePicker dI;
     @FXML private DatePicker dF;
@@ -61,14 +66,28 @@ public class RelatoriosController implements Initializable {
     	peso_coluna_tb1.setCellValueFactory(new PropertyValueFactory<>("pesoTotal"));
     	totalEqp_coluna_tb1.setCellValueFactory(new PropertyValueFactory<>("totalEquip"));
     	data_coluna_tb1.setCellValueFactory(new PropertyValueFactory<>("data"));
+    	data_coluna_tb1.setCellFactory(coluna -> {
+			return new TableCell<TransacaoVO,Calendar>(){
+				//CRIA UM FORMATO
+				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				@Override
+				protected void updateItem(Calendar item, boolean empty) {
+					super.updateItem(item, empty);
+					if(item == null||empty) {
+						setText(null);
+					}else {
+						//.GETTIME RETORNA UM DATE POR ISSO O SIMPLEDATEFORMAT FUNCIONA
+						setText(formato.format(item.getTime()));
+					}
+				}
+			};
+    	});
     
     	try {
-    		LocalDate localDateI = dI.getValue();
     		Calendar cI = Calendar.getInstance();
     		if (localDateI != null)
     			cI.set(localDateI.getYear(),localDateI.getMonthValue()-1,localDateI.getDayOfMonth());
     		
-    		LocalDate localDateF = dF.getValue();
     		Calendar cF = Calendar.getInstance();
     		if (localDateF != null)
     			cF.set(localDateF.getYear(),localDateF.getMonthValue()-1,localDateF.getDayOfMonth());    
@@ -85,14 +104,28 @@ public class RelatoriosController implements Initializable {
     	peso_coluna_tb2.setCellValueFactory(new PropertyValueFactory<>("pesoTotal"));
     	totalEqp_coluna_tb2.setCellValueFactory(new PropertyValueFactory<>("totalEquip"));
     	data_coluna_tb2.setCellValueFactory(new PropertyValueFactory<>("data"));
+    	data_coluna_tb2.setCellFactory(coluna -> {
+			return new TableCell<TransacaoVO,Calendar>(){
+				//CRIA UM FORMATO
+				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				@Override
+				protected void updateItem(Calendar item, boolean empty) {
+					super.updateItem(item, empty);
+					if(item == null||empty) {
+						setText(null);
+					}else {
+						//.GETTIME RETORNA UM DATE POR ISSO O SIMPLEDATEFORMAT FUNCIONA
+						setText(formato.format(item.getTime()));
+					}
+				}
+			};
+    	});
     
     	try {
-    		LocalDate localDateI = dI.getValue();
     		Calendar cI = Calendar.getInstance();
     		if (localDateI != null)
     			cI.set(localDateI.getYear(),localDateI.getMonthValue()-1,localDateI.getDayOfMonth());
     		
-    		LocalDate localDateF = dF.getValue();
     		Calendar cF = Calendar.getInstance();
     		if (localDateF != null)
     			cF.set(localDateF.getYear(),localDateF.getMonthValue()-1,localDateF.getDayOfMonth());    		
@@ -105,6 +138,8 @@ public class RelatoriosController implements Initializable {
 	
 	public void gerarRelatorio() {		
 		try {			
+			this.localDateI = dI.getValue();
+			this.localDateF = dF.getValue();
 			Telas.telaRelatorio();
 			
 		} catch (Exception e) {
