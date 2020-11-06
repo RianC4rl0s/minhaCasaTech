@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="resources/mariadb-java-client-2.6.1.jar"/>
+	<classpathentry kind="lib" path="resources/itext-5.0.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

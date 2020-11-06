@@ -1,5 +1,7 @@
 package br.com.minhaCasaTech.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -7,14 +9,27 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import br.com.minhaCasaTech.model.BO.CompraBO;
 import br.com.minhaCasaTech.model.BO.TransacaoBO;
 import br.com.minhaCasaTech.model.BO.VendaBO;
+import br.com.minhaCasaTech.model.VO.CompraVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.TransacaoVO;
+import br.com.minhaCasaTech.model.VO.VendaVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.NotFoundException;
 import javafx.collections.FXCollections;
@@ -140,6 +155,7 @@ public class RelatoriosController implements Initializable {
 		try {			
 			this.localDateI = dI.getValue();
 			this.localDateF = dF.getValue();
+			gerarPDF();
 			Telas.telaRelatorio();
 			
 		} catch (Exception e) {
@@ -184,6 +200,105 @@ public class RelatoriosController implements Initializable {
 		} catch (Exception e) {
 			
 			e.printStackTrace();
+		}
+	}
+    
+    public void gerarPDF() {
+    	Calendar cI = Calendar.getInstance();
+		if (localDateI != null)
+			cI.set(localDateI.getYear(),localDateI.getMonthValue()-1,localDateI.getDayOfMonth());
+		
+		Calendar cF = Calendar.getInstance();
+		if (localDateF != null)
+			cF.set(localDateF.getYear(),localDateF.getMonthValue()-1,localDateF.getDayOfMonth());   
+    	
+    	Document document = new Document();
+    	try {
+    		Calendar now = Calendar.getInstance();
+			PdfWriter.getInstance(document, new FileOutputStream("relatorios/"+new Date(now.getTimeInMillis())+".pdf"));
+		} catch (FileNotFoundException | DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	document.open();
+    	String strI = localDateI.getDayOfMonth() +"/"+ (localDateI.getMonthValue()) +"/"+ localDateI.getYear();
+    	String strF = localDateF.getDayOfMonth() +"/"+ (localDateF.getMonthValue()) +"/"+ localDateF.getYear();
+    	
+    	Phrase phrase0 = new Phrase("Relatório de " + strI + " até " + strF);
+    	
+    	Phrase phrase1 = new Phrase("\nVendas: ");
+    	PdfPTable tableVendas = new PdfPTable(5);
+    	List<VendaVO> Vendas = null;
+    	
+    	try {
+			Vendas = vbo.gerarRelatorio(cI, cF);
+		} catch (NotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+    	addTableHeader(tableVendas);
+    	addRowsTV(tableVendas, Vendas);
+    	
+    	Phrase phrase2 = new Phrase("Compras: ");
+    	PdfPTable tableCompras = new PdfPTable(5);
+    	List<CompraVO> Compras = null;
+    	
+    	try {
+			Compras = cbo.gerarRelatorio(cI, cF);
+		} catch (NotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+    	addTableHeader(tableCompras);
+    	addRowsTC(tableCompras, Compras);
+    	 
+    	try {
+			document.add(phrase0);
+			document.add(phrase1);
+			document.add(tableVendas);
+			document.add(phrase2);
+			document.add(tableCompras);
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	document.close();
+    	
+    }
+    
+	private void addTableHeader(PdfPTable table) {
+	    Stream.of("ID", "Valor Total", "Peso Total", "Quantidade Equipamentos", "Data")
+	      .forEach(columnTitle -> {
+	        PdfPCell header = new PdfPCell();
+	        header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+	        header.setBorderWidth(2);
+	        header.setPhrase(new Phrase(columnTitle));
+	        table.addCell(header);
+	    });
+	}
+	
+	private void addRowsTV(PdfPTable table, List<VendaVO> transacoes) {
+		for (int i = 0; i < transacoes.size(); i++) {
+			table.addCell(transacoes.get(i).getId_transacao().toString());
+		    table.addCell(""+transacoes.get(i).getValorTotal());
+		    table.addCell(""+transacoes.get(i).getPesoTotal());
+		    table.addCell(""+transacoes.get(i).getTotalEquip());
+		    Date d1 = new Date(transacoes.get(i).getData().getTimeInMillis());
+		    table.addCell(""+ (d1.getDay()+1) + "/" + (d1.getMonth()+1) + "/" + (d1.getYear()+1900));
+		}
+	}
+	
+	private void addRowsTC(PdfPTable table, List<CompraVO> transacoes) {
+		for (int i = 0; i < transacoes.size(); i++) {
+			table.addCell(transacoes.get(i).getId_transacao().toString());
+		    table.addCell(""+transacoes.get(i).getValorTotal());
+		    table.addCell(""+transacoes.get(i).getPesoTotal());
+		    table.addCell(""+transacoes.get(i).getTotalEquip());
+		    Date d1 = new Date(transacoes.get(i).getData().getTimeInMillis());
+		    table.addCell(""+ (d1.getDay()+1) + "/" + (d1.getMonth()+1) + "/" + (d1.getYear()+1900));
 		}
 	}
 }
