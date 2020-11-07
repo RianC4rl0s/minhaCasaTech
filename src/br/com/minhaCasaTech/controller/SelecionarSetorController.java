@@ -21,6 +21,11 @@ public class SelecionarSetorController {
 		}
 	}
 	public void abrirSetorADM() {
-		System.out.println("abriu adm");
+		try {
+			Telas.telaSetorProprietario();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

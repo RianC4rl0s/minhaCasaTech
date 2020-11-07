@@ -200,4 +200,16 @@ public class GerenciarEquipamentoController implements Initializable{
 				e.printStackTrace();
 			}
 	    }
+	    @FXML 
+	    TextField bucar_gene_txf;
+	    public void buscarGenerico() {
+	    	EquipamentoBO ebo = new EquipamentoBO();
+	    	//RadioButton rb = (RadioButton) grupoRadio.getProperties();
+	    	List<EquipamentoVO> eqpL= new ArrayList<>();
+	    	
+	    	eqpL = ebo.buscarGenerico(bucar_gene_txf.getText());
+	    
+	    	
+	    	preencherTabelaBusca(eqpL);
+	    }
 }

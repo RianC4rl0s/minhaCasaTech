@@ -29,7 +29,7 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 				else
 					dao2.cadastrar((FuncionarioVO) vo);
 		} catch (NotFoundException e) {
-			throw new InsertException("Usu√°rio j√° existe");
+			throw new InsertException("Usu·rio j· existe");
 		}
 	}
 

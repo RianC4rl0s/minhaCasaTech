@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class Telas extends Application {
 private static Stage primaryStage;
-	
+
 	
 	public static Stage getPrimaryStage() {
 		return primaryStage;
@@ -37,11 +37,14 @@ private static Stage primaryStage;
 	public void start(Stage primaryStage) throws Exception {
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("MinhaCasaTECH");
+		primaryStage.setResizable(false);
 		primaryStage.show();
-		//telaPrincipal();
+		telaPrincipal();
 		//telaLogin();
 		//telaLoginAdmin();
-		telaGerenciarVenda();
+		//telaGerenciarVenda();
+		//telaSetorProprietario();
+		//telaSelecionarSetor();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -94,6 +97,7 @@ private static Stage primaryStage;
 		Scene cena = new Scene(root);
 		Stage secondarySage = new Stage();
 		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.setResizable(false);
 		secondarySage.show();
 		secondarySage.setScene(cena);
 		
@@ -105,6 +109,7 @@ private static Stage primaryStage;
 		Scene cena = new Scene(root);
 		Stage secondarySage = new Stage();
 		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.setResizable(false);
 		secondarySage.show();
 		secondarySage.setScene(cena);
 	}
@@ -114,6 +119,7 @@ private static Stage primaryStage;
 		Scene cena = new Scene(root);
 		Stage secondarySage = new Stage();
 		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.setResizable(false);
 		secondarySage.show();
 		secondarySage.setScene(cena);
 	}
@@ -130,6 +136,7 @@ private static Stage primaryStage;
 		Stage secondarySage = new Stage();
 		secondarySage.setScene(cena);
 		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.setResizable(false);
 		secondarySage.show();
 	
 	}
@@ -143,6 +150,7 @@ private static Stage primaryStage;
 		Stage secondarySage = new Stage();
 		secondarySage.setScene(cena);
 		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.setResizable(false);
 		secondarySage.show();
 	}
 	public static void telaEditarResponsavel(ResponsavelVO vo) throws Exception{
@@ -156,6 +164,7 @@ private static Stage primaryStage;
 		Stage secondarySage = new Stage();
 		secondarySage.setScene(cena);
 		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.setResizable(false);
 		secondarySage.show();
 	}
 	public static void telaGerenciarResponsavel() throws Exception{
@@ -194,6 +203,7 @@ private static Stage primaryStage;
 		Stage secondarySage = new Stage();
 		secondarySage.setScene(cena);
 		secondarySage.setTitle("MinhaCasaTECH");
+		secondarySage.setResizable(false);
 		secondarySage.show();
 	}
 	
@@ -209,6 +219,7 @@ private static Stage primaryStage;
 		Stage secondaryStage = new Stage();
 		secondaryStage.setTitle("MinaCasaTECH");
 		secondaryStage.setScene(cena);
+		secondaryStage.setResizable(false);
 		secondaryStage.show();
 	
 	}	
@@ -229,6 +240,7 @@ private static Stage primaryStage;
 		Stage secondaryStage = new Stage();
 		secondaryStage.setTitle("MinaCasaTECH");
 		secondaryStage.setScene(cena);
+		secondaryStage.setResizable(false);
 		secondaryStage.show();
 		 System.out.println("chegou aq");
 		System.out.println("Tela aberta");
@@ -245,6 +257,7 @@ private static Stage primaryStage;
 		Stage secondaryStage = new Stage();
 		secondaryStage.setTitle("MinaCasaTECH");
 		secondaryStage.setScene(cena);
+		secondaryStage.setResizable(false);
 		secondaryStage.show();
 	
 	}	
@@ -267,6 +280,7 @@ private static Stage primaryStage;
 		Stage secondaryStage = new Stage();
 		secondaryStage.setTitle("MinaCasaTECH");
 		secondaryStage.setScene(cena);
+		secondaryStage.setResizable(false);
 		secondaryStage.show();
 		 System.out.println("chegou aq");
 		System.out.println("Tela aberta");
@@ -289,6 +303,7 @@ private static Stage primaryStage;
 		Stage secondaryStage = new Stage();
 		secondaryStage.setTitle("MinaCasaTECH");
 		secondaryStage.setScene(cena);
+		secondaryStage.setResizable(false);
 		secondaryStage.show();
 		 System.out.println("chegou aq");
 		System.out.println("Tela aberta");

@@ -3,7 +3,9 @@ package br.com.minhaCasaTech.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.minhaCasaTech.model.BO.CaixaBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
+import br.com.minhaCasaTech.model.VO.CaixaVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
@@ -16,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SetorProprietarioController implements Initializable {
@@ -37,7 +40,7 @@ public class SetorProprietarioController implements Initializable {
 	  	
 	public void voltarInicio() {
 		try {
-			Telas.telaPrincipal();
+			Telas.telaGerenciarResponsavel();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -53,6 +56,7 @@ public class SetorProprietarioController implements Initializable {
 	
 	public void initialize(URL url, ResourceBundle rb) {
 		iniciarTabela();
+		iniciarCaixa();
 	}
 	
 	@FXML
@@ -100,6 +104,22 @@ public class SetorProprietarioController implements Initializable {
     		TableViewSelectionModel<ResponsavelVO> selectedModel = tabela_responsaveis.getSelectionModel();
 			Telas.telaDeletarResponsavel(selectedModel.getSelectedItem());
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+    @FXML
+    private TextField caixa_txf;
+    public void iniciarCaixa() {
+		CaixaVO c = new CaixaVO();
+		CaixaBO cbo = new CaixaBO();
+		c = cbo.pegarValor();
+		caixa_txf.setText( String.valueOf(c.getValor()));
+	}
+    public void chamarTelaRelatorio() {
+		try {
+			Telas.telaRelatorio();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

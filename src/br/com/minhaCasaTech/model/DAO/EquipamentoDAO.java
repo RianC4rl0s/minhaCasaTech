@@ -198,5 +198,27 @@ public ResultSet buscarPorId(Long id) {
 		
 		return rs;
 	}
-	
+	public ResultSet buscarGenerico(String campo) {
+		ResultSet rs = null;
+		String sql ="select * from equipamento e where nome like ? or"
+				+ " e.id_local in(select l2.id from `local` l2 where casa LIKE ? or compartimento LIKE ?)"
+				+ "OR e.id_responsavel in " 
+				+ "(SELECT resp.id FROM responsavel resp" + 
+				"	INNER JOIN pessoa ON resp.id_pessoa = pessoa.id and pessoa.nome like ?)";
+		PreparedStatement pst;
+		
+		try {
+			pst = getCon().prepareStatement(sql);
+			pst.setString(1,"%"+campo+"%");
+			pst.setString(2,"%"+campo+"%");
+			pst.setString(3,"%"+campo+"%");
+			pst.setString(4,"%"+campo+"%");
+			rs = pst.executeQuery();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return rs;
+		
+	}
 }

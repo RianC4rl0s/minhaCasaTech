@@ -56,6 +56,6 @@ public class LocalVO {
 	public String toString() {
 		return
 		"Casa: "+casa+"\n"+
-		"Compartimento"+compartimento+"\n";
+		"Compartimento: "+compartimento+"\n";
 	}
 }
