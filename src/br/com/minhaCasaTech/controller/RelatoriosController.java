@@ -215,7 +215,7 @@ public class RelatoriosController implements Initializable {
     	Document document = new Document();
     	try {
     		Calendar now = Calendar.getInstance();
-			PdfWriter.getInstance(document, new FileOutputStream("relatorios/"+new Date(now.getTimeInMillis())+".pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream("relatorios/"+now.getTimeInMillis()+".pdf"));
 		} catch (FileNotFoundException | DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
