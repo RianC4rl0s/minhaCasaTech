@@ -43,6 +43,7 @@ public class ClienteDAO extends PessoaDAO<ClienteVO> {
 		try {
 			ptst = getCon().prepareStatement(sql);
 			ptst.setString(1, pessoa.getCpf());
+			ptst.setLong(2, pessoa.getId_cliente());
 			
 			ptst.executeUpdate();
 		} catch (SQLException e) {
