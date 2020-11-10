@@ -39,16 +39,9 @@ private static Stage primaryStage;
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		//telaPrincipal();
+		telaPrincipal();
 		//telaLogin();
-		//telaLoginAdmin();
-<<<<<<< HEAD
-		//telaGerenciarVenda();
-		//telaSetorProprietario();
-		telaSelecionarSetor();
-=======
-		telaGerenciarCliente();
->>>>>>> acc94ca683c02eb220c797a80d9ae11c0d83644b
+
 	}
 	
 	public static void telaLogin() throws Exception{
