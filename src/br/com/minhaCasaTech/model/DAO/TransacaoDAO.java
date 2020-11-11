@@ -96,6 +96,20 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 		}
 		return rs;
 	}
+	
+	public ResultSet listarPrincipal() {
+		String sql = "select * from transacao";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 
 	public ResultSet buscarEquipamentoPorId(VO transacao) {
 		String sql = "select * transacao_equipamentos where id_transacao=?";

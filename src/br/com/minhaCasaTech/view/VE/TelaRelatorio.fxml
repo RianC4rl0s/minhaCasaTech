@@ -68,6 +68,11 @@
             <Label layoutX="534.0" layoutY="32.0" style="-fx-font-weight: bold; -fx-font-size: 26px;" text="Até:" />
             <Button fx:id="gerar" layoutX="820.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#gerarRelatorio" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #ADBF95;" text="Gerar" textFill="WHITE" />
             <Button fx:id="verEqps" layoutX="1032.0" layoutY="581.0" mnemonicParsing="false" onMouseClicked="#verEquipamentos" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: #ADBF95;" text="Ver Equipamentos" textFill="WHITE" />
+            <Label fx:id="data" layoutX="20.0" layoutY="583.0" prefHeight="20.0" prefWidth="376.0" visible="false">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
@@ -80,12 +85,12 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="qtdInvalida" layoutX="1073.0" layoutY="65.0" text="Quantidade Inválida" textFill="RED" visible="false">
+      <Label fx:id="noData" layoutX="1039.0" layoutY="65.0" text="Selecione as duas datas" textFill="RED" visible="false">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="saldoInsuficiente" layoutX="1093.0" layoutY="65.0" text="Saldo insuficiente" textFill="RED" visible="false">
+      <Label fx:id="invalidData" layoutX="1099.0" layoutY="65.0" text="Data invalida" textFill="RED" visible="false">
          <font>
             <Font size="17.0" />
          </font>

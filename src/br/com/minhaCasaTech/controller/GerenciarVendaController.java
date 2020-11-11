@@ -1,6 +1,7 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -58,22 +59,25 @@ public class GerenciarVendaController implements Initializable {
 	
 	@FXML private Label noEquipamento;
 	@FXML private Label qtdInvalida;
+	@FXML private Label noBusca;
+	@FXML private Label noCliente;
 	@FXML private Label labelTotal;
 	@FXML private Label saldoInsuficiente;
 	@FXML private ComboBox clienteCB;
 	@FXML private TitledPane qtdEquipamento;
 	@FXML private TextField quantidade;
+	@FXML private TextField busca;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		iniciarTabelaEquipamentos();
+		iniciarTabelaEquipamentos(ebo.listar());
 		iniciarTabelaCarrinho();
 		carregarCaixas();
-		labelTotal.setText("R$ " + venda.getValorTotal());
+		labelTotal.setText("R$ " + (venda.getValorTotal() + venda.getValorTotal()*0.30));
 	}
     
-    public void iniciarTabelaEquipamentos() {
+    public void iniciarTabelaEquipamentos(List<EquipamentoVO> eqps) {
     	id_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("id_equipamento"));
     	nome_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	preco_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("preco"));
@@ -84,7 +88,7 @@ public class GerenciarVendaController implements Initializable {
     	local_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("local"));
     	reponsavel_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("responsavel"));
     
-    	tabela_equipamentos.setItems(FXCollections.observableArrayList(ebo.listar()));
+    	tabela_equipamentos.setItems(FXCollections.observableArrayList(eqps));
     }
     
     public void iniciarTabelaCarrinho() {
@@ -98,10 +102,40 @@ public class GerenciarVendaController implements Initializable {
     }
     
     public void buscarEquipamento() {
+    	String str = busca.getText();
+    	if (str.equals("")) {
+    		noBusca.setVisible(true);
+    	} else {
+    		iniciarTabelaEquipamentos(ebo.buscarGenerico(str));
+    		
+    	}
     	
     }
     
     public void finalizarCompra() {
+    	
+    	if (venda.getValorTotal() == 0)
+    	{
+    		noEquipamento.setVisible(true);
+    		return;
+    	}
+    	
+    	ClienteBO cbo = new ClienteBO();
+		ClienteVO cliente = new ClienteVO();
+		try{
+			cliente.setCpf(clienteCB.getSelectionModel().getSelectedItem().toString());
+		}catch (NullPointerException e) {
+			noEquipamento.setVisible(false);
+    		noCliente.setVisible(true);
+			return;
+		}
+		
+		try {
+			cliente = cbo.buscarPorCpf(cliente.getCpf());
+		} catch (NotFoundException e1) {
+			e1.printStackTrace();
+		}
+    	
     	venda.setPesoTotal(0.00);
     	venda.setTotalEquip(0);
     	for(EquipamentoVO eqp : venda.getEquipamentos()) {
@@ -111,14 +145,7 @@ public class GerenciarVendaController implements Initializable {
     	venda.setData();
     	
     	try {
-    		ClienteBO cbo = new ClienteBO();
-    		ClienteVO cliente = new ClienteVO();
-    		cliente.setCpf(clienteCB.getSelectionModel().getSelectedItem().toString());
-    		try {
-				cliente = cbo.buscarPorCpf(cliente.getCpf());
-			} catch (NotFoundException e1) {
-				e1.printStackTrace();
-			}
+    		
     		venda.setCliente(cliente);
     		venda.setTipo(0);
     		vbo.cadastrar(venda);
@@ -160,7 +187,7 @@ public class GerenciarVendaController implements Initializable {
     		
     		venda.removeEquipamento(eqpTabelaCarrinho);
     		try {
-    			Telas.telaGerenciarCompra();
+    			Telas.telaGerenciarVenda();
     		} catch (Exception e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();

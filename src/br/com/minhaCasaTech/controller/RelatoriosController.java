@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -68,11 +70,23 @@ public class RelatoriosController implements Initializable {
     @FXML private DatePicker dI;
     @FXML private DatePicker dF;
     @FXML private Button verEqps;
+    @FXML private Label noEquipamento;
+    @FXML private Label data;
+    @FXML private Label noData;
+    @FXML private Label invalidData;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		iniciarTabelaCompras();
 		iniciarTabelaVendas();
+		
+		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		if (localDateI == null || localDateF == null)
+			data.setText("Relatório de Hoje");
+		else 
+			data.setText("De: " + localDateI.format(pattern) + " Até: " + localDateF.format(pattern));
+		
+		data.setVisible(true);
 	}
 	
 	public void iniciarTabelaVendas() {
@@ -155,6 +169,26 @@ public class RelatoriosController implements Initializable {
 		try {			
 			this.localDateI = dI.getValue();
 			this.localDateF = dF.getValue();
+			
+			if (dI.getValue() == null && dF.getValue() == null) {
+				noData.setVisible(true);
+				return;
+			}
+			
+			if (localDateF.isBefore(localDateI)) {
+				noData.setVisible(false);
+				noEquipamento.setVisible(false);
+				invalidData.setVisible(true);
+				return;
+			}
+			
+			if (localDateI.isAfter(LocalDate.now())) {
+				noData.setVisible(false);
+				noEquipamento.setVisible(false);
+				invalidData.setVisible(true);
+				return;
+			}
+			
 			gerarPDF();
 			Telas.telaRelatorio();
 			
@@ -183,6 +217,8 @@ public class RelatoriosController implements Initializable {
     		{
     			iniciarTabelaEquipamentos(selectionModelCompras.getSelectedItem());
     		}
+    	} else {
+    		noEquipamento.setVisible(true);
     	}
 	}
 	

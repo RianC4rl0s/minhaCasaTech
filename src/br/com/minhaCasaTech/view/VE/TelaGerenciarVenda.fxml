@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -49,6 +50,9 @@
                <image>
                   <Image url="@lupa.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <TableView fx:id="tabela_carrinho" layoutX="31.0" layoutY="357.0" prefHeight="221.0" prefWidth="684.0">
                <columns>
@@ -94,6 +98,16 @@
          </font>
       </Label>
       <Label fx:id="saldoInsuficiente" layoutX="1093.0" layoutY="65.0" text="Saldo insuficiente" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="noBusca" layoutX="609.0" layoutY="65.0" text="Digite um nome, local ou responsavel" textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="noCliente" layoutX="609.0" layoutY="65.0" text="Selecione um cliente" textFill="RED" visible="false">
          <font>
             <Font size="17.0" />
          </font>

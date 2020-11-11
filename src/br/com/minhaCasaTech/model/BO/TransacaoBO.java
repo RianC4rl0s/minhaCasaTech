@@ -67,6 +67,33 @@ public class TransacaoBO implements BaseInterBO<TransacaoVO>{
 		}
 	}
 	
+	public List<TransacaoVO> listarPrincipal() throws NotFoundException{
+		// TODO Auto-generated method stub		
+		try {
+			ResultSet rs = dao0.listarPrincipal();
+			List<TransacaoVO> transacoes = new ArrayList<>();
+			System.out.println(rs);
+	
+			while (rs.next()) {
+				TransacaoVO generic = new TransacaoVO();
+				Calendar data = Calendar.getInstance();
+				generic.setId_transacao(rs.getLong("id"));
+				generic.setValorTotal(rs.getDouble("valor_total"));
+				generic.setPesoTotal(rs.getDouble("peso_total"));
+				generic.setTotalEquip(rs.getInt("total_equip"));
+				data.setTime(rs.getDate("data"));
+				generic.setData(data);
+				generic.setTipo(rs.getInt("tipo"));
+				transacoes.add(generic);
+			}
+			
+			return transacoes;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new NotFoundException();
+		}
+	}
+	
 	
 	public TransacaoVO montarTransacao(ResultSet rs) {
 		TransacaoVO generic = new TransacaoVO();

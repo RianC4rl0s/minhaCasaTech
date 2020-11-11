@@ -208,7 +208,7 @@ public class PrincipalController implements Initializable{
     	TransacaoBO tbo = new TransacaoBO();
 		
 		try {
-			ts =tbo.listar();
+			ts =tbo.listarPrincipal();
 		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

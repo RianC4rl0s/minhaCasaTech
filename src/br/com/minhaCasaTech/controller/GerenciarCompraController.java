@@ -1,6 +1,7 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -23,6 +24,7 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class GerenciarCompraController implements Initializable {
@@ -48,21 +50,23 @@ public class GerenciarCompraController implements Initializable {
     @FXML private TableColumn<EquipamentoVO, Double> valorTotal_carrinho;
 	
 	@FXML private Label noEquipamento;
+	@FXML private Label noBusca;
 	@FXML private Label qtdInvalida;
 	@FXML private Label labelTotal;
 	@FXML private Label saldoInsuficiente;
 	@FXML private TitledPane qtdEquipamento;
 	@FXML private TextField quantidade;
+	@FXML private TextField busca;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		iniciarTabelaEquipamentos();
+		iniciarTabelaEquipamentos(ebo.listar());
 		iniciarTabelaCarrinho();
 		labelTotal.setText("R$ " + compra.getValorTotal());
 	}
     
-    public void iniciarTabelaEquipamentos() {
+    public void iniciarTabelaEquipamentos(List<EquipamentoVO> eqps) {
     	id_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("id_equipamento"));
     	nome_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	preco_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("preco"));
@@ -73,7 +77,7 @@ public class GerenciarCompraController implements Initializable {
     	local_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("local"));
     	reponsavel_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("responsavel"));
     
-    	tabela_equipamentos.setItems(FXCollections.observableArrayList(ebo.listar()));
+    	tabela_equipamentos.setItems(FXCollections.observableArrayList(eqps));
     }
     
     public void iniciarTabelaCarrinho() {
@@ -87,10 +91,23 @@ public class GerenciarCompraController implements Initializable {
     }
     
     public void buscarEquipamento() {
+    	String str = busca.getText();
+    	if (str.equals("")) {
+    		noBusca.setVisible(true);
+    	} else {
+    		iniciarTabelaEquipamentos(ebo.buscarGenerico(str));
+    		
+    	}
     	
     }
     
     public void finalizarCompra() {
+    	if (compra.getValorTotal() == 0)
+    	{
+    		noEquipamento.setVisible(true);
+    		return;
+    	}
+    	
     	compra.setPesoTotal(0.00);
     	compra.setTotalEquip(0);
     	for(EquipamentoVO eqp : compra.getEquipamentos()) {
@@ -213,5 +230,5 @@ public class GerenciarCompraController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+    
 }
