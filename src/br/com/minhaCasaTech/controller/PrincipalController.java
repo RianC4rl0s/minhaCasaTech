@@ -222,6 +222,7 @@ public class PrincipalController implements Initializable{
 		peso_t_tb.setCellValueFactory(new PropertyValueFactory<>("pesoTotal"));
 		totalP_t_tb.setCellValueFactory(new PropertyValueFactory<>("totalEquip"));
 		tipo_t_tb.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		
 		valor_t_tb.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
 		//BO TA AQ
 		data_t_tb.setCellValueFactory(new PropertyValueFactory<>("data"));

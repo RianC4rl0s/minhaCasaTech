@@ -3,13 +3,14 @@ package br.com.minhaCasaTech.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import br.com.minhaCasaTech.model.BO.CaixaBO;
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,6 +63,17 @@ public class CadastrarEquipamentoController implements Initializable{
 		
 		EquipamentoBO ebo = new EquipamentoBO();
 		ebo.cadastrar(e);
+		CaixaBO cbo = new CaixaBO();
+		cbo.subValor(e.getPreco()*e.getQuantidade());
+			
+		try {
+			Telas.telaPrincipal();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Stage stage = (Stage) cadastrar_equipamento_btm.getScene().getWindow(); 
+		stage.close(); 
 	}
     public void limparCampos() {
     	   ns_equipamento_txf.setText("");;

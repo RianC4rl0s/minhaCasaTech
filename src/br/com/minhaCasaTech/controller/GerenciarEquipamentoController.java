@@ -4,12 +4,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-
-
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
+import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -17,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
@@ -83,7 +82,7 @@ public class GerenciarEquipamentoController implements Initializable{
 	    @FXML
 	    private TableColumn<EquipamentoVO, String> peso_coluna_tb;
 	    @FXML
-	    private TableColumn<EquipamentoVO, String> reponsavel_coluna_tb;
+	    private TableColumn<EquipamentoVO, ResponsavelVO> reponsavel_coluna_tb;
 	    @FXML
 	    private TableColumn<EquipamentoVO, String> preco_coluna_tb;
 	    @FXML
@@ -101,7 +100,21 @@ public class GerenciarEquipamentoController implements Initializable{
  	
 	    	local_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("local"));
 	    	reponsavel_coluna_tb.setCellValueFactory(new PropertyValueFactory<>("responsavel"));
-	    	
+	    	reponsavel_coluna_tb.setCellFactory(coluna ->{
+	    		return new TableCell<EquipamentoVO,ResponsavelVO>(){
+					
+					@Override
+					protected void updateItem(ResponsavelVO item, boolean empty) {
+						super.updateItem(item, empty);
+						if(item == null||empty) {
+							setText(null);
+						}else {
+							setText(item.getNome());
+							
+						}
+					}
+				};
+	    	});
 	    	EquipamentoBO ebo = new EquipamentoBO();
 	    	tabela_equipamento.setItems(FXCollections.observableArrayList(ebo.listar()));
 	    }

@@ -3,6 +3,7 @@ package br.com.minhaCasaTech.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.minhaCasaTech.model.BO.CaixaBO;
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
@@ -60,6 +61,8 @@ public class CadastrarEquipamentoVPController implements Initializable{
 		
 		EquipamentoBO ebo = new EquipamentoBO();
 		ebo.cadastrar(e);
+		CaixaBO cbo = new CaixaBO();
+		cbo.subValor(e.getPreco()*e.getQuantidade());
 		try {
 			Telas.telaGerenciarVenda();
 		} catch (Exception e1) {
