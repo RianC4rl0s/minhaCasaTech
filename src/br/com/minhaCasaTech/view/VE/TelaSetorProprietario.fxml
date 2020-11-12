@@ -72,7 +72,7 @@
                                  </children>
                               </Pane>
                               <TextField fx:id="mudar_valor_txf" alignment="CENTER_RIGHT" layoutX="46.0" layoutY="174.0" prefHeight="31.0" prefWidth="254.0" promptText="0,00000" />
-                              <Button layoutX="101.0" layoutY="241.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" text="Confirmar" />
+                              <Button layoutX="101.0" layoutY="241.0" mnemonicParsing="false" onAction="#showPopUp" prefHeight="31.0" prefWidth="128.0" text="Confirmar" />
                               <RadioButton fx:id="add_caixa_rbm1" layoutX="44.0" layoutY="213.0" mnemonicParsing="false" selected="true" text="ADD">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="adm_caixa" />
@@ -87,13 +87,10 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Button layoutX="62.0" layoutY="70.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" text="SIM" />
-                                    <Button layoutX="149.0" layoutY="70.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" style="-fx-background-color: red;" text="NÃO" textFill="WHITE" />
+                                    <Button layoutX="62.0" layoutY="70.0" mnemonicParsing="false" onAction="#editarCaixa" prefHeight="31.0" prefWidth="61.0" text="SIM" />
+                                    <Button layoutX="149.0" layoutY="70.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="31.0" prefWidth="61.0" style="-fx-background-color: red;" text="NÃO" textFill="WHITE" />
                                  </children>
                               </Pane>
-                              <Button layoutX="73.0" layoutY="340.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="201.0" text="cadastrar sem alterar caixa" />
-                              <Separator layoutX="73.0" layoutY="330.0" prefWidth="200.0" />
-                              <Label layoutX="73.0" layoutY="309.0" text="Equipamento" />
                            </children></Pane>
                         <Pane layoutX="369.0" layoutY="15.0" prefHeight="570.0" prefWidth="897.0" style="-fx-background-color: BAD9D6; -fx-background-radius: 8px;">
                            <children>

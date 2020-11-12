@@ -156,6 +156,7 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 	@Override
 	public void deletar(VO entity) throws SQLException {
 		// TODO Auto-generated method stub
+		String sql = "delete from transacao_equipamentos where id_equipamento = ?;delete from transacao where id = ?;";
 	}
 
 	@Override
