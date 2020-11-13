@@ -39,16 +39,15 @@ private static Stage primaryStage;
 		primaryStage.setTitle("MinhaCasaTECH");
 		primaryStage.setResizable(false);
 		primaryStage.show();
-<<<<<<< HEAD
+
 		//telasTeste();
 		//telaPrincipal();
 		telaLogin();
 		//telaLoginAdmin();
 		//telaSetorProprietario();
-=======
-		telaLogin();
->>>>>>> 47a881529f31a3e5c862851cf98e1dc6c14bc4bb
+
 	}
+
 	
 	public static void telaLogin() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaLogin.fxml"));
