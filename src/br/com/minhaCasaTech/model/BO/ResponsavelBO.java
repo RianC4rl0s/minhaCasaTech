@@ -9,6 +9,7 @@ import br.com.minhaCasaTech.model.DAO.FuncionarioDAO;
 import br.com.minhaCasaTech.model.DAO.ProprietarioDAO;
 import br.com.minhaCasaTech.model.DAO.ResponsavelDAO;
 import br.com.minhaCasaTech.model.VO.FuncionarioVO;
+import br.com.minhaCasaTech.model.VO.PessoaVO;
 import br.com.minhaCasaTech.model.VO.ProprietarioVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
 import br.com.minhaCasaTech.model.VO.VendaVO;
@@ -29,7 +30,7 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 				else
 					dao2.cadastrar((FuncionarioVO) vo);
 		} catch (NotFoundException e) {
-			throw new InsertException("Usuário já existe");
+			throw new InsertException("Usuï¿½rio jï¿½ existe");
 		}
 	}
 
@@ -89,6 +90,21 @@ public class ResponsavelBO<VO extends ResponsavelVO> implements BaseInterBO<VO>{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public boolean isProprietario(Long id) throws NotFoundException{
+		ResultSet rs = dao1.buscarPorIdResponsavel(id);
+		
+		try {
+			if (rs.last()) {
+				return true;
+			} else
+				return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

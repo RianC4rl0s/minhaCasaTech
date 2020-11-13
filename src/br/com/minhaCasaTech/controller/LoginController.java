@@ -20,57 +20,69 @@ public class LoginController {
 	public void autenticar(){
 	
 		
-		if(senha_pf.getText().equals("") | login_txf.getText().equals("")) {
+		if(senha_pf.getText().equals("") | login_txf.getText().equals("")) 
+		{
 			erro_login_lb.setVisible(true);
 			error_senha_lb.setVisible(true);
-			System.out.println("é sem nada");
-		}else {
-			if(senha_pf.getText().matches("(.*)([a-zA-Z][0-9])(.*)") == true) {
+		} 
+		else
+		{
+			if(senha_pf.getText().matches("(.*)([a-zA-Z][0-9])(.*)") == true) 
+			{
 				ResponsavelVO resp = new ResponsavelVO();
 				resp.setLogin(login_txf.getText());
 				ResponsavelBO<ResponsavelVO> rbo= new ResponsavelBO<>();
-				ResponsavelVO respAuten = new ResponsavelVO();
+				
 				try {
-					respAuten = rbo.buscarPorLogin(resp);
+					resp = rbo.buscarPorLogin(resp);
 					System.out.println("Autenticou");
 				} catch (NotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				if(respAuten.getLogin().equals(login_txf.getText()) && respAuten.getSenha().equals(senha_pf.getText())){
+				
+				if(resp.getLogin().equals(login_txf.getText()) && resp.getSenha().equals(senha_pf.getText()))
+				{
+					
 					System.out.println("Senha e user conferem");
-					if(respAuten instanceof ProprietarioVO) {
-						try {
-							Telas.telaSelecionarSetor();
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-							System.out.println("não foi possivel entrar na tela");
+					
+					try {
+						if(rbo.isProprietario(resp.getId_responsavel())) {
+							try {
+								Telas.telaSelecionarSetor();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+								System.out.println("nao foi possivel entrar na tela");
+							}
+						}else {
+							try {
+								Telas.telaPrincipal();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
-					}else {
-							System.out.println("não é proprietario");
-						try {
-							Telas.telaPrincipal();
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+					} catch (NotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
-			}
-				else {
+				} 
+				else 
+				{					
 				erro_login_lb.setVisible(true);
 				error_senha_lb.setVisible(true);
+				}
 			}
-			}
-			else {
+			else 
+			{
 				System.out.println("A senha deve conter caracteres Maiusculos, minusculos e numeros");
 				erro_senha_format.setVisible(true);
-			}
-			
-			
+			}			
 		}
 	}
+	
 	public void fechar() {
 		try {
 			Telas.fecharTela();
@@ -82,7 +94,7 @@ public class LoginController {
 }
 
 /*if(respAuten instanceof ProprietarioVO) {
-System.out.println("é proprietario");
+System.out.println("ï¿½ proprietario");
 	try {
 		Telas.telaPrincipal();
 	} catch (Exception e) {
@@ -90,7 +102,7 @@ System.out.println("é proprietario");
 		e.printStackTrace();
 	}
 }else if(respAuten instanceof FuncionarioVO) {
-System.out.println("é funcionario");	
+System.out.println("ï¿½ funcionario");	
 try {
 		Telas.telaPrincipalFuncionario();
 	} catch (Exception e) {
