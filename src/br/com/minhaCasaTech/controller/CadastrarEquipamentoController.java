@@ -53,27 +53,38 @@ public class CadastrarEquipamentoController implements Initializable{
     private Label exception_jlb;
     public void cadastrarEquipamento() {
 		EquipamentoVO e = new EquipamentoVO();
-		e.setNome(nome_equipamento_txf.getText());
-		e.setPeso(Double.parseDouble(peso_equipamento_txf.getText()));
-		e.setPreco(Double.parseDouble(preco_equipamento_txf.getText()));
-		e.setQuantidade(Integer.parseInt(quantidade_equipamento_txf.getText()));
-		e.setNumeroDeSerie(Integer.parseInt(ns_equipamento_txf.getText()));
-		e.setLocal(select_local_cbb.getSelectionModel().getSelectedItem());
-		e.setResponsavel(select_responsavel_bb.getSelectionModel().getSelectedItem());
+		String nome = nome_equipamento_txf.getText();
+		String peso = peso_equipamento_txf.getText();
+		String preco= preco_equipamento_txf.getText();
+		int quantidade = Integer.parseInt(quantidade_equipamento_txf.getText());
+		int NS = Integer.parseInt(ns_equipamento_txf.getText());
 		
-		EquipamentoBO ebo = new EquipamentoBO();
-		ebo.cadastrar(e);
-		CaixaBO cbo = new CaixaBO();
-		cbo.subValor(e.getPreco()*e.getQuantidade());
+		if(nome==null || nome.equals("")|| !peso.matches("\\d{0,7}([\\.]\\d{0,4})?")|| !preco.matches("\\d{0,7}([\\.]\\d{0,4})?")){
+			System.out.println("formato de entrada incorretos");
+			limparCampos();
+		}else {
+			e.setNome(nome);
+			e.setPeso(Double.parseDouble(peso));
+			e.setPreco(Double.parseDouble(preco));
+			e.setQuantidade(quantidade);
+			e.setNumeroDeSerie(NS);
+			e.setLocal(select_local_cbb.getSelectionModel().getSelectedItem());
+			e.setResponsavel(select_responsavel_bb.getSelectionModel().getSelectedItem());
 			
-		try {
-			Telas.telaPrincipal();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			EquipamentoBO ebo = new EquipamentoBO();
+			ebo.cadastrar(e);
+			CaixaBO cbo = new CaixaBO();
+			cbo.subValor(e.getPreco()*e.getQuantidade());
+			
+			try {
+				Telas.telaPrincipal();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Stage stage = (Stage) cadastrar_equipamento_btm.getScene().getWindow(); 
+			stage.close(); 
 		}
-		Stage stage = (Stage) cadastrar_equipamento_btm.getScene().getWindow(); 
-		stage.close(); 
 	}
     public void limparCampos() {
     	   ns_equipamento_txf.setText("");;

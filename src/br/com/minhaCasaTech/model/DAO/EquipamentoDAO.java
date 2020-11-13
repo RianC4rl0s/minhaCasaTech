@@ -57,7 +57,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		}
 	}
 	
-	public void deletar(EquipamentoVO equipamento) {
+	public void deletar(EquipamentoVO equipamento) throws SQLException{
 		
 		String sql = "delete from equipamento where id = ?";
 		

@@ -25,6 +25,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SetorProprietarioController implements Initializable {
@@ -139,16 +140,50 @@ public class SetorProprietarioController implements Initializable {
     @FXML private Button cadastrar_equipamento_btm;
     @FXML private TextField peso_equipamento_txf;
     @FXML private TextField quantidade_equipamento_txf;
-    private void cancelarOperacao(){
+    /*private void cancelarOperacao(){
 	   limparCampos();
-	}
+	}*/
     public void carregarCaixas() {
 		LocalBO lbo = new LocalBO();
 		ResponsavelBO<ResponsavelVO> rbo = new ResponsavelBO<>();
 		select_local_cbb.setItems(FXCollections.observableArrayList(lbo.listar()));
 		select_responsavel_bb.setItems(FXCollections.observableArrayList(rbo.listar()));
 	}
-
+    @FXML
+    private TextField mudar_valor_txf;
+    @FXML
+    private RadioButton sub_caixa_rbtm2;
+    @FXML
+    private RadioButton add_caixa_rbm1;
+    @FXML
+    private RadioButton alter_caixa_rbtm3;
+    @FXML
+    private Pane alert_pop_up_pane;
+    public void showPopUp() {
+    	alert_pop_up_pane.setVisible(true);
+    }
+    public void closePopUp() {
+    	alert_pop_up_pane.setVisible(false);
+    }
+    public void editarCaixa() {
+    	if (mudar_valor_txf.getText().matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+    		double valor = Double.parseDouble( mudar_valor_txf.getText());
+    		CaixaBO cbo = new CaixaBO();
+        	if(add_caixa_rbm1.isSelected()) {
+        		cbo.addValor(valor);
+        	}else if(sub_caixa_rbtm2.isSelected()) {
+        		cbo.subValor(valor);
+        	}else if(alter_caixa_rbtm3.isSelected()) {
+        		cbo.alterarValor(valor);
+        	}
+        	iniciarCaixa();
+        	closePopUp();
+    	}else {
+    		System.out.println("Não é double");
+    	}
+    	
+    
+    }
 	@FXML
     private Label exception_jlb;
     public void cadastrarEquipamento() {
@@ -185,4 +220,5 @@ public class SetorProprietarioController implements Initializable {
     	   peso_equipamento_txf.setText("");
     	   quantidade_equipamento_txf.setText("");
     }
+    
 }

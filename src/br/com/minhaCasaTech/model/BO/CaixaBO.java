@@ -47,4 +47,8 @@ public class CaixaBO {
 		}
 		return caixa;
 	}
+	public void alterarValor(Double valor) {
+		CaixaDAO cdao = new CaixaDAO();
+		cdao.attValor(valor);
+	}
 }

@@ -152,7 +152,7 @@ public class GerenciarEquipamentoController implements Initializable{
 			    	
 			    	ebo.deletar(selectedModel.getSelectedItem());
 				} catch (Exception e) {
-					
+					System.out.println("Não foi possivel excluir o eqp, pois o mesmo está atribuido a uma transação");
 				}
 	    	}
 	    	
