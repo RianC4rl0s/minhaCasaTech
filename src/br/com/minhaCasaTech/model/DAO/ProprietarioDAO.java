@@ -72,6 +72,21 @@ public class ProprietarioDAO<VO extends ProprietarioVO> extends ResponsavelDAO<V
 		return rs;
 	}
 	
+	public ResultSet buscarPorIdResponsavel(Long id) {
+		String sql = "select * from proprietario where id_responsavel=?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			ptst.setLong(1, id);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	public ResultSet listar() {
 		String sql = "select * from pessoa, responsavel, proprietario";
 		PreparedStatement ptst;
