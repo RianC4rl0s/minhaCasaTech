@@ -41,8 +41,8 @@ private static Stage primaryStage;
 		primaryStage.show();
 
 		//telasTeste();
-		//telaPrincipal();
-		telaLogin();
+		telaPrincipal();
+		//telaLogin();
 		//telaLoginAdmin();
 		//telaSetorProprietario();
 

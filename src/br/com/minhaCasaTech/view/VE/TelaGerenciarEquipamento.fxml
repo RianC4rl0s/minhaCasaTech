@@ -14,9 +14,9 @@
       </Pane>
       <Pane layoutX="38.0" layoutY="106.0" prefHeight="43.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
          <children>
-            <Button fx:id="cadastrar_eqp_btm" layoutX="8.0" layoutY="7.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarEquipamento" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
-            <Button fx:id="editar_eqp_btm" layoutX="101.0" layoutY="7.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
-            <Button fx:id="excluir_eqp_btm" layoutX="195.0" layoutY="7.0" mnemonicParsing="false" onAction="#excluirEquipamento" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
+            <Button fx:id="cadastrar_eqp_btm" layoutX="8.0" layoutY="6.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarEquipamento" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
+            <Button fx:id="editar_eqp_btm" layoutX="101.0" layoutY="6.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
+            <Button fx:id="excluir_eqp_btm" layoutX="195.0" layoutY="6.0" mnemonicParsing="false" onAction="#excluirEquipamento" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
             <Button fx:id="recarregar_btm" layoutX="1171.0" layoutY="9.0" mnemonicParsing="false" onAction="#recarregarTela" style="-fx-background-color: #5B93C6;" text="⟲" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -88,7 +88,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="627.0" layoutY="67.0" textFill="RED" />
       <Label fx:id="exception_jlb" alignment="CENTER" layoutX="622.0" layoutY="67.0" prefHeight="17.0" prefWidth="38.0" textFill="RED" />
+      <Label fx:id="alert_exlcuir_lbl" layoutX="377.0" layoutY="78.0" text="Não é possivel excluir o Equipamento pois o mesmo está atribuido em uma transação" textFill="#ff3434" visible="false" />
    </children>
 </Pane>

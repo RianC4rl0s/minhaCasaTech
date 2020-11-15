@@ -1,5 +1,6 @@
 package br.com.minhaCasaTech.model.BO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import exception.InsertException;
@@ -11,5 +12,5 @@ public interface BaseInterBO <VO>{
 	public VO buscarPorId(VO vo) throws NotFoundException;
 	public List<VO> listar() throws NotFoundException;
 	public void editar(VO vo) throws InsertException;
-	public void deletar(VO vo) throws InsertException;
+	public void deletar(VO vo) throws SQLException;
 }

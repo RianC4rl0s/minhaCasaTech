@@ -25,15 +25,18 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO>{
 		
 	}
 	
-	public void deletar(EquipamentoVO equipamento){
+	public void deletar(EquipamentoVO equipamento)throws SQLException{
 		EquipamentoDAO edao = new EquipamentoDAO();
-		try {
+		//try {
 			edao.deletar(equipamento);
-		} catch (SQLException e) {
+			System.out.println("Deletado");
+		/*} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		System.out.println("Deletado");
+			System.out.println("não deletado");
+			
+		}	*/	
+		
 	}
 	
 	

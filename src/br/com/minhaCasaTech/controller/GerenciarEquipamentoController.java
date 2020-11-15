@@ -35,17 +35,9 @@ public class GerenciarEquipamentoController implements Initializable{
     @FXML
     private Button excluir_eqp_btm;
     @FXML
-    private Button editar_eqp_btm;
-    
-    
- 
-   
+    private Button editar_eqp_btm;  
     @FXML
     private Button buscar_btt;
-  
- 
-	
-	
 	public void voltarInicio() {
 		try {
 			Telas.telaPrincipal();
@@ -127,7 +119,7 @@ public class GerenciarEquipamentoController implements Initializable{
 			}
 	    }
 	    @FXML
-	    private Label exception_jlb;
+	    Label exception_jlb;
 	    public void editarItem() {
 	    	try {
 	    		exception_jlb.setText("");
@@ -139,6 +131,8 @@ public class GerenciarEquipamentoController implements Initializable{
 			}
 	    	
 	    }
+	    @FXML
+	    private Label alert_exlcuir_lbl;
 	    public void excluirEquipamento() {
 	    	
 	    	TableViewSelectionModel<EquipamentoVO> selectedModel = tabela_equipamento.getSelectionModel();
@@ -151,8 +145,10 @@ public class GerenciarEquipamentoController implements Initializable{
 			    	
 			    	
 			    	ebo.deletar(selectedModel.getSelectedItem());
+			    	//alert_exlcuir_lbl.setVisible(false);
 				} catch (Exception e) {
 					System.out.println("Não foi possivel excluir o eqp, pois o mesmo está atribuido a uma transação");
+					alert_exlcuir_lbl.setVisible(true);
 				}
 	    	}
 	    	

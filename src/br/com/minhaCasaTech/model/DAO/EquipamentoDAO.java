@@ -61,13 +61,13 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		
 		String sql = "delete from equipamento where id = ?";
 		
-		try {
+		//try {
 			PreparedStatement pst = getCon().prepareStatement(sql);
 			pst.setLong(1, equipamento.getId_equipamento());
 			pst.executeUpdate();
-		}catch(SQLException e) {
+		/*}catch(SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	
