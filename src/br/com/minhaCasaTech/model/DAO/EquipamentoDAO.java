@@ -221,4 +221,17 @@ public ResultSet buscarPorId(Long id) {
 		return rs;
 		
 	}
+	public ResultSet buscarEntrePreco(double a, double b) throws Exception{
+		ResultSet rs;
+		String sql = "select e.id,e.numero_de_serie, e.nome, e.peso, e.preco, e.quantidade,l.id, l.casa, l.compartimento,p2.id,p2.nome,p2.endereco, r2.login,r2.senha, r2.telefone " + 
+				"from equipamento e left join (`local` l,responsavel r2 left join pessoa p2 on r2.id_pessoa  =  p2.id)" + 
+				"on (e.id_local = l.id and e.id_responsavel = r2.id) where preco between ? and ? ;";
+		PreparedStatement pst;
+		pst = getCon().prepareStatement(sql);
+		pst.setDouble(1,a);
+		pst.setDouble(2,b);
+		rs = pst.executeQuery();
+		
+		return rs;
+	}
 }

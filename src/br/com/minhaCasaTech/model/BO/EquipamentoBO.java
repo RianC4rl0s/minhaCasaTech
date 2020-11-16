@@ -384,5 +384,56 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO>{
 		
 		return equipamentos;
 	}
+	public List<EquipamentoVO> buscarEntrePreco(double a, double b)  {
+		EquipamentoDAO edao = new EquipamentoDAO();
+		List<EquipamentoVO> equipamentos = new ArrayList<EquipamentoVO>();
+		
+		try {
+			ResultSet rs = edao.buscarEntrePreco(a, b);
+			while(rs.next()) {
+				EquipamentoVO eqp = new EquipamentoVO();	
+				eqp.setId_equipamento(rs.getLong("e.id"));
+				eqp.setNome(rs.getString("e.nome"));
+				eqp.setPeso(rs.getDouble("e.peso"));
+				eqp.setPreco(rs.getDouble("e.preco"));
+				eqp.setQuantidade(rs.getInt("e.quantidade"));
+				eqp.setNumeroDeSerie(rs.getInt("e.numero_de_serie"));
+				
+				LocalVO l = new LocalVO();
+				l.setId(rs.getLong("l.id"));
+				l.setCasa(rs.getString("l.casa"));
+				l.setCompartimento(rs.getString("l.compartimento"));
+				
+				eqp.setLocal(l);
+				
+				ResponsavelVO resp = new ResponsavelVO();
+				resp.setId_responsavel(rs.getLong("p2.id"));
+				resp.setId_pessoa(rs.getLong("p2.id"));
+				resp.setNome(rs.getString("p2.nome"));
+				resp.setLogin(rs.getString("r2.login"));
+				resp.setSenha(rs.getString("r2.senha"));
+				resp.setEndereco(rs.getString("p2.endereco"));
+				resp.setTelefone(rs.getString("r2.telefone"));
+				//,p2.id,p2.nome,p2.endereco, r2.login,r2.senha, r2.telefone 
+				
+				eqp.setResponsavel(resp);
+				
+				
+				equipamentos.add(eqp);
+				
+			}
+		
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i = 0; i< equipamentos.size();i++) {
+			System.out.println(equipamentos.get(i));
+		}
+		
+		
+		return equipamentos;
+	}
 	
 }

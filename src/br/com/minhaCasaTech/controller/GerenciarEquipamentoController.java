@@ -221,4 +221,30 @@ public class GerenciarEquipamentoController implements Initializable{
 	    	
 	    	preencherTabelaBusca(eqpL);
 	    }
+	    @FXML 
+	    TextField preco_inicial_txf;
+	    @FXML 
+	    TextField preco_final_txf;
+	    public void buscarEntre() {
+	    	String precoA = preco_inicial_txf.getText(),precoB = preco_final_txf.getText();
+	    	System.out.println("buscar entre");
+	    	if(!precoA.matches("\\d{0,7}([\\.]\\d{0,4})?") || !precoB.matches("\\d{0,7}([\\.]\\d{0,4})?")){
+				System.out.println("formato de entrada incorretos");
+				preco_inicial_txf.setText("");
+				preco_final_txf.setText("");
+			}else {
+				if(precoA == null || precoA.equals("") ||  precoB == null || precoB.equals("")) {
+					precoA = "0";
+					precoB = "10000";
+				}
+				double a = Double.parseDouble(precoA);
+				double b = Double.parseDouble(precoB);
+				System.out.println("Buscando...");
+				EquipamentoBO ebo = new EquipamentoBO();
+				List<EquipamentoVO> eqpl = new ArrayList<>();
+				eqpl = ebo.buscarEntrePreco(a, b);
+				
+				preencherTabelaBusca(eqpl);
+			}
+	    }
 }

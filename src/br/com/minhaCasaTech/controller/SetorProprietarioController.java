@@ -47,7 +47,8 @@ public class SetorProprietarioController implements Initializable {
 	  	
 	public void voltarInicio() {
 		try {
-			Telas.telaGerenciarResponsavel();
+			//Telas.telaGerenciarResponsavel();
+			Telas.telaPrincipal();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

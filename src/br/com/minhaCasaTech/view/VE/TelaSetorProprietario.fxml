@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -12,10 +13,13 @@
             <Button fx:id="sair_btm" layoutX="1211.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
          </children>
       </Pane>
-      <Button fx:id="voltar_btm" layoutX="10.0" layoutY="54.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+      <Button fx:id="voltar_btm" layoutX="10.0" layoutY="54.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: #5B93C6;" text="Ir para o menu principal" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Button>
       <Label layoutX="528.0" layoutY="51.0" text="Menu do Proprietário" textAlignment="CENTER">
          <font>
@@ -41,12 +45,6 @@
                               <Button fx:id="excluir" layoutX="207.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#excluirResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
                               <Button fx:id="editar_cliente_btm" layoutX="122.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#chamarTelaEditarResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
                               <Button fx:id="cadastrar" layoutX="27.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#chamarTelaCadastrarResponsavel" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
-                              <TextField fx:id="buscar_responsavel_txf" layoutX="294.0" layoutY="9.0" prefHeight="31.0" prefWidth="886.0" promptText="Nome/id/telefone" />
-                              <Button fx:id="buscar_responsavel_btm" layoutX="1180.0" layoutY="9.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" style="-fx-background-color: #ADBF95;" text="?" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Bold" size="15.0" />
-                                 </font>
-                              </Button>
                            </children>
                         </Pane>
                      </children>
@@ -57,7 +55,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1C3940;">
                      <children>
-                        <Pane layoutX="14.0" layoutY="15.0" prefHeight="570.0" prefWidth="346.0" style="-fx-background-color: BAD9D6; -fx-background-radius: 8px;">
+                        <Pane layoutX="467.0" layoutY="50.0" prefHeight="500.0" prefWidth="346.0" style="-fx-background-color: BAD9D6; -fx-background-radius: 8px;">
                            <children>
                               <Pane layoutX="46.0" layoutY="14.0" prefHeight="152.0" prefWidth="256.0" style="-fx-background-color: #95BBBF; -fx-background-radius: 8px;">
                                  <children>
@@ -80,7 +78,7 @@
                               </RadioButton>
                               <RadioButton fx:id="sub_caixa_rbtm2" layoutX="111.0" layoutY="213.0" mnemonicParsing="false" text="SUB" toggleGroup="$adm_caixa" />
                               <RadioButton fx:id="alter_caixa_rbtm3" layoutX="197.0" layoutY="213.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="102.0" text="ALTERAR" toggleGroup="$adm_caixa" />
-                              <Pane fx:id="alert_pop_up_pane" layoutX="38.0" layoutY="405.0" prefHeight="149.0" prefWidth="266.0" style="-fx-background-color: white; -fx-background-radius: 8px;" visible="false">
+                              <Pane fx:id="alert_pop_up_pane" layoutX="40.0" layoutY="324.0" prefHeight="147.0" prefWidth="266.0" style="-fx-background-color: white; -fx-background-radius: 8px;" visible="false">
                                  <children>
                                     <Label layoutX="22.0" layoutY="14.0" text="Deseja Realizar o procedimento" textFill="#e82a2a">
                                        <font>
@@ -90,23 +88,14 @@
                                     <Button layoutX="62.0" layoutY="70.0" mnemonicParsing="false" onAction="#editarCaixa" prefHeight="31.0" prefWidth="61.0" text="SIM" />
                                     <Button layoutX="149.0" layoutY="70.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="31.0" prefWidth="61.0" style="-fx-background-color: red;" text="NÃO" textFill="WHITE" />
                                  </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
                               </Pane>
-                           </children></Pane>
-                        <Pane layoutX="369.0" layoutY="15.0" prefHeight="570.0" prefWidth="897.0" style="-fx-background-color: BAD9D6; -fx-background-radius: 8px;">
-                           <children>
-                              <TableView fx:id="log_table_view" layoutY="34.0" prefHeight="523.0" prefWidth="897.0">
-                                <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
-                                </columns>
-                              </TableView>
-                              <Label alignment="CENTER" layoutX="402.0" layoutY="4.0" prefHeight="21.0" prefWidth="81.0" text="BD LOG">
-                                 <font>
-                                    <Font name="Arial" size="19.0" />
-                                 </font>
-                              </Label>
                            </children>
-                        </Pane>
+                           <effect>
+                              <DropShadow />
+                           </effect></Pane>
                      </children>
                   </AnchorPane>
             </content>
@@ -192,6 +181,9 @@
                               </Button>
                               <Label alignment="TOP_LEFT" layoutX="163.0" layoutY="222.0" prefHeight="17.0" prefWidth="0.0" textFill="RED" />
                            </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Pane>
                      </children>
                   </AnchorPane>

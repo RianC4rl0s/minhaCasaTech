@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,32 +10,38 @@
    <children>
       <Pane layoutY="-1.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
          <children>
-            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="8.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane layoutX="38.0" layoutY="106.0" prefHeight="43.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
+      <Pane layoutX="38.0" layoutY="106.0" prefHeight="43.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6; -fx-background-radius: 8px;">
          <children>
-            <Button fx:id="cadastrar_local_btm" layoutX="22.0" layoutY="9.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarLocal" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
-            <Button fx:id="editar_local_btm" layoutX="114.0" layoutY="9.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
-            <Button fx:id="excluir_local_btm" layoutX="202.0" layoutY="9.0" mnemonicParsing="false" onAction="#excluirItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
+            <Button fx:id="cadastrar_local_btm" layoutX="22.0" layoutY="5.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarLocal" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
+            <Button fx:id="editar_local_btm" layoutX="114.0" layoutY="5.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
+            <Button fx:id="excluir_local_btm" layoutX="202.0" layoutY="5.0" mnemonicParsing="false" onAction="#excluirItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
             <Button fx:id="recarregar_btm" layoutX="1164.0" layoutY="9.0" mnemonicParsing="false" onAction="#recarregarTela" style="-fx-background-color: #5B93C6;" text="⟲" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
          </children>
+         <effect>
+            <DropShadow color="#0000009e" />
+         </effect>
       </Pane>
-      <Pane layoutX="40.0" layoutY="168.0" prefHeight="480.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
+      <Pane layoutX="40.0" layoutY="168.0" prefHeight="505.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6; -fx-background-radius: 8px;">
          <children>
-            <TableView fx:id="tabela_locais" layoutX="27.0" layoutY="20.0" prefHeight="441.0" prefWidth="1153.0">
+            <TableView fx:id="tabela_locais" layoutY="20.0" prefHeight="468.0" prefWidth="1205.0">
                <columns>
                   <TableColumn fx:id="local_casa" prefWidth="547.0" text="Casa" />
                   <TableColumn fx:id="local_compartimento" prefWidth="538.0" text="Compartimento" />
                </columns>
             </TableView>
          </children>
+         <effect>
+            <DropShadow color="#00000086" />
+         </effect>
       </Pane>
-      <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
+      <Button fx:id="voltar_btm" layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

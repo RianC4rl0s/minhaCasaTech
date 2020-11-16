@@ -12,9 +12,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #95BBBF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.PrincipalController">
    <children>
-      <Pane layoutX="373.0" layoutY="87.0" prefHeight="596.0" prefWidth="834.0" style="-fx-background-color: #ffffff;">
+      <Pane layoutX="373.0" layoutY="87.0" prefHeight="596.0" prefWidth="834.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8px;">
          <children>
-            <TableView fx:id="tabela_transacao_tb" layoutX="12.0" layoutY="54.0" prefHeight="529.0" prefWidth="810.0">
+            <TableView fx:id="tabela_transacao_tb" layoutY="52.0" prefHeight="536.0" prefWidth="834.0">
               <columns>
                 <TableColumn fx:id="tipo_t_tb" prefWidth="106.0" text="Tipo" />
                 <TableColumn fx:id="valor_t_tb" prefWidth="216.0" text="Valor Total" />
@@ -30,6 +30,9 @@
             </Label>
             <Separator layoutX="14.0" layoutY="46.0" prefHeight="3.0" prefWidth="810.0" />
          </children>
+         <effect>
+            <DropShadow color="#00000074" />
+         </effect>
       </Pane>
       <Pane prefHeight="720.0" prefWidth="300.0" style="-fx-background-color: #466673;">
          <children>
@@ -74,7 +77,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="153.0" prefWidth="254.0" style="-fx-background-color: BAD9D6;">
                                  <children>
-                                    <Button fx:id="gerenciar_local_menu_btm1" layoutY="3.0" mnemonicParsing="false" onAction="#chamarTelaGerenciarLocal" prefHeight="31.0" prefWidth="256.0" style="-fx-background-color: #1C3940;" text="Gerenciar " textFill="WHITE" />
+                                    <Button fx:id="gerenciar_local_menu_btm1" layoutX="-1.0" layoutY="3.0" mnemonicParsing="false" onAction="#chamarTelaGerenciarLocal" prefHeight="31.0" prefWidth="256.0" style="-fx-background-color: #1C3940;" text="Gerenciar " textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -102,7 +105,7 @@
             </Pane>
             <Pane layoutX="22.0" layoutY="123.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #95BBBF;">
                <children>
-                  <Label layoutX="97.0" layoutY="10.0" text="Bem Vindo" />
+                  <Label layoutX="92.0" layoutY="7.0" text="Bem Vindo" />
                </children>
             </Pane>
          </children>

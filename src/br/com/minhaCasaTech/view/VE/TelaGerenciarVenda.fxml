@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -11,10 +12,10 @@
    <children>
       <Pane layoutY="-1.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
          <children>
-            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="8.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="7.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane layoutX="40.0" layoutY="86.0" prefHeight="620.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
+      <Pane layoutX="40.0" layoutY="86.0" prefHeight="620.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6; -fx-background-radius: 8px;">
          <children>
             <TitledPane fx:id="qtdEquipamento" animated="false" layoutX="460.0" layoutY="110.0" text="Quantidade">
               <content>
@@ -68,7 +69,7 @@
                   <Font name="Lucida Sans Regular" size="32.0" />
                </font>
             </Label>
-            <Pane layoutX="802.0" layoutY="374.0" prefHeight="188.0" prefWidth="339.0" style="-fx-background-color: #1C3940; -fx-border-color: white;">
+            <Pane layoutX="802.0" layoutY="374.0" prefHeight="188.0" prefWidth="339.0" style="-fx-background-color: #1C3940; -fx-border-color: white; -fx-background-radius: 8px; -fx-border-radius: 8px;">
                <children>
                   <Button fx:id="finalizar" layoutX="182.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#finalizarCompra" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: #ADBF95;" text="Finalizar Venda" textFill="WHITE" />
                   <Label text="Label" />
@@ -76,11 +77,17 @@
                   <Label layoutX="117.0" layoutY="22.0" style="-fx-font-weight: bold; -fx-font-size: 32px;" text="Total:" textFill="WHITE" />
                   <Button fx:id="cancelarAdd1" layoutX="37.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#voltarInicio" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: FF8282;" text="Cancelar" textFill="WHITE" />
                </children>
+               <effect>
+                  <DropShadow color="#0000008d" height="14.78" offsetX="1.0" radius="8.445" />
+               </effect>
             </Pane>
-            <Button fx:id="remove" layoutX="622.0" layoutY="587.0" mnemonicParsing="false" onMouseClicked="#removeEquipamento" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: FF8282;" text="Remover" textFill="WHITE" />
+            <Button fx:id="remove" layoutX="622.0" layoutY="584.0" mnemonicParsing="false" onMouseClicked="#removeEquipamento" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: FF8282;" text="Remover" textFill="WHITE" />
             <Button fx:id="add" layoutX="1081.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#mostrarAddQuantidade" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #ADBF95;" text="Adicionar" textFill="WHITE" />
             <ComboBox fx:id="clienteCB" layoutX="904.0" layoutY="310.0" prefHeight="26.0" prefWidth="163.0" promptText="Cliente" />
          </children>
+         <effect>
+            <DropShadow color="#00000093" />
+         </effect>
       </Pane>
       <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
          <font>
