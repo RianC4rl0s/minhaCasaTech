@@ -138,8 +138,9 @@ public class GerenciarVendaController implements Initializable {
     	
     	venda.setPesoTotal(0.00);
     	venda.setTotalEquip(0);
+    	venda.setValorTotal(venda.getValorTotal() + venda.getValorTotal()*0.30);
     	for(EquipamentoVO eqp : venda.getEquipamentos()) {
-    		venda.setPesoTotal(venda.getPesoTotal()+eqp.getValorTotal());
+    		venda.setPesoTotal(venda.getPesoTotal()+eqp.getPeso());
     		venda.setTotalEquip(venda.getTotalEquip()+eqp.getQuantidade());
     	}
     	venda.setData();

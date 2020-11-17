@@ -110,8 +110,9 @@ public class GerenciarCompraController implements Initializable {
     	
     	compra.setPesoTotal(0.00);
     	compra.setTotalEquip(0);
+    	compra.setValorTotal(compra.getValorTotal() + compra.getValorTotal()*0.30);
     	for(EquipamentoVO eqp : compra.getEquipamentos()) {
-    		compra.setPesoTotal(compra.getPesoTotal()+eqp.getValorTotal());
+    		compra.setPesoTotal(compra.getPesoTotal()+eqp.getPeso());
     		compra.setTotalEquip(compra.getTotalEquip()+eqp.getQuantidade());
     	}
     	compra.setData();
