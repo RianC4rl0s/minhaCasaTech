@@ -150,17 +150,17 @@ public ResultSet buscarPorId(Long id) {
 		
 	}
 	*/
-	public void deletar(LocalVO local) {
+	public void deletar(LocalVO local) throws SQLException {
 		
 		String sql = "delete from local where id = ?";
 		
-		try {
+		//try {
 			PreparedStatement pst = getCon().prepareStatement(sql);
 			pst.setLong(1, local.getId());
 			
 			pst.executeUpdate();
-		}catch(SQLException e) {
+		/*}catch(SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

@@ -121,22 +121,26 @@ public class GerenciarEquipamentoController implements Initializable{
 	    @FXML
 	    Label exception_jlb;
 	    public void editarItem() {
-	    	try {
-	    		exception_jlb.setText("");
-	    		TableViewSelectionModel<EquipamentoVO> selectionModel = tabela_equipamento.getSelectionModel();
-		    	chamarTelaEditarEquipamento(selectionModel.getSelectedItem());
-		    	System.out.println(selectionModel.getSelectedItem().getLocal().getCasa());
-			} catch (Exception e) {
-				exception_jlb.setText("Nenhum item selecionado");
-			}
-	    	
+	    	TableViewSelectionModel<EquipamentoVO> selectionModel = tabela_equipamento.getSelectionModel();
+	    	if(selectionModel.getSelectedItem()== null) {
+	    		exception_jlb.setText("Nenhum item selecionado");
+	    	}else{
+		    	try {
+		    		exception_jlb.setText("");
+		    		
+			    	chamarTelaEditarEquipamento(selectionModel.getSelectedItem());
+			    	System.out.println(selectionModel.getSelectedItem().getLocal().getCasa());
+				} catch (Exception e) {
+					exception_jlb.setText("Nenhum item selecionado");
+				}
+	    	}
 	    }
 	    @FXML
 	    private Label alert_exlcuir_lbl;
 	    public void excluirEquipamento() {
 	    	
 	    	TableViewSelectionModel<EquipamentoVO> selectedModel = tabela_equipamento.getSelectionModel();
-	    	if( selectedModel == null) {
+	    	if(selectedModel.getSelectedItem()== null) {
 	    		exception_jlb.setText("Nenhum item selecionado");
 	    	}else{
 		    	try {
@@ -146,14 +150,16 @@ public class GerenciarEquipamentoController implements Initializable{
 			    	
 			    	ebo.deletar(selectedModel.getSelectedItem());
 			    	//alert_exlcuir_lbl.setVisible(false);
+			    	recarregarTela();
 				} catch (Exception e) {
 					System.out.println("Não foi possivel excluir o eqp, pois o mesmo está atribuido a uma transação");
 					alert_exlcuir_lbl.setVisible(true);
+					
 				}
 	    	}
 	    	
 	    	
-	    	recarregarTela();
+	    	
 	    }
 	    
 	    @FXML

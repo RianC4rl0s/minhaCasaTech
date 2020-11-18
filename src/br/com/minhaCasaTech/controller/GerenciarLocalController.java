@@ -90,21 +90,21 @@ public class GerenciarLocalController implements Initializable {
 	 }
 	    @FXML
 	    private Label excep_delet_error;
-	 public void excluirItem() throws SQLException {
+	 public void excluirItem(){
 		 LocalBO lbo = new LocalBO();
 	
-		try {
-		exception_jlb.setText("");
-		TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
-		lbo.deletar(selectionModel.getSelectedItem());
+		 try {
+			 exception_jlb.setText("");
+			 TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
 		
-		
-
-		 }catch(Exception e) {
+			 lbo.deletar(selectionModel.getSelectedItem());
 			
-			 exception_jlb.setText("Nenhum item selecionado");
+			 recarregarTela();
+		 }catch(Exception e) {
+			 excep_delet_error.setVisible(true);
+			// exception_jlb.setText("Nenhum item selecionado");
 		 }
-		 recarregarTela();
+		
 	 } 
 	   
 }

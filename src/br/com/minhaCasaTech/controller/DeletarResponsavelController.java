@@ -81,13 +81,14 @@ public class DeletarResponsavelController implements Initializable {
 					bo.deletar(r);
 				} catch (InsertException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
+					System.out.println("Não pode deletar");
 				}			
 			
 			Stage stage = (Stage) radioProp.getScene().getWindow(); 
 			stage.close();
 			try {
-				Telas.telaGerenciarResponsavel();
+				Telas.telaSetorProprietario();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

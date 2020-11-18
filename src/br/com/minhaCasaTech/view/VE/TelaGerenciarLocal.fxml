@@ -15,8 +15,8 @@
       </Pane>
       <Pane layoutX="38.0" layoutY="106.0" prefHeight="43.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6; -fx-background-radius: 8px;">
          <children>
-            <Button fx:id="cadastrar_local_btm" layoutX="22.0" layoutY="5.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarLocal" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
-            <Button fx:id="editar_local_btm" layoutX="114.0" layoutY="5.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
+            <Button fx:id="cadastrar_local_btm" layoutX="19.0" layoutY="5.0" mnemonicParsing="false" onAction="#chamarTelaCadastrarLocal" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
+            <Button fx:id="editar_local_btm" layoutX="114.0" layoutY="5.0" mnemonicParsing="false" onAction="#editarItem" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
             <Button fx:id="excluir_local_btm" layoutX="202.0" layoutY="5.0" mnemonicParsing="false" onAction="#excluirItem" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
             <Button fx:id="recarregar_btm" layoutX="1164.0" layoutY="9.0" mnemonicParsing="false" onAction="#recarregarTela" style="-fx-background-color: #5B93C6;" text="⟲" textFill="WHITE">
                <font>

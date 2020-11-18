@@ -73,9 +73,9 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="exception_jlb" alignment="CENTER" layoutX="622.0" layoutY="67.0" prefHeight="17.0" prefWidth="38.0" textFill="RED" />
+      <Label fx:id="exception_jlb" alignment="CENTER" layoutX="520.0" layoutY="78.0" prefHeight="21.0" prefWidth="280.0" textFill="RED" />
       <Label fx:id="alert_exlcuir_lbl" layoutX="377.0" layoutY="78.0" text="Não é possivel excluir o Equipamento pois o mesmo está atribuido em uma transação" textFill="#ff3434" visible="false" />
-      <Label layoutX="596.0" layoutY="53.0" text="Equipamentos">
+      <Label layoutX="596.0" layoutY="54.0" text="Equipamentos">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>

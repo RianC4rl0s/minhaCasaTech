@@ -85,14 +85,14 @@ public class LocalBO implements BaseInterBO<LocalVO>{
 		return locais;
 	}
 	
-	public void deletar(LocalVO local){
+	public void deletar(LocalVO local)throws SQLException{
 		LocalDAO dao = new LocalDAO();
-		try{
+	//	try{
 		dao.deletar(local);
 		System.out.println("Deletado");
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		//}catch(Exception e) {
+		//	e.printStackTrace();
+		//}
 		
 	}
 }

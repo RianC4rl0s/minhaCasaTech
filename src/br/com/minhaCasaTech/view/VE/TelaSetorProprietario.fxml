@@ -45,6 +45,12 @@
                               <Button fx:id="excluir" layoutX="207.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#excluirResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: FF8282;" text="Excluir" textFill="WHITE" />
                               <Button fx:id="editar_cliente_btm" layoutX="122.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#chamarTelaEditarResponsavel" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #5B93C6;" text="Editar" textFill="WHITE" />
                               <Button fx:id="cadastrar" layoutX="27.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#chamarTelaCadastrarResponsavel" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #ADBF95;" text="Cadastrar" textFill="WHITE" />
+                              <Label fx:id="excep_delet_error" layoutX="307.0" layoutY="14.0" prefHeight="21.0" prefWidth="632.0" text="Não é possivel deletar o responsavel, está sendo utilizado em outra parte da aplicação" textFill="#ff4d4d" visible="false">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="exception_jlb" layoutX="297.0" layoutY="14.0" textFill="#ff1e1e" />
                            </children>
                         </Pane>
                      </children>

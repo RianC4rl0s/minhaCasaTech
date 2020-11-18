@@ -87,15 +87,23 @@ public class SetorProprietarioController implements Initializable {
 		}	
 	}
 	
+
+   
 	public void chamarTelaEditarResponsavel() {
-		
-		try {
-			TableViewSelectionModel<ResponsavelVO> selectedModel = tabela_responsaveis.getSelectionModel();
-			Telas.telaEditarResponsavel(selectedModel.getSelectedItem());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		TableViewSelectionModel<ResponsavelVO> selectedModel = tabela_responsaveis.getSelectionModel();
+		if(selectedModel.getSelectedItem()== null) {
+    		exception_jlb.setText("Nenhum item selecionado");
+    	}else{
+			try {
+				
+		    		Telas.telaEditarResponsavel(selectedModel.getSelectedItem());
+		    		
+		    	
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
 	}
 		
     public void iniciarTabela() {
@@ -108,13 +116,23 @@ public class SetorProprietarioController implements Initializable {
 		tabela_responsaveis.setItems(FXCollections.observableArrayList(rbo.listar()));
 	}
 		    
+    @FXML
+    private Label excep_delet_error;
     public void excluirResponsavel() {
-    	try {
-    		TableViewSelectionModel<ResponsavelVO> selectedModel = tabela_responsaveis.getSelectionModel();
-			Telas.telaDeletarResponsavel(selectedModel.getSelectedItem());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    	TableViewSelectionModel<ResponsavelVO> selectedModel = tabela_responsaveis.getSelectionModel();
+		if( selectedModel.getSelectedItem()== null) {
+    		exception_jlb.setText("Nenhum item selecionado");
+    	}else{
+	    	try {
+	    		
+		    		Telas.telaDeletarResponsavel(selectedModel.getSelectedItem());
+		    		
+				
+	    	} catch (Exception e) {
+				e.printStackTrace();
+				//excep_delet_error.setVisible(true);
+			}
+    	}
 	}
     @FXML
     private TextField caixa_txf;
