@@ -200,16 +200,14 @@ public class SetorProprietarioController implements Initializable {
 		EquipamentoBO ebo = new EquipamentoBO();
 		ebo.cadastrar(e);
 		double valorTotal = e.getPreco() * e.getQuantidade();
-		CaixaBO cbo = new CaixaBO();
-		cbo.subValor(valorTotal);
+		/*CaixaBO cbo = new CaixaBO();
+		cbo.subValor(valorTotal);*/
 		try {
 			Telas.telaGerenciarEquipamento();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		Stage stage = (Stage) cadastrar_equipamento_btm.getScene().getWindow(); 
-		stage.close(); 
 	}
     public void limparCampos() {
     	   ns_equipamento_txf.setText("");;

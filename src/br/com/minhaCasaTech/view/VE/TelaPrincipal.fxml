@@ -12,6 +12,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #95BBBF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.minhaCasaTech.controller.PrincipalController">
    <children>
+      <Pane layoutX="299.0" layoutY="-2.0" prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #1C3940;">
+         <children>
+            <Button fx:id="sair_btm" layoutX="907.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" stylesheets="@css/style.css" text="Sair" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="CROSSHAIR" />
+               </cursor></Button>
+         </children>
+      </Pane>
       <Pane layoutX="373.0" layoutY="87.0" prefHeight="596.0" prefWidth="834.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8px;">
          <children>
             <TableView fx:id="tabela_transacao_tb" layoutY="52.0" prefHeight="536.0" prefWidth="834.0">
@@ -112,14 +120,6 @@
          <effect>
             <DropShadow />
          </effect>
-      </Pane>
-      <Pane layoutX="299.0" layoutY="-2.0" prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #1C3940;">
-         <children>
-            <Button fx:id="sair_btm" layoutX="907.0" layoutY="6.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" stylesheets="@css/style.css" text="Sair" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="CROSSHAIR" />
-               </cursor></Button>
-         </children>
       </Pane>
    </children>
 </Pane>

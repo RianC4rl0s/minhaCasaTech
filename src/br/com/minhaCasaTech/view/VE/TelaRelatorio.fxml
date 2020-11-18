@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -10,7 +11,7 @@
    <children>
       <Pane layoutY="-1.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #1C3940;">
          <children>
-            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="8.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
+            <Button fx:id="sair_btm" layoutX="1211.0" layoutY="5.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #B61717;" text="Sair" textFill="WHITE" />
          </children>
       </Pane>
       <Pane fx:id="equipamentos" layoutX="69.0" layoutY="109.0" prefHeight="282.0" prefWidth="1143.0" style="-fx-background-color: white;">
@@ -29,9 +30,9 @@
             </TableView>
          </children>
       </Pane>
-      <Pane layoutX="40.0" layoutY="86.0" prefHeight="620.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6;">
+      <Pane layoutX="40.0" layoutY="86.0" prefHeight="620.0" prefWidth="1205.0" style="-fx-background-color: #BAD9D6; -fx-background-radius: 8px;">
          <children>
-            <TabPane layoutX="20.0" layoutY="69.0" prefHeight="504.0" prefWidth="1163.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="20.0" layoutY="69.0" prefHeight="504.0" prefWidth="1163.0" stylesheets="@css/style.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Vendas">
                      <content>
@@ -65,8 +66,8 @@
             <DatePicker fx:id="dI" layoutX="316.0" layoutY="35.0" />
             <DatePicker fx:id="dF" layoutX="603.0" layoutY="35.0" />
             <Label layoutX="257.0" layoutY="32.0" style="-fx-font-weight: bold; -fx-font-size: 26px;" text="De:" />
-            <Label layoutX="534.0" layoutY="32.0" style="-fx-font-weight: bold; -fx-font-size: 26px;" text="Até:" />
-            <Button fx:id="gerar" layoutX="820.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#gerarRelatorio" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #ADBF95;" text="Gerar" textFill="WHITE" />
+            <Label layoutX="542.0" layoutY="32.0" style="-fx-font-weight: bold; -fx-font-size: 26px;" text="Até:" />
+            <Button fx:id="gerar" layoutX="826.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#gerarRelatorio" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #ADBF95;" text="Gerar" textFill="WHITE" />
             <Button fx:id="verEqps" layoutX="1032.0" layoutY="581.0" mnemonicParsing="false" onMouseClicked="#verEquipamentos" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: #ADBF95;" text="Ver Equipamentos" textFill="WHITE" />
             <Label fx:id="data" layoutX="20.0" layoutY="583.0" prefHeight="20.0" prefWidth="376.0" visible="false">
                <font>
@@ -74,6 +75,9 @@
                </font>
             </Label>
          </children>
+         <effect>
+            <DropShadow color="#0000009a" />
+         </effect>
       </Pane>
       <Button fx:id="voltar_btm" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#voltarInicio" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #1C3940;" text="&lt;-" textFill="WHITE">
          <font>

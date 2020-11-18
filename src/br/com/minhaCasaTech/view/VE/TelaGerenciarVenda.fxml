@@ -119,5 +119,10 @@
             <Font size="17.0" />
          </font>
       </Label>
+      <Label layoutX="623.0" layoutY="52.0" text="Vender">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

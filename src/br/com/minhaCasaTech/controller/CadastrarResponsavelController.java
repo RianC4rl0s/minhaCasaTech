@@ -70,7 +70,7 @@ public class CadastrarResponsavelController implements Initializable {
 		stage.close();
 		
 		try {
-			Telas.telaGerenciarResponsavel();
+			Telas.telaSetorProprietario();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
