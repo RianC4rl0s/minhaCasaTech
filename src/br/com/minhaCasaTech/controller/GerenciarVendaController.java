@@ -150,7 +150,7 @@ public class GerenciarVendaController implements Initializable {
     		venda.setCliente(cliente);
     		venda.setTipo(0);
     		vbo.cadastrar(venda);
-    		caixa.addValor(venda.getValorTotal() + venda.getValorTotal()*0.30);
+    		caixa.addValor(venda.getValorTotal());
     		venda = new VendaVO();
     		try {
     			Telas.telaPrincipal();
