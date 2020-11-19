@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import br.com.minhaCasaTech.model.BO.ClienteBO;
 
 import br.com.minhaCasaTech.model.VO.ClienteVO;
-
+import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.view.Telas;
 import exception.InsertException;
 import javafx.collections.FXCollections;
@@ -76,14 +76,19 @@ public class GerenciarClienteController implements Initializable{
 	public void excluirItem() {
 			ClienteBO cbo = new ClienteBO();
 			TableViewSelectionModel<ClienteVO> selectionModel = tabela_cliente_tb.getSelectionModel();
+			
+	    	if(selectionModel.getSelectedItem()== null) {
+	    		exception_jlb.setText("Nenhum item selecionado");
+	    	}else{
+				try {
+					cbo.deletar(selectionModel.getSelectedItem());
+					 recarregarTela();
+				} catch (InsertException e) {
+					
+					e.printStackTrace();
+				}
+	    	}
 		
-			try {
-				cbo.deletar(selectionModel.getSelectedItem());
-			} catch (InsertException e) {
-				
-				e.printStackTrace();
-			}
-		 recarregarTela();
 	}
 	public void voltarInicio() {
 		try {
@@ -111,14 +116,20 @@ public class GerenciarClienteController implements Initializable{
 	    @FXML
 	    private Label exception_jlb;
 	   public void editarItem() {
-		   try {  
-				exception_jlb.setText("");
-				TableViewSelectionModel<ClienteVO> selectionModel = tabela_cliente_tb.getSelectionModel();
-				System.out.println(selectionModel.getSelectedItem().toString());
-				chamarTelaEditarCliente(selectionModel.getSelectedItem());
-			}catch(Exception e) {
-				exception_jlb.setText("Nenhum item selecionado");
-			}
+		   
+		   	TableViewSelectionModel<ClienteVO> selectionModel = tabela_cliente_tb.getSelectionModel();
+	    	if(selectionModel.getSelectedItem()== null) {
+	    		exception_jlb.setText("Nenhum item selecionado");
+	    	}else {
+			   try {  
+					exception_jlb.setText("");
+					
+					System.out.println(selectionModel.getSelectedItem().toString());
+					chamarTelaEditarCliente(selectionModel.getSelectedItem());
+				}catch(Exception e) {
+					exception_jlb.setText("Nenhum item selecionado");
+				}
+	    	}
 	   }
 	   public void chamarTelaEditarCliente(ClienteVO c) {
 		   try {

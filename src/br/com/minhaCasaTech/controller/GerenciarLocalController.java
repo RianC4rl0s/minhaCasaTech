@@ -59,14 +59,21 @@ public class GerenciarLocalController implements Initializable {
     private Label exception_jlb;
 	public void editarItem() {
 		//aqui eu pego os dados da tabela e chamo a proxima tela
-		try {  
-			exception_jlb.setText("");
-			TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
-			System.out.println(selectionModel.getSelectedItem().toString());
-			chamarTelaEditarLocal(selectionModel.getSelectedItem());
-		}catch(Exception e) {
-			exception_jlb.setText("Nenhum item selecionado");
-		}
+		TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
+		 if(selectionModel.getSelectedItem() == null) {
+				exception_jlb.setText("Nenhum item selecionado");
+		 }else {
+			
+				 try {  
+						exception_jlb.setText("");
+					
+						System.out.println(selectionModel.getSelectedItem().toString());
+						chamarTelaEditarLocal(selectionModel.getSelectedItem());
+					}catch(Exception e) {
+						//exception_jlb.setText("Nenhum item selecionado");
+						e.printStackTrace();
+					}
+		 }
 	   }
 	public void recarregarTela() {
 		try {
@@ -92,18 +99,23 @@ public class GerenciarLocalController implements Initializable {
 	    private Label excep_delet_error;
 	 public void excluirItem(){
 		 LocalBO lbo = new LocalBO();
-	
-		 try {
-			 exception_jlb.setText("");
-			 TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
-		
-			 lbo.deletar(selectionModel.getSelectedItem());
+		 TableViewSelectionModel<LocalVO> selectionModel = tabela_locais.getSelectionModel();
+		 if(selectionModel.getSelectedItem() == null) {
+			 exception_jlb.setText("Nenhum item selecionado");
+		 }else {
 			
-			 recarregarTela();
-		 }catch(Exception e) {
-			 excep_delet_error.setVisible(true);
-			// exception_jlb.setText("Nenhum item selecionado");
-		 }
+			 try {
+				 exception_jlb.setText("");
+				
+			
+				 lbo.deletar(selectionModel.getSelectedItem());
+				
+				 recarregarTela();
+			 }catch(Exception e) {
+				 excep_delet_error.setVisible(true);
+				// exception_jlb.setText("Nenhum item selecionado");
+			 }
+	 }
 		
 	 } 
 	   
