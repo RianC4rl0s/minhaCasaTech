@@ -88,6 +88,7 @@ public class EditarEquipamentoController implements Initializable{
 		EquipamentoBO ebo = new EquipamentoBO();
 		try {
 		eqp = e;
+		eqp.setNome(nome_edt_txf.getText());
 		eqp.setQuantidade(Integer.parseInt(quantidade_edt_txf.getText()));
 		eqp.setLocal(local_edt_txf.getSelectionModel().getSelectedItem());
 		eqp.setPeso(Double.parseDouble(peso_edt_txf.getText()));

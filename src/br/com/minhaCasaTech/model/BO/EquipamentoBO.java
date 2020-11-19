@@ -392,6 +392,29 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO>{
 			ResultSet rs = edao.buscarEntrePreco(a, b);
 			while(rs.next()) {
 				EquipamentoVO eqp = new EquipamentoVO();	
+				eqp.setId_equipamento(rs.getLong("Id Eqp"));
+				eqp.setNome(rs.getString("Nome Eqp"));
+				eqp.setPeso(rs.getDouble("Peso"));
+				eqp.setPreco(rs.getDouble("Preco"));
+				eqp.setQuantidade(rs.getInt("Qtd"));
+				eqp.setNumeroDeSerie(rs.getInt("NS"));
+				
+				LocalVO l = new LocalVO();
+				l.setId(rs.getLong("id local"));
+				l.setCasa(rs.getString("Casa"));
+				l.setCompartimento(rs.getString("Compartimento"));
+				
+				eqp.setLocal(l);
+				
+				ResponsavelVO resp = new ResponsavelVO();
+				resp.setId_responsavel(rs.getLong("id p/r"));
+				resp.setId_pessoa(rs.getLong("id p/r"));
+				resp.setNome(rs.getString("Nome P"));
+				resp.setLogin(rs.getString("Login"));
+				resp.setSenha(rs.getString("Senha"));
+				resp.setEndereco(rs.getString("Endereco"));
+				resp.setTelefone(rs.getString("Telefone"));
+				/*EquipamentoVO eqp = new EquipamentoVO();	
 				eqp.setId_equipamento(rs.getLong("e.id"));
 				eqp.setNome(rs.getString("e.nome"));
 				eqp.setPeso(rs.getDouble("e.peso"));
@@ -413,7 +436,7 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO>{
 				resp.setLogin(rs.getString("r2.login"));
 				resp.setSenha(rs.getString("r2.senha"));
 				resp.setEndereco(rs.getString("p2.endereco"));
-				resp.setTelefone(rs.getString("r2.telefone"));
+				resp.setTelefone(rs.getString("r2.telefone"));*/
 				//,p2.id,p2.nome,p2.endereco, r2.login,r2.senha, r2.telefone 
 				
 				eqp.setResponsavel(resp);
