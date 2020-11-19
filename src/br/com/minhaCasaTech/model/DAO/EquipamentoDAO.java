@@ -200,7 +200,7 @@ public ResultSet buscarPorId(Long id) {
 	}
 	public ResultSet buscarGenerico(String campo) {
 		ResultSet rs = null;
-		String sql ="select * from equipamento e where nome like ? or"
+		String sql ="select * from equipamento e where nome like ? or numero_de_serie = ? or"
 				+ " e.id_local in(select l2.id from `local` l2 where casa LIKE ? or compartimento LIKE ?)"
 				+ "OR e.id_responsavel in " 
 				+ "(SELECT resp.id FROM responsavel resp" + 
@@ -210,9 +210,10 @@ public ResultSet buscarPorId(Long id) {
 		try {
 			pst = getCon().prepareStatement(sql);
 			pst.setString(1,"%"+campo+"%");
-			pst.setString(2,"%"+campo+"%");
+			pst.setString(2,campo);
 			pst.setString(3,"%"+campo+"%");
 			pst.setString(4,"%"+campo+"%");
+			pst.setString(5,"%"+campo+"%");
 			rs = pst.executeQuery();
 		}catch(SQLException e) {
 			e.printStackTrace();
