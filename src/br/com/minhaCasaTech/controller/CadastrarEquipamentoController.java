@@ -77,7 +77,7 @@ public class CadastrarEquipamentoController implements Initializable{
 			cbo.subValor(e.getPreco()*e.getQuantidade());
 			
 			try {
-				Telas.telaPrincipal();
+				Telas.telaGerenciarEquipamento();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
