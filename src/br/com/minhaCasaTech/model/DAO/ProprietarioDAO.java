@@ -101,6 +101,20 @@ public class ProprietarioDAO<VO extends ProprietarioVO> extends ResponsavelDAO<V
 		return rs;
 	}
 	
+	public ResultSet listarLog() {
+		String sql = "select * from log_table";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	public void deletar(VO pessoa) {
 		String sql = "delete from proprietario where id=?";
 		PreparedStatement ptst;

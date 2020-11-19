@@ -152,7 +152,7 @@ public class GerenciarEquipamentoController implements Initializable{
 			    	//alert_exlcuir_lbl.setVisible(false);
 			    	recarregarTela();
 				} catch (Exception e) {
-					System.out.println("Não foi possivel excluir o eqp, pois o mesmo está atribuido a uma transação");
+					System.out.println("Nï¿½o foi possivel excluir o eqp, pois o mesmo estï¿½ atribuido a uma transaï¿½ï¿½o");
 					alert_exlcuir_lbl.setVisible(true);
 					
 				}
@@ -253,4 +253,13 @@ public class GerenciarEquipamentoController implements Initializable{
 				preencherTabelaBusca(eqpl);
 			}
 	    }
+	    
+	    public void mostrarView() {
+			try {
+				Telas.telaView();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

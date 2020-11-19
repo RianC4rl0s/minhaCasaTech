@@ -9,6 +9,7 @@ import br.com.minhaCasaTech.controller.EditarLocalController;
 import br.com.minhaCasaTech.controller.EditarResponsavelController;
 import br.com.minhaCasaTech.model.VO.ClienteVO;
 import br.com.minhaCasaTech.controller.RelatorioEquipamentosController;
+import br.com.minhaCasaTech.controller.RelatorioViewController;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
@@ -48,6 +49,15 @@ private static Stage primaryStage;
 
 	}
 
+	
+	public static void telaView() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/telaViewRelatorio.fxml"));
+		
+		Scene cena = new Scene(root);
+		Stage secondarySage = new Stage();
+		secondarySage.setScene(cena);
+		secondarySage.show();
+	}
 	
 	public static void telaLogin() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaLogin.fxml"));

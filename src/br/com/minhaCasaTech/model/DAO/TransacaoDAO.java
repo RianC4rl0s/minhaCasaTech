@@ -174,4 +174,18 @@ public class TransacaoDAO<VO extends TransacaoVO> extends BaseDAO<VO>{
 		}
 		return rs;
 	}
+	
+	public ResultSet mostrarView() throws SQLException {
+		String sql = "select * from equipamentosElocais";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		
+		try {
+			ptst = getCon().prepareStatement(sql);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

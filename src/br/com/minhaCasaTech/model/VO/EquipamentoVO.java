@@ -122,7 +122,7 @@ public class EquipamentoVO {
 	}
 	
 	public String toString() {
-		return
+		return responsavel ==  null ? "Nome: "+nome :
 		"Nome: "+nome+"\n"+
 		"Peso: "+peso+"\n"+
 		"Quantidade: "+quantidade+"\n"+

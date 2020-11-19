@@ -94,7 +94,6 @@ public class TransacaoBO implements BaseInterBO<TransacaoVO>{
 		}
 	}
 	
-	
 	public TransacaoVO montarTransacao(ResultSet rs) {
 		TransacaoVO generic = new TransacaoVO();
 		try {

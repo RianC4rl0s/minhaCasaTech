@@ -54,7 +54,7 @@ public class LocalVO {
 	}
 	
 	public String toString() {
-		return
+		return compartimento == null ? "Casa: "+casa :
 		"Casa: "+casa+"\n"+
 		"Compartimento: "+compartimento+"\n";
 	}

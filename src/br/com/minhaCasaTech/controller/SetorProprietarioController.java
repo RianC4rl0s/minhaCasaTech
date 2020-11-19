@@ -1,16 +1,23 @@
 package br.com.minhaCasaTech.controller;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.minhaCasaTech.model.BO.CaixaBO;
 import br.com.minhaCasaTech.model.BO.EquipamentoBO;
 import br.com.minhaCasaTech.model.BO.LocalBO;
 import br.com.minhaCasaTech.model.BO.ResponsavelBO;
+import br.com.minhaCasaTech.model.DAO.ProprietarioDAO;
 import br.com.minhaCasaTech.model.VO.CaixaVO;
 import br.com.minhaCasaTech.model.VO.EquipamentoVO;
 import br.com.minhaCasaTech.model.VO.LocalVO;
 import br.com.minhaCasaTech.model.VO.ResponsavelVO;
+import br.com.minhaCasaTech.model.VO.TransacaoVO;
+import br.com.minhaCasaTech.model.VO.logVO;
 import br.com.minhaCasaTech.view.Telas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -44,6 +51,15 @@ public class SetorProprietarioController implements Initializable {
 	@FXML private RadioButton radioProp;
 	@FXML private RadioButton radioFunc;
 	@FXML private Label errorLabel;
+	
+	@FXML
+    private TableColumn<logVO, String> log_data;
+	@FXML
+    private TableColumn<logVO, String> log_act;
+    @FXML
+	private TableColumn<logVO, String> log_user;
+	@FXML
+	private TableView<logVO> tabela_log;
 	  	
 	public void voltarInicio() {
 		try {
@@ -66,6 +82,7 @@ public class SetorProprietarioController implements Initializable {
 		iniciarTabela();
 		iniciarCaixa();
 		carregarCaixas();
+		iniciarTabelaLog();
 	}
 	
 	@FXML
@@ -114,6 +131,31 @@ public class SetorProprietarioController implements Initializable {
 		    	
 		ResponsavelBO rbo = new ResponsavelBO();
 		tabela_responsaveis.setItems(FXCollections.observableArrayList(rbo.listar()));
+	}
+    
+    public void iniciarTabelaLog() {
+    	log_data.setCellValueFactory(new PropertyValueFactory<>("data"));
+		log_act.setCellValueFactory(new PropertyValueFactory<>("modificacao"));
+		log_user.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+		    	
+		ProprietarioDAO dao = new ProprietarioDAO();
+		ResultSet rs = dao.listarLog();
+		List<logVO> lst = new ArrayList<>();
+		
+		try {
+			while (rs.next()) {
+				logVO log = new logVO();
+				log.setData(rs.getString("data"));
+				log.setModificacao(rs.getString("modificacao"));
+				log.setUsuario(rs.getString("usuario"));
+				lst.add(log);			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tabela_log.setItems(FXCollections.observableArrayList(lst));
 	}
 		    
     @FXML
@@ -198,7 +240,7 @@ public class SetorProprietarioController implements Initializable {
         	iniciarCaixa();
         	closePopUp();
     	}else {
-    		System.out.println("Não é double");
+    		System.out.println("Nï¿½o ï¿½ double");
     	}
     	
     
