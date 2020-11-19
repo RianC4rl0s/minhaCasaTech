@@ -18,6 +18,9 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -261,6 +264,10 @@ public class RelatoriosController implements Initializable {
     	String strI = localDateI.getDayOfMonth() +"/"+ (localDateI.getMonthValue()) +"/"+ localDateI.getYear();
     	String strF = localDateF.getDayOfMonth() +"/"+ (localDateF.getMonthValue()) +"/"+ localDateF.getYear();
     	
+    	Paragraph title = new Paragraph(new Phrase("Minha Casa Tech",
+                FontFactory.getFont(FontFactory.COURIER, 28f)));
+    	title.setAlignment(Element.ALIGN_CENTER);
+    	
     	Phrase phrase0 = new Phrase("Relatório de " + strI + " até " + strF);
     	
     	Phrase phrase1 = new Phrase("\nVendas: ");
@@ -292,6 +299,7 @@ public class RelatoriosController implements Initializable {
     	addRowsTC(tableCompras, Compras);
     	 
     	try {
+    		document.add(title);
 			document.add(phrase0);
 			document.add(phrase1);
 			document.add(tableVendas);
@@ -323,7 +331,7 @@ public class RelatoriosController implements Initializable {
 		    table.addCell(""+transacoes.get(i).getPesoTotal());
 		    table.addCell(""+transacoes.get(i).getTotalEquip());
 		    Date d1 = new Date(transacoes.get(i).getData().getTimeInMillis());
-		    table.addCell(""+ (d1.getDay()+1) + "/" + (d1.getMonth()+1) + "/" + (d1.getYear()+1900));
+		    table.addCell(""+ (d1.getDate()) + "/" + (d1.getMonth()+1) + "/" + (d1.getYear()+1900));
 		}
 	}
 	
@@ -334,7 +342,7 @@ public class RelatoriosController implements Initializable {
 		    table.addCell(""+transacoes.get(i).getPesoTotal());
 		    table.addCell(""+transacoes.get(i).getTotalEquip());
 		    Date d1 = new Date(transacoes.get(i).getData().getTimeInMillis());
-		    table.addCell(""+ (d1.getDay()+1) + "/" + (d1.getMonth()+1) + "/" + (d1.getYear()+1900));
+		    table.addCell(""+ (d1.getDate()) + "/" + (d1.getMonth()+1) + "/" + (d1.getYear()+1900));
 		}
 	}
 }
