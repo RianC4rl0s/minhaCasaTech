@@ -123,6 +123,7 @@ public class GerenciarCompraController implements Initializable {
     		try {
     			compra.setTipo(1);
     			cbo.cadastrar(compra);
+    			compra = new CompraVO();
     			try {
     				Telas.telaPrincipal();
     			}catch(Exception e) {
